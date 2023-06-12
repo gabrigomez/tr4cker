@@ -17,9 +17,9 @@ export const NavBar = () => {
             </Link>
           </div>
           <div>
-            <a className='hover:text-sky-700 duration-300 cursor-pointer'>
+            <Link to="/sign-in" className='hover:text-sky-700 duration-300 cursor-pointer'>
               Sign in
-            </a>
+            </Link>
           </div>
         </div>
       </div>

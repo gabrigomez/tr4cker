@@ -19,7 +19,7 @@ export const Login = () => {
           <div>
             <input 
               type="text" 
-              placeholder="E-mail" 
+              placeholder="Username" 
               className="bg-black m-2 p-2 rounded-md"
               onChange={(e) => setUsername(e.target.value)} />
           </div>
