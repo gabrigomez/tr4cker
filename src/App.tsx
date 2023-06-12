@@ -7,7 +7,7 @@ import { SignIn } from './components/SignIn'
 
 function App() {
   return (
-    <div>
+    <div className=' font-orbit'>
       <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
