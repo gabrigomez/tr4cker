@@ -12,9 +12,9 @@ export const NavBar = () => {
         </div>
         <div className='flex'>
           <div className='mr-4'>
-            <a className='hover:text-sky-700 duration-300 cursor-pointer'>
+            <Link to="/login" className='hover:text-sky-700 duration-300 cursor-pointer'>
               Login
-            </a>
+            </Link>
           </div>
           <div>
             <a className='hover:text-sky-700 duration-300 cursor-pointer'>
