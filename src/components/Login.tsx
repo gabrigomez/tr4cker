@@ -1,3 +1,4 @@
+import { Keyhole } from "@phosphor-icons/react";
 import { useState } from "react"
 
 export const Login = () => {
@@ -30,8 +31,8 @@ export const Login = () => {
               className="bg-black m-4 p-2 rounded-md"
               onChange={(e) => setPassword(e.target.value)} />
           </div>
-          <button className="bg-black hover:bg-gray-900 duration-300 p-2 rounded-md">
-            Login
+          <button className="bg-black hover:bg-gray-900 duration-300 p-2 rounded-md group">
+            <Keyhole className='text-2xl mr-1 group-hover:animate-spin cursor-pointer' />
           </button>
         </form>
       </div>

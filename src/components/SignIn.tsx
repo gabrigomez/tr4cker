@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { SignIn as SignInIcon } from  "@phosphor-icons/react";
+
 
 export const SignIn = () => {
   const [username, setUsername] = useState<string>("");
@@ -47,8 +49,8 @@ export const SignIn = () => {
               className="bg-black m-2 p-2 rounded-md"
               onChange={(e) => setConfirmPassword(e.target.value)} />
           </div>
-          <button className="bg-black hover:bg-gray-900 duration-300 mt-4 p-2 rounded-md">
-            Sign in
+          <button className="bg-black hover:bg-gray-900 duration-300 mt-4 p-2 rounded-md group">
+            <SignInIcon className='text-2xl mr-1 group-hover:animate-ping cursor-pointer' />
           </button>
         </form>
     </div>

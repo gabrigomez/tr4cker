@@ -1,3 +1,4 @@
+import { Keyhole, SignIn } from '@phosphor-icons/react';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -11,13 +12,15 @@ export const NavBar = () => {
           </Link>
         </div>
         <div className='flex'>
-          <div className='mr-4'>
-            <Link to="/login" className='hover:text-sky-700 duration-300 cursor-pointer'>
+          <div className='mr-4 flex items-center group'>
+            <Keyhole className='text-2xl mr-1 group-hover:text-sky-700 cursor-pointer' />
+            <Link to="/login" className='group-hover:text-sky-700 duration-300 cursor-pointer'>
               Login
             </Link>
           </div>
-          <div>
-            <Link to="/sign-in" className='hover:text-sky-700 duration-300 cursor-pointer'>
+          <div className='mr-4 flex items-center group'>
+            <SignIn className='text-2xl mr-1 group-hover:text-sky-700 cursor-pointer' />
+            <Link to="/sign-in" className='group-hover:text-sky-700 duration-300 cursor-pointer'>
               Sign in
             </Link>
           </div>

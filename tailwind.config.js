@@ -8,6 +8,10 @@ export default {
     extend: {
       fontFamily: {
         'orbit': ['Orbit', 'sans-serif']
+      },
+      animation: {
+        'spin': 'spin 2s linear',
+        'ping': 'ping 2s linear',
       }
     },
   },
