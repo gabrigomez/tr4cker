@@ -50,7 +50,7 @@ export const SignIn = () => {
               onChange={(e) => setConfirmPassword(e.target.value)} />
           </div>
           <button className="bg-black hover:bg-gray-900 duration-300 mt-4 p-2 rounded-md group">
-            <SignInIcon className='text-2xl mr-1 group-hover:animate-ping cursor-pointer' />
+            <SignInIcon className='text-2xl mr-1 group-hover:animate-pulse cursor-pointer' />
           </button>
         </form>
     </div>
