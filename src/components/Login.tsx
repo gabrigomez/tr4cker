@@ -1,9 +1,28 @@
 import { Keyhole } from "@phosphor-icons/react";
 import { Form, Field } from 'react-final-form'
 
-export const Login = () => {  
-  const onSubmit = (values: { username: string; password: string; }) => {   
+export const Login = () => {
+  const initialValues = {
+    username: '',
+    password: ''
+  }
+
+  const onSubmit = (values = { ...initialValues }) => {   
     console.log(values.username, values.password);
+  }
+
+  const validate = (values = { ...initialValues }) => {
+    const errors = {username: '', password: ''}
+    
+    if (!values.username) {
+      errors.username = 'Obrigatório'
+      return errors              
+    }
+    if (!values.password) {
+      errors.password = 'Obrigatório'
+      return errors
+    }            
+    return
   }
 
   return (
@@ -14,18 +33,7 @@ export const Login = () => {
         </p>
         <Form
           onSubmit={onSubmit}
-          validate={values => {
-            const errors = {username: '', password: ''}
-            if (!values.username) {
-              errors.username = 'Obrigatório'
-              return errors              
-            }
-            if (!values.password) {
-              errors.password = 'Obrigatório'
-              return errors
-            }            
-            return
-          }}
+          validate={validate}
           render={({ handleSubmit }) => (
           <form action="submit" className="flex flex-col items-center" onSubmit={handleSubmit}>
             <Field name="username">

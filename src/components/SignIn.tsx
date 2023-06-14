@@ -3,8 +3,41 @@ import { Form, Field } from "react-final-form";
 
 
 export const SignIn = () => {
-  const onSubmit = (values: { username: string; email:string; password: string; confirmPassword: string }) => {    
-    console.log(values.username, values.email, values.password);
+  const initialValues = {
+    username: '',
+    email: '',
+    password: '',
+    confirmPassword: ''
+  }
+
+  const onSubmit = (values = { ...initialValues }) => {   
+    console.log(values.username, values.password);
+  }
+
+  const validate = (values = { ...initialValues }) => {
+    const errors = {username: '', email: '', password: '', confirmPassword: ''}
+    
+    if (!values.username) {
+      errors.username = 'Obrigatório'
+      return errors              
+    }
+    if (!values.email) {
+      errors.email = 'Obrigatório'
+      return errors
+    }
+    if (!values.password) {
+      errors.password = 'Obrigatório'
+      return errors
+    }
+    if (!values.confirmPassword) {
+      errors.confirmPassword = 'Obrigatório'
+      return errors
+    }
+    if (values.confirmPassword !== values.password) {
+      errors.confirmPassword = 'Senhas não conferem'
+      return errors
+    }             
+    return
   }
 
   return (
@@ -16,30 +49,7 @@ export const SignIn = () => {
       </div>
       <Form
         onSubmit={onSubmit}
-        validate={values => {
-          const errors = {username: '', email: '', password: '', confirmPassword: '' }
-          if (!values.username) {
-            errors.username = 'Obrigatório'
-            return errors              
-          }
-          if (!values.email) {
-            errors.email = 'Obrigatório'
-            return errors
-          }
-          if (!values.password) {
-            errors.password = 'Obrigatório'
-            return errors
-          }
-          if (!values.confirmPassword) {
-            errors.confirmPassword = 'Obrigatório'
-            return errors
-          }
-          if (values.confirmPassword !== values.password) {
-            errors.confirmPassword = 'Senhas não conferem'
-            return errors
-          }             
-          return
-        }}
+        validate={validate}
         render={({ handleSubmit }) => (
           <form action="submit" className="flex flex-col items-center" onSubmit={handleSubmit}>
             <Field name="username">
