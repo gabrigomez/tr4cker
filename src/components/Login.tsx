@@ -51,7 +51,7 @@ export const Login = () => {
                   <input 
                     type="password"
                     {...input} 
-                    placeholder="Password" 
+                    placeholder="Senha" 
                     className="bg-black p-2 rounded-md"
                     />
                   {meta.error && meta.touched && 
