@@ -1,5 +1,8 @@
 import { Keyhole } from "@phosphor-icons/react";
+import axios from "axios";
 import { Form, Field } from 'react-final-form'
+
+const API_URL = "https://python-app.up.railway.app/api"
 
 export const Login = () => {
   const initialValues = {
@@ -7,8 +10,9 @@ export const Login = () => {
     password: ''
   }
 
-  const onSubmit = (values = { ...initialValues }) => {   
-    console.log(values.username, values.password);    
+  const onSubmit = async (values = { ...initialValues }) => {    
+    const response = await axios.post(`${API_URL}/token`, {...values})
+    console.log(response.data)    
   }
 
   const validate = (values = { ...initialValues }) => {
