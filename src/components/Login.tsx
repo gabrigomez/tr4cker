@@ -8,7 +8,7 @@ export const Login = () => {
   }
 
   const onSubmit = (values = { ...initialValues }) => {   
-    console.log(values.username, values.password);
+    console.log(values.username, values.password);    
   }
 
   const validate = (values = { ...initialValues }) => {
