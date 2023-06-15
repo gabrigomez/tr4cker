@@ -28,19 +28,19 @@ export const SignIn = () => {
     const errors = {username: '', email: '', password: '', confirmPassword: ''}
     
     if (!values.username) {
-      errors.username = 'Obrigatório'
+      errors.username = 'obrigatório'
       return errors              
     }
     if (!values.email) {
-      errors.email = 'Obrigatório'
+      errors.email = 'obrigatório'
       return errors
     }
     if (!values.password) {
-      errors.password = 'Obrigatório'
+      errors.password = 'obrigatório'
       return errors
     }
     if (!values.confirmPassword) {
-      errors.confirmPassword = 'Obrigatório'
+      errors.confirmPassword = 'obrigatório'
       return errors
     }
     if (values.confirmPassword !== values.password) {
@@ -53,7 +53,7 @@ export const SignIn = () => {
   return (
     <div className="flex flex-col w-screen">
       <div className="mt-20">
-        <p className="mb-4">
+        <p className="mb-4 font-bold">
           SIGN IN
         </p>
       </div>
@@ -64,7 +64,7 @@ export const SignIn = () => {
           <form action="submit" className="flex flex-col items-center" onSubmit={handleSubmit}>
             <Field name="username">
               {({ input, meta }) => (
-                <div className="mb-3 flex flex-col w-3/4 h-14">
+                <div className="mb-3 flex flex-col w-3/4 md:w-2/4 lg:w-1/4 h-14">
                   <input 
                     type="text"
                     {...input} 
@@ -81,7 +81,7 @@ export const SignIn = () => {
             </Field>
             <Field name="email">
               {({ input, meta }) => (
-                <div className="mb-3 flex flex-col w-3/4 h-14">
+                <div className="mb-3 flex flex-col w-3/4 md:w-2/4 lg:w-1/4 h-14">
                   <input 
                     type="text"
                     {...input} 
@@ -98,7 +98,7 @@ export const SignIn = () => {
             </Field>              
             <Field name="password">
               {({ input, meta }) => (
-                <div className="mb-3 flex flex-col w-3/4 h-14">
+                <div className="mb-3 flex flex-col w-3/4 md:w-2/4 lg:w-1/4 h-14">
                   <input 
                     type="password"
                     {...input} 
@@ -115,7 +115,7 @@ export const SignIn = () => {
             </Field>
             <Field name="confirmPassword">
               {({ input, meta }) => (
-                <div className="mb-3 flex flex-col w-3/4 h-14">
+                <div className="mb-3 flex flex-col w-3/4 md:w-2/4 lg:w-1/4 h-14">
                   <input 
                     type="password"
                     {...input} 

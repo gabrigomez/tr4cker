@@ -25,11 +25,11 @@ export const Login = () => {
     const errors = {email: '', password: ''}
     
     if (!values.email) {
-      errors.email = 'Obrigatório'
+      errors.email = 'obrigatório'
       return errors              
     }
     if (!values.password) {
-      errors.password = 'Obrigatório'
+      errors.password = 'obrigatório'
       return errors
     }            
     return
@@ -38,7 +38,7 @@ export const Login = () => {
   return (
     <div className="flex flex-col w-screen">
       <div className="mt-20">
-        <p className="mb-4">
+        <p className="mb-4 font-bold">
           LOGIN
         </p>
         <Form
@@ -48,7 +48,7 @@ export const Login = () => {
           <form action="submit" className="flex flex-col items-center" onSubmit={handleSubmit}>
             <Field name="email">
               {({ input, meta }) => (
-                <div className="mb-3 flex flex-col w-3/4 h-14">
+                <div className="mb-3 flex flex-col w-3/4 md:w-2/4 lg:w-1/4 h-14">
                   <input 
                     type="text"
                     {...input} 
@@ -65,7 +65,7 @@ export const Login = () => {
             </Field>            
             <Field name="password">
               {({ input, meta }) => (
-                <div className="mb-3 flex flex-col w-3/4 h-14">
+                <div className="mb-3 flex flex-col w-3/4 md:w-2/4 lg:w-1/4 h-14">
                   <input 
                     type="password"
                     {...input} 
