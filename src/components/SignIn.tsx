@@ -3,9 +3,12 @@ import axios from "axios";
 import { Form, Field } from "react-final-form";
 import { API_URL } from "../Utils";
 import { useNavigate } from "react-router";
+import { useState } from "react";
 
 
 export const SignIn = () => {
+  const [errors, setErrors] = useState<string>('')
+
   const navigate = useNavigate();    
   const initialValues = {
     username: '',
@@ -20,8 +23,12 @@ export const SignIn = () => {
       console.log(response)
       navigate("/login")
     } catch (error) {
-      console.log(error)
-    }   
+      console.log(error)      
+      setErrors('não foi possível realizar o registro')
+      setTimeout(() => {
+        setErrors('')
+      }, 4000)
+    }     
   }
 
   const validate = (values = { ...initialValues }) => {
@@ -133,6 +140,13 @@ export const SignIn = () => {
             <button className="bg-black hover:bg-gray-900 duration-300 mt-4 p-2 rounded-md group">
               <SignInIcon className='text-2xl mr-1 group-hover:animate-pulse cursor-pointer' />
             </button>
+            {errors && (
+              <div className="h-10 text-xs text-red-600 mt-2 font-semibold">
+                <p>
+                  {errors}
+                </p>
+              </div>
+            )}
           </form>
         )}
       />

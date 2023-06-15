@@ -3,8 +3,11 @@ import { API_URL } from "../Utils";
 import { Form, Field } from 'react-final-form'
 import { Keyhole } from "@phosphor-icons/react";
 import { useNavigate } from "react-router";
+import { useState } from "react";
 
 export const Login = () => {
+  const [errors, setErrors] = useState<string>('')
+  
   const navigate = useNavigate();    
   const initialValues = {
     email: '',
@@ -17,7 +20,11 @@ export const Login = () => {
       localStorage.setItem("token", response.data.access)
       navigate("/dashboard")
     } catch (error) {
-      console.log(error)
+      console.log(error)      
+      setErrors('não foi possível realizar o login')
+      setTimeout(() => {
+        setErrors('')
+      }, 4000)
     }    
   }
 
@@ -83,6 +90,13 @@ export const Login = () => {
             <button className="bg-black hover:bg-gray-900 duration-300 p-2 rounded-md group">
               <Keyhole className='text-2xl mr-1 group-hover:animate-spin cursor-pointer' />
             </button>
+            {errors && (
+              <div className="h-10 text-xs text-red-600 mt-2 font-semibold">
+                <p>
+                  {errors}
+                </p>
+              </div>
+            )}
           </form>
           )}
         />
