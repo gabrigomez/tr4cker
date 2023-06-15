@@ -5,17 +5,20 @@ import { NavBar } from './components/NavBar'
 import { Login } from './components/Login'
 import { SignIn } from './components/SignIn'
 import { Dashboard } from './components/Dashboard'
+import { AuthProvider } from './context/AuthContext'
 
 function App() {
   return (
     <div className=' font-orbit'>
       <NavBar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/sign-in" element={<SignIn />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-      </Routes>       
+      <AuthProvider>
+        <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/sign-in" element={<SignIn />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+        </Routes>       
+      </AuthProvider>
     </div>
   )
 }
