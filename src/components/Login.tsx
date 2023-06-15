@@ -3,7 +3,8 @@ import { API_URL } from "../Utils";
 import { Form, Field } from 'react-final-form'
 import { Keyhole } from "@phosphor-icons/react";
 import { useNavigate } from "react-router";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import AuthContext from "../context/AuthContext";
 
 export const Login = () => {
   const [errors, setErrors] = useState<string>('')
@@ -14,19 +15,13 @@ export const Login = () => {
     password: ''
   }
 
+  const { loginUser } = useContext(AuthContext)
+
+
   const onSubmit = async (values = { ...initialValues }) => {
-    try {
-      const response = await axios.post(`${API_URL}/login`, {...values})
-      localStorage.setItem("token", response.data.access)
-      navigate("/dashboard")
-    } catch (error) {
-      console.log(error)      
-      setErrors('não foi possível realizar o login')
-      setTimeout(() => {
-        setErrors('')
-      }, 4000)
-    }    
+    loginUser?.({...values})  
   }
+
 
   const validate = (values = { ...initialValues }) => {
     const errors = {email: '', password: ''}

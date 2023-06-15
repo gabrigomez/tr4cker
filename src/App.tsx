@@ -10,14 +10,14 @@ import { AuthProvider } from './context/AuthContext'
 function App() {
   return (
     <div className=' font-orbit'>
-      <NavBar />
       <AuthProvider>
-        <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/sign-in" element={<SignIn />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-        </Routes>       
+        <NavBar />
+          <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/sign-in" element={<SignIn />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+          </Routes>       
       </AuthProvider>
     </div>
   )
