@@ -1,25 +1,31 @@
-import { Keyhole } from "@phosphor-icons/react";
 import axios from "axios";
+import { API_URL } from "../Utils";
 import { Form, Field } from 'react-final-form'
-
-const API_URL = "https://python-app.up.railway.app/api"
+import { Keyhole } from "@phosphor-icons/react";
+import { useNavigate } from "react-router";
 
 export const Login = () => {
+  const navigate = useNavigate();    
   const initialValues = {
-    username: '',
+    email: '',
     password: ''
   }
 
-  const onSubmit = async (values = { ...initialValues }) => {    
-    const response = await axios.post(`${API_URL}/token`, {...values})
-    console.log(response.data)    
+  const onSubmit = async (values = { ...initialValues }) => {
+    try {
+      const response = await axios.post(`${API_URL}/login`, {...values})
+      localStorage.setItem("token", response.data.access)
+      navigate("/dashboard")
+    } catch (error) {
+      console.log(error)
+    }    
   }
 
   const validate = (values = { ...initialValues }) => {
-    const errors = {username: '', password: ''}
+    const errors = {email: '', password: ''}
     
-    if (!values.username) {
-      errors.username = 'Obrigatório'
+    if (!values.email) {
+      errors.email = 'Obrigatório'
       return errors              
     }
     if (!values.password) {
@@ -40,13 +46,13 @@ export const Login = () => {
           validate={validate}
           render={({ handleSubmit }) => (
           <form action="submit" className="flex flex-col items-center" onSubmit={handleSubmit}>
-            <Field name="username">
+            <Field name="email">
               {({ input, meta }) => (
                 <div className="mb-3 flex flex-col w-3/4 h-14">
                   <input 
                     type="text"
                     {...input} 
-                    placeholder="Username" 
+                    placeholder="E-mail" 
                     className="bg-black p-2 rounded-md"
                     />
                   {meta.error && meta.touched && 
