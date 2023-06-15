@@ -14,7 +14,7 @@ export const NavBar = () => {
     <div className='bg-black w-screen mb-4 p-4 border border-sky-900'>
       <div className='flex justify-between md:justify-around'>
         <div>
-          <Link to="/" className='hover:text-sky-700 duration-300 cursor-pointer'>
+          <Link to="/" className='hover:text-sky-700 duration-300 cursor-pointer font-bold'>
             TR4CKER
           </Link>
         </div>
