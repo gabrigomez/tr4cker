@@ -2,14 +2,12 @@ import { createContext, FC, useState } from "react";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 
-import { API_URL } from "../utils";
+import { API_URL, User } from "../utils";
 import { AuthContextObject, Props, Token } from "../interfaces";
 import { useNavigate } from "react-router";
 
 const AuthContext = createContext({} as AuthContextObject);
 export default AuthContext
-
-type User = string | null
 
 export const AuthProvider: FC<Props> = ({ children })  => {
   const [loginErrors, setLoginErrors] = useState<string>('')
@@ -31,11 +29,18 @@ export const AuthProvider: FC<Props> = ({ children })  => {
       }, 4000);      
     }    
   }
+
+  const logoutUser = () => {
+    localStorage.removeItem("token")
+    setUsername(null)
+    navigate("/login")
+  }
   
   const contextData = {
     username: username,
+    loginErrors: loginErrors,
     loginUser: loginUser,
-    loginErrors: loginErrors
+    logoutUser: logoutUser    
   }
 
   return (

@@ -1,15 +1,14 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { Keyhole, SignOut, UserCircle, UserCirclePlus } from '@phosphor-icons/react';
 
+import AuthContext from '../context/AuthContext';
+
 export const NavBar = () => {
+  const { logoutUser } = useContext(AuthContext)
   const token = localStorage.getItem("token")
-  const navigate = useNavigate()
 
-  const handleLogout = () => {
-    localStorage.removeItem("token")
-    navigate("/login")
-  }
-
+  
   return (
     <div className='bg-black w-screen mb-4 p-4 border border-sky-900'>
       <div className='flex justify-between md:justify-around'>
@@ -29,7 +28,7 @@ export const NavBar = () => {
               </div>
               <div className='mr-4 flex items-center group'>
                 <SignOut className='text-2xl mr-1 group-hover:text-sky-700 cursor-pointer' />
-                <button onClick={handleLogout} className='group-hover:text-sky-700 duration-300 cursor-pointer'>
+                <button onClick={logoutUser} className='group-hover:text-sky-700 duration-300 cursor-pointer'>
                   Log out
                 </button>
               </div>

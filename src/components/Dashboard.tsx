@@ -9,7 +9,7 @@ export const Dashboard = () => {
   const { username } = useContext(AuthContext)
 
   useEffect(() => {
-    if (username === '') {
+    if (username === null) {
       navigate("/login")
     }
   })  
