@@ -1,23 +1,9 @@
-import { createContext, FC, ReactNode, useState } from "react";
-import { API_URL } from "../Utils";
-
+import { createContext, FC, useState } from "react";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 
-interface AuthContextObject {
-  username?: string | null,
-  loginErrors?: string,
-  loginUser?: (values: object) => Promise<void>
-}
-interface Props {
-  children?: ReactNode
-}
-
-interface Token {
-  token_type: string,
-  user_id: number,
-  username: string
-}
+import { API_URL } from "../utils";
+import { AuthContextObject, Props, Token } from "../interfaces";
 
 const AuthContext = createContext({} as AuthContextObject);
 export default AuthContext
