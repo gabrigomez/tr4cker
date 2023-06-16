@@ -16,7 +16,7 @@ export const Login = () => {
 
   const onSubmit = async (values = { ...initialValues }) => {
     loginUser?.({...values})
-    console.log(username)
+    
     if(username !== '') {
       navigate("/dashboard")
     }  

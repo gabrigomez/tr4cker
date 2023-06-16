@@ -15,9 +15,9 @@ export const AuthProvider: FC<Props> = ({ children })  => {
   const loginUser = async (values: object) => {
     try {
       const response = await axios.post(`${API_URL}/login`, {...values})
-      localStorage.setItem("token", response.data.access)
       const token: Token = jwt_decode(response.data.access)
       setUsername(token.username)
+      localStorage.setItem("token", response.data.access)
     } catch (error) {
       setLoginErrors('Não foi possível realizar o login')
       setTimeout(() => {
