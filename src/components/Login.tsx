@@ -1,27 +1,26 @@
-import axios from "axios";
-import { API_URL } from "../Utils";
 import { Form, Field } from 'react-final-form'
 import { Keyhole } from "@phosphor-icons/react";
-import { useNavigate } from "react-router";
-import { useContext, useState } from "react";
+import { useContext } from "react";
+
+import { useNavigate } from 'react-router';
 import AuthContext from "../context/AuthContext";
 
 export const Login = () => {
-  const [errors, setErrors] = useState<string>('')
-  
-  const navigate = useNavigate();    
+  const { loginUser, loginErrors, username } = useContext(AuthContext)
+  const navigate = useNavigate();
+
   const initialValues = {
     email: '',
     password: ''
   }
 
-  const { loginUser } = useContext(AuthContext)
-
-
   const onSubmit = async (values = { ...initialValues }) => {
-    loginUser?.({...values})  
+    loginUser?.({...values})
+    console.log(username)
+    if(username !== '') {
+      navigate("/dashboard")
+    }  
   }
-
 
   const validate = (values = { ...initialValues }) => {
     const errors = {email: '', password: ''}
@@ -85,10 +84,10 @@ export const Login = () => {
             <button className="bg-black hover:bg-gray-900 duration-300 p-2 rounded-md group">
               <Keyhole className='text-2xl mr-1 group-hover:animate-spin cursor-pointer' />
             </button>
-            {errors && (
+            {loginErrors && (
               <div className="h-10 text-xs text-red-600 mt-2 font-semibold">
                 <p>
-                  {errors}
+                  {loginErrors}
                 </p>
               </div>
             )}
