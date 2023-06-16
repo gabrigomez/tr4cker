@@ -7,8 +7,7 @@ import AuthContext from '../context/AuthContext';
 export const NavBar = () => {
   const { logoutUser } = useContext(AuthContext)
   const token = localStorage.getItem("token")
-
-  
+    
   return (
     <div className='bg-black w-screen mb-4 p-4 border border-sky-900'>
       <div className='flex justify-between md:justify-around'>
