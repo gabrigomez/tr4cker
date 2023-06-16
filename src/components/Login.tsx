@@ -2,24 +2,17 @@ import { Form, Field } from 'react-final-form'
 import { Keyhole } from "@phosphor-icons/react";
 import { useContext } from "react";
 
-import { useNavigate } from 'react-router';
 import AuthContext from "../context/AuthContext";
 
 export const Login = () => {
-  const { loginUser, loginErrors, username } = useContext(AuthContext)
-  const navigate = useNavigate();
-
+  const { loginUser, loginErrors } = useContext(AuthContext)
   const initialValues = {
     email: '',
     password: ''
-  }
+  }  
 
-  const onSubmit = async (values = { ...initialValues }) => {
+  const onSubmit = (values = { ...initialValues }) => {
     loginUser?.({...values})
-    
-    if(username !== '') {
-      navigate("/dashboard")
-    }  
   }
 
   const validate = (values = { ...initialValues }) => {

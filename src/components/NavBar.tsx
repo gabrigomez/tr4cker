@@ -1,14 +1,9 @@
-import { Keyhole, SignOut, UserCircle, UserCirclePlus } from '@phosphor-icons/react';
 import { Link, useNavigate } from 'react-router-dom';
-import jwt_decode from "jwt-decode";
+import { Keyhole, SignOut, UserCircle, UserCirclePlus } from '@phosphor-icons/react';
 
 export const NavBar = () => {
-  let token = localStorage.getItem("token")
+  const token = localStorage.getItem("token")
   const navigate = useNavigate()
-
-  if (token) {
-    token = jwt_decode(token)
-  }  
 
   const handleLogout = () => {
     localStorage.removeItem("token")
