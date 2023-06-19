@@ -6,7 +6,8 @@ export interface AuthContextObject {
   email?: string | null,
   loginErrors?: string,
   loginUser?: (values: object) => Promise<void>
-  logoutUser?: () => void
+  logoutUser?: () => void,
+  editUser?: (values: object) => Promise<void>
 }
 export interface Props {
   children?: ReactNode

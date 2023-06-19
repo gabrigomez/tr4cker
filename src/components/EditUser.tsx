@@ -4,13 +4,13 @@ import { Field, Form } from "react-final-form"
 import { CheckCircle } from "@phosphor-icons/react"
 
 export const EditUser = () => {
-  const { username, email, id } = useContext(AuthContext)
+  const { username, email, editUser } = useContext(AuthContext)
   const initialValues = {
-    username: ''
-  }  
-  
-  const onSubmit = () => {
-    console.log('sent!')
+    username: '',
+  }
+    
+  const onSubmit = (values = { ...initialValues }) => {
+    editUser?.({...values})
   }
 
   const validate = (values = { ...initialValues }) => {
@@ -44,7 +44,7 @@ export const EditUser = () => {
                       <input
                         type="text"
                         {...input}
-                        placeholder="E-mail" 
+                        placeholder="username" 
                         className="bg-black p-2 rounded-md"
                       />
                       {meta.error && meta.touched && 
