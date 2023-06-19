@@ -2,7 +2,8 @@ import { ReactNode } from "react"
 
 export interface AuthContextObject {
   username?: string | null,
-  id?: number
+  id?: number,
+  email?: string | null,
   loginErrors?: string,
   loginUser?: (values: object) => Promise<void>
   logoutUser?: () => void
@@ -14,5 +15,6 @@ export interface Props {
 export interface Token {
   token_type: string,
   user_id: number,
+  email: string,
   username: string
 }

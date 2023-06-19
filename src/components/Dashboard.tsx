@@ -6,7 +6,7 @@ import { Link } from "react-router-dom"
 export const Dashboard = () => {
   const navigate = useNavigate()
 
-  const { username, id } = useContext(AuthContext)
+  const { username } = useContext(AuthContext)
 
   useEffect(() => {
     if (!username) {
