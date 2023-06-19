@@ -12,6 +12,7 @@ export default AuthContext
 export const AuthProvider: FC<Props> = ({ children })  => {
   const [loginErrors, setLoginErrors] = useState<string>('')
   const [username, setUsername] = useState<User>(null)
+  const [id, setId] = useState<number>(0)
   
   const navigate = useNavigate();
 
@@ -19,8 +20,10 @@ export const AuthProvider: FC<Props> = ({ children })  => {
     try {
       const response = await axios.post(`${API_URL}/login`, {...values})
       const token: Token = jwt_decode(response.data.access)
+      
       localStorage.setItem("token", response.data.access)
       setUsername(token.username)
+      setId(token.user_id)
       navigate("/dashboard")      
     } catch (error) {
       setLoginErrors('Não foi possível realizar o login')
@@ -38,6 +41,7 @@ export const AuthProvider: FC<Props> = ({ children })  => {
   
   const contextData = {
     username: username,
+    id: id,
     loginErrors: loginErrors,
     loginUser: loginUser,
     logoutUser: logoutUser    

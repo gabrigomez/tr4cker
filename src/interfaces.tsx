@@ -2,6 +2,7 @@ import { ReactNode } from "react"
 
 export interface AuthContextObject {
   username?: string | null,
+  id?: number
   loginErrors?: string,
   loginUser?: (values: object) => Promise<void>
   logoutUser?: () => void
