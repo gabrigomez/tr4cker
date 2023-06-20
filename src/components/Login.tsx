@@ -1,33 +1,28 @@
+import * as yup from "yup";
 import { Form, Field } from 'react-final-form'
 import { Keyhole } from "@phosphor-icons/react";
 import { useContext } from "react";
 
 import AuthContext from "../context/AuthContext";
+import { validateFormValues } from '../utils';
 
 export const Login = () => {
   const { loginUser, loginErrors } = useContext(AuthContext)
   const initialValues = {
     email: '',
     password: ''
-  }  
+  }
+  
+  const validationSchema = yup.object({
+    email: yup.string().email('e-mail inválido').required("campo obrigatório"),
+    password: yup.string().required("obrigatório")
+  });
 
   const onSubmit = (values = { ...initialValues }) => {
     loginUser?.({...values})
   }
 
-  const validate = (values = { ...initialValues }) => {
-    const errors = {email: '', password: ''}
-    
-    if (!values.email) {
-      errors.email = 'obrigatório'
-      return errors              
-    }
-    if (!values.password) {
-      errors.password = 'obrigatório'
-      return errors
-    }            
-    return
-  }
+  const validate = validateFormValues(validationSchema);
 
   return (
     <div className="flex flex-col w-screen">
