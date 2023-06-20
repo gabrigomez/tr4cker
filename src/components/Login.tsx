@@ -14,8 +14,8 @@ export const Login = () => {
   }
   
   const validationSchema = yup.object({
-    email: yup.string().email('e-mail inválido').required("campo obrigatório"),
-    password: yup.string().required("obrigatório")
+    email: yup.string().email('e-mail inválido').required('obrigatório'),
+    password: yup.string().required('obrigatório')
   });
 
   const onSubmit = (values = { ...initialValues }) => {

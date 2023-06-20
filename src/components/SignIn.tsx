@@ -1,7 +1,9 @@
 import { SignIn as SignInIcon } from  "@phosphor-icons/react";
 import axios from "axios";
+import * as yup from "yup";
+
 import { Form, Field } from "react-final-form";
-import { API_URL } from "../utils";
+import { API_URL, validateFormValues } from "../utils";
 import { useNavigate } from "react-router";
 import { useState } from "react";
 
@@ -17,6 +19,14 @@ export const SignIn = () => {
     confirmPassword: ''
   }
 
+  const validationSchema = yup.object({
+    username: yup.string().min(4, '4 caracteres ou mais').required('obrigatório'),
+    email: yup.string().email('e-mail inválido').required('obrigatório'),
+    password: yup.string().min(5, 'senha muito curta').required('obrigatório'),
+    confirmPassword: yup.string().oneOf([yup.ref('password')], 'senhas não conferem').required('obrigatório')
+  });
+
+
   const onSubmit = async (values = { ...initialValues }) => {   
     try {
       const response = await axios.post(`${API_URL}/register`, {...values})
@@ -31,32 +41,8 @@ export const SignIn = () => {
     }     
   }
 
-  const validate = (values = { ...initialValues }) => {
-    const errors = {username: '', email: '', password: '', confirmPassword: ''}
-    
-    if (!values.username) {
-      errors.username = 'obrigatório'
-      return errors              
-    }
-    if (!values.email) {
-      errors.email = 'obrigatório'
-      return errors
-    }
-    if (!values.password) {
-      errors.password = 'obrigatório'
-      return errors
-    }
-    if (!values.confirmPassword) {
-      errors.confirmPassword = 'obrigatório'
-      return errors
-    }
-    if (values.confirmPassword !== values.password) {
-      errors.confirmPassword = 'Senhas não conferem'
-      return errors
-    }             
-    return
-  }
-
+  const validate = validateFormValues(validationSchema);
+  
   return (
     <div className="flex flex-col w-screen">
       <div className="mt-20">
