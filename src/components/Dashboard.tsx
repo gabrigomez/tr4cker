@@ -1,15 +1,15 @@
 import { useEffect, useContext } from "react"
 import { useNavigate } from "react-router"
-import AuthContext from "../context/AuthContext"
 import { Link } from "react-router-dom"
+import AuthContext from "../context/AuthContext"
 
 export const Dashboard = () => {
   const navigate = useNavigate()
 
-  const { username } = useContext(AuthContext)
+  const { username, authToken } = useContext(AuthContext)
 
   useEffect(() => {
-    if (!username) {
+    if (!authToken) {
       navigate("/login")
     }
   })  

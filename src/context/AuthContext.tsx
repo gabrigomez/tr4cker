@@ -1,8 +1,8 @@
-import { createContext, FC, useState } from "react";
+import { createContext, FC, useEffect, useState } from "react";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 
-import { API_URL, Email, User } from "../utils";
+import { API_URL, AuthToken, Email, User } from "../utils";
 import { AuthContextObject, Props, Token } from "../interfaces";
 import { useNavigate } from "react-router";
 
@@ -10,14 +10,14 @@ const AuthContext = createContext({} as AuthContextObject);
 export default AuthContext
 
 export const AuthProvider: FC<Props> = ({ children })  => {
-  const [token, setToken] = useState<string>('')
+  const [authToken, setAuthToken] = useState<AuthToken>(localStorage.getItem("token") ? localStorage.getItem("token") : null)
   const [loginErrors, setLoginErrors] = useState<string>('')
   const [username, setUsername] = useState<User>(null)
   const [email, setEmail] = useState<Email>(null)
   const [id, setId] = useState<number>(0)
   
   const navigate = useNavigate();
-  const headers = { Authorization: `Bearer ${token}` };
+  const headers = { Authorization: `Bearer ${authToken}` };
 
   const loginUser = async (values: object) => {    
     try {
@@ -25,7 +25,7 @@ export const AuthProvider: FC<Props> = ({ children })  => {
       const data: Token = jwt_decode(response.data.access)
       
       localStorage.setItem("token", response.data.access)
-      setToken(response.data.access)
+      setAuthToken(response.data.access)
       setUsername(data.username)
       setId(data.user_id)
       setEmail(data.email)
@@ -60,6 +60,7 @@ export const AuthProvider: FC<Props> = ({ children })  => {
 
   const logoutUser = () => {
     localStorage.removeItem("token")
+    setAuthToken(null)
     setUsername(null)
     navigate("/login")
   }
@@ -68,11 +69,19 @@ export const AuthProvider: FC<Props> = ({ children })  => {
     username: username,
     id: id,
     email: email,
+    authToken: authToken,
     loginErrors: loginErrors,
     loginUser: loginUser,
     logoutUser: logoutUser,
     editUser: editUser    
-  }
+  } 
+
+  useEffect(() => {
+    if(authToken) {
+      const data: Token = jwt_decode(authToken)
+      setUsername(data.username)
+    }
+  })
 
   return (
     <AuthContext.Provider value={contextData}>

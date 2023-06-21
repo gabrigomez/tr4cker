@@ -4,6 +4,7 @@ export interface AuthContextObject {
   username?: string | null,
   id?: number,
   email?: string | null,
+  authToken?: string | null,
   loginErrors?: string,
   loginUser?: (values: object) => Promise<void>
   logoutUser?: () => void,

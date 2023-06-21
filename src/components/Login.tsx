@@ -1,13 +1,15 @@
 import * as yup from "yup";
 import { Form, Field } from 'react-final-form'
 import { Keyhole } from "@phosphor-icons/react";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 
 import AuthContext from "../context/AuthContext";
 import { validateFormValues } from '../utils';
+import { useNavigate } from "react-router";
 
 export const Login = () => {
-  const { loginUser, loginErrors } = useContext(AuthContext)
+  const { loginUser, loginErrors, authToken } = useContext(AuthContext)
+  const navigate = useNavigate()
   const initialValues = {
     email: '',
     password: ''
@@ -23,6 +25,12 @@ export const Login = () => {
   }
 
   const validate = validateFormValues(validationSchema);
+  
+  useEffect(() => {
+    if (authToken) {
+      navigate("/dashboard")
+    }
+  }) 
 
   return (
     <div className="flex flex-col w-screen">
