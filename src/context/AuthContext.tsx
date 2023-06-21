@@ -1,10 +1,10 @@
 import { createContext, FC, useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 
 import { API_URL, AuthToken, Email, User } from "../utils";
 import { AuthContextObject, Props, Token } from "../interfaces";
-import { useNavigate } from "react-router";
 
 const AuthContext = createContext({} as AuthContextObject);
 export default AuthContext
@@ -12,11 +12,12 @@ export default AuthContext
 export const AuthProvider: FC<Props> = ({ children })  => {
   const [authToken, setAuthToken] = useState<AuthToken>(localStorage.getItem("token") ? localStorage.getItem("token") : null)
   const [refreshToken, setRefreshToken] = useState<AuthToken>(localStorage.getItem("refresh") ? localStorage.getItem("refresh") : null)
-  const [loading, setLoading] = useState<boolean>(true)
-  const [loginErrors, setLoginErrors] = useState<string>('')
   const [username, setUsername] = useState<User>(null)
   const [email, setEmail] = useState<Email>(null)
+  
   const [id, setId] = useState<number>(0)
+  const [loading, setLoading] = useState<boolean>(true)
+  const [loginErrors, setLoginErrors] = useState<string>('')  
   
   const navigate = useNavigate();
   const headers = { Authorization: `Bearer ${authToken}` };
@@ -33,6 +34,7 @@ export const AuthProvider: FC<Props> = ({ children })  => {
       setUsername(data.username)
       setId(data.user_id)
       setEmail(data.email)
+
       navigate("/dashboard")      
     } catch (error) {
       setLoginErrors('Não foi possível realizar o login')
@@ -53,10 +55,10 @@ export const AuthProvider: FC<Props> = ({ children })  => {
       localStorage.setItem("refresh", response.data.refresh)
 
       const data: Token = jwt_decode(response.data.access)
+      
       setUsername(data.username)
       setId(data.user_id)
       setEmail(data.email)
-
       setAuthToken(response.data.access)
       setRefreshToken(response.data.refresh)
     
@@ -80,8 +82,9 @@ export const AuthProvider: FC<Props> = ({ children })  => {
       })
             
       setUsername(response.data.username)      
-      navigate("/dashboard")
       updateToken()      
+      
+      navigate("/dashboard")
     } catch (error) {
       setLoginErrors('Não foi possível realizar a solicitação')
       setTimeout(() => {
@@ -124,14 +127,12 @@ export const AuthProvider: FC<Props> = ({ children })  => {
     }, expireTime)
 
     return () => clearInterval(interval)
-
   })
 
   useEffect(() => {
     if(authToken) {
       const data: Token = jwt_decode(authToken)
       setUsername(data.username)
-      console.log('chamou')
     }
   }, [authToken])
 
