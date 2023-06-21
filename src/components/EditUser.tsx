@@ -5,6 +5,7 @@ import { CheckCircle } from "@phosphor-icons/react"
 
 export const EditUser = () => {
   const { username, email, editUser } = useContext(AuthContext)
+  
   const initialValues = {
     username: '',
   }

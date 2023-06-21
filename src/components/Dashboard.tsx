@@ -4,9 +4,8 @@ import { Link } from "react-router-dom"
 import AuthContext from "../context/AuthContext"
 
 export const Dashboard = () => {
-  const navigate = useNavigate()
-
   const { username, authToken } = useContext(AuthContext)
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (!authToken) {

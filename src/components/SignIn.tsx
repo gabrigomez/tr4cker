@@ -1,17 +1,16 @@
-import { SignIn as SignInIcon } from  "@phosphor-icons/react";
+import { useState } from "react";
+import { useNavigate } from "react-router";
 import axios from "axios";
 import * as yup from "yup";
 
+import { SignIn as SignInIcon } from  "@phosphor-icons/react";
 import { Form, Field } from "react-final-form";
 import { API_URL, validateFormValues } from "../utils";
-import { useNavigate } from "react-router";
-import { useState } from "react";
-
 
 export const SignIn = () => {
   const [errors, setErrors] = useState<string>('')
-
   const navigate = useNavigate();    
+
   const initialValues = {
     username: '',
     email: '',
@@ -29,8 +28,7 @@ export const SignIn = () => {
 
   const onSubmit = async (values = { ...initialValues }) => {   
     try {
-      const response = await axios.post(`${API_URL}/register`, {...values})
-      console.log(response)
+      await axios.post(`${API_URL}/register`, {...values})      
       navigate("/login")
     } catch (error) {
       console.log(error)      
