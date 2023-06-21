@@ -11,6 +11,8 @@ export default AuthContext
 
 export const AuthProvider: FC<Props> = ({ children })  => {
   const [authToken, setAuthToken] = useState<AuthToken>(localStorage.getItem("token") ? localStorage.getItem("token") : null)
+  const [refreshToken, setRefreshToken] = useState<AuthToken>(localStorage.getItem("refresh") ? localStorage.getItem("refresh") : null)
+  const [loading, setLoading] = useState<boolean>(true)
   const [loginErrors, setLoginErrors] = useState<string>('')
   const [username, setUsername] = useState<User>(null)
   const [email, setEmail] = useState<Email>(null)
@@ -25,6 +27,8 @@ export const AuthProvider: FC<Props> = ({ children })  => {
       const data: Token = jwt_decode(response.data.access)
       
       localStorage.setItem("token", response.data.access)
+      localStorage.setItem("refresh", response.data.refresh)
+
       setAuthToken(response.data.access)
       setUsername(data.username)
       setId(data.user_id)
@@ -60,9 +64,33 @@ export const AuthProvider: FC<Props> = ({ children })  => {
 
   const logoutUser = () => {
     localStorage.removeItem("token")
+    localStorage.removeItem("refresh")
     setAuthToken(null)
     setUsername(null)
     navigate("/login")
+  }
+  
+  const updateToken = async () => {   
+    console.log('Update!!!!') 
+    try {
+      const response = await axios.post(`${API_URL}/token/refresh`, {
+        headers: {...headers},
+        'refresh':refreshToken        
+      })
+           
+      localStorage.setItem("token", response.data.access)
+      localStorage.setItem("refresh", response.data.refresh)
+
+      setAuthToken(response.data.access)
+      setRefreshToken(response.data.refresh)
+    
+    } catch (error) {
+      console.log('Não foi possível realizar a atualização')          
+    }
+    
+    if(loading){
+      setLoading(false)
+    }
   }
   
   const contextData = {
@@ -81,6 +109,23 @@ export const AuthProvider: FC<Props> = ({ children })  => {
       const data: Token = jwt_decode(authToken)
       setUsername(data.username)
     }
+  }, [authToken])
+
+  useEffect(() => {
+    const expireTime = 1000 * 60 * 4
+    
+    if(loading){
+      updateToken()
+    }
+
+    const interval =  setInterval(()=> {
+      if(authToken){
+        updateToken()
+      }
+    }, expireTime)
+
+    return () => clearInterval(interval)
+
   })
 
   return (
