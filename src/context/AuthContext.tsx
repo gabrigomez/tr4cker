@@ -40,6 +40,33 @@ export const AuthProvider: FC<Props> = ({ children })  => {
         setLoginErrors('')
       }, 4000);      
     }    
+  }  
+
+  const updateToken = async () => {    
+    try {
+      const response = await axios.post(`${API_URL}/token/refresh`, {
+        headers: {...headers},
+        'refresh': refreshToken        
+      })
+           
+      localStorage.setItem("token", response.data.access)
+      localStorage.setItem("refresh", response.data.refresh)
+
+      const data: Token = jwt_decode(response.data.access)
+      setUsername(data.username)
+      setId(data.user_id)
+      setEmail(data.email)
+
+      setAuthToken(response.data.access)
+      setRefreshToken(response.data.refresh)
+    
+    } catch (error) {
+      console.log('Não foi possível realizar a atualização')          
+    }
+    
+    if(loading){
+      setLoading(false)
+    }
   }
 
   const editUser = async (values: AuthContextObject) => { 
@@ -53,7 +80,8 @@ export const AuthProvider: FC<Props> = ({ children })  => {
       })
             
       setUsername(response.data.username)      
-      navigate("/dashboard")      
+      navigate("/dashboard")
+      updateToken()      
     } catch (error) {
       setLoginErrors('Não foi possível realizar a solicitação')
       setTimeout(() => {
@@ -67,30 +95,8 @@ export const AuthProvider: FC<Props> = ({ children })  => {
     localStorage.removeItem("refresh")
     setAuthToken(null)
     setUsername(null)
-    navigate("/login")
-  }
-  
-  const updateToken = async () => {   
-    console.log('Update!!!!') 
-    try {
-      const response = await axios.post(`${API_URL}/token/refresh`, {
-        headers: {...headers},
-        'refresh':refreshToken        
-      })
-           
-      localStorage.setItem("token", response.data.access)
-      localStorage.setItem("refresh", response.data.refresh)
 
-      setAuthToken(response.data.access)
-      setRefreshToken(response.data.refresh)
-    
-    } catch (error) {
-      console.log('Não foi possível realizar a atualização')          
-    }
-    
-    if(loading){
-      setLoading(false)
-    }
+    navigate("/login")
   }
   
   const contextData = {
@@ -102,14 +108,7 @@ export const AuthProvider: FC<Props> = ({ children })  => {
     loginUser: loginUser,
     logoutUser: logoutUser,
     editUser: editUser    
-  } 
-
-  useEffect(() => {
-    if(authToken) {
-      const data: Token = jwt_decode(authToken)
-      setUsername(data.username)
-    }
-  }, [authToken])
+  }
 
   useEffect(() => {
     const expireTime = 1000 * 60 * 4
@@ -127,6 +126,14 @@ export const AuthProvider: FC<Props> = ({ children })  => {
     return () => clearInterval(interval)
 
   })
+
+  useEffect(() => {
+    if(authToken) {
+      const data: Token = jwt_decode(authToken)
+      setUsername(data.username)
+      console.log('chamou')
+    }
+  }, [authToken])
 
   return (
     <AuthContext.Provider value={contextData}>
