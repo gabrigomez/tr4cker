@@ -26,7 +26,7 @@ export const EditUser = () => {
 
   return (
     <div>
-      <div>
+      <div className="w-screen">
         <p>
           {username}
         </p>
