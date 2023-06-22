@@ -10,10 +10,10 @@ const AuthContext = createContext({} as AuthContextObject);
 export default AuthContext
 
 export const AuthProvider: FC<Props> = ({ children })  => {
-  const [authToken, setAuthToken] = useState<AuthToken>(localStorage.getItem("token") ? localStorage.getItem("token") : null)
-  const [refreshToken, setRefreshToken] = useState<AuthToken>(localStorage.getItem("refresh") ? localStorage.getItem("refresh") : null)
   const [username, setUsername] = useState<User>(null)
   const [email, setEmail] = useState<Email>(null)
+  const [authToken, setAuthToken] = useState<AuthToken>(localStorage.getItem("token") ? localStorage.getItem("token") : null)
+  const [refreshToken, setRefreshToken] = useState<AuthToken>(localStorage.getItem("refresh") ? localStorage.getItem("refresh") : null)
   
   const [id, setId] = useState<number>(0)
   const [loading, setLoading] = useState<boolean>(true)
@@ -45,7 +45,6 @@ export const AuthProvider: FC<Props> = ({ children })  => {
   }  
 
   const updateToken = async () => {
-    console.log('chamou o update, lembra de apagar')    
     try {
       const response = await axios.post(`${API_URL}/token/refresh`, {
         headers: {...headers},
@@ -104,11 +103,11 @@ export const AuthProvider: FC<Props> = ({ children })  => {
   
   const contextData: AuthContextObject = {
     username: username,
-    setUsername: setUsername,
-    id: id,
     email: email,
+    id: id,
     authToken: authToken,
     loginErrors: loginErrors,
+    setUsername: setUsername,
     loginUser: loginUser,
     logoutUser: logoutUser,
     editUser: editUser    
