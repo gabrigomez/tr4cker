@@ -11,6 +11,7 @@ export default {
       },
       animation: {
         'spin': 'spin 2s linear',
+        'spin-forever': 'spin 2s linear infinite',
         'ping': 'ping 2s linear',
       }
     },

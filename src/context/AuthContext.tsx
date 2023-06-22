@@ -4,7 +4,7 @@ import axios from "axios";
 import jwt_decode from "jwt-decode";
 
 import { API_URL, AuthToken, Email, User } from "../utils";
-import { AuthContextObject, Props, Token } from "../interfaces";
+import { AuthContextObject, Props, Token, UserObject } from "../interfaces";
 
 const AuthContext = createContext({} as AuthContextObject);
 export default AuthContext
@@ -20,9 +20,9 @@ export const AuthProvider: FC<Props> = ({ children })  => {
   const [loginErrors, setLoginErrors] = useState<string>('')  
   
   const navigate = useNavigate();
-  const headers = { Authorization: `Bearer ${authToken}` };
+  const headers = { Authorization: `Bearer ${authToken}` }
 
-  const loginUser = async (values: object) => {    
+  const loginUser = async (values: UserObject) => {    
     try {
       const response = await axios.post(`${API_URL}/login`, {...values})
       const data: Token = jwt_decode(response.data.access)
@@ -44,7 +44,8 @@ export const AuthProvider: FC<Props> = ({ children })  => {
     }    
   }  
 
-  const updateToken = async () => {    
+  const updateToken = async () => {
+    console.log('chamou o update, lembra de apagar')    
     try {
       const response = await axios.post(`${API_URL}/token/refresh`, {
         headers: {...headers},
@@ -71,7 +72,7 @@ export const AuthProvider: FC<Props> = ({ children })  => {
     }
   }
 
-  const editUser = async (values: AuthContextObject) => { 
+  const editUser = async (values: UserObject) => { 
     try {      
       const response = await axios.patch(`${API_URL}/user/${id}`, {
         email: email,
@@ -82,7 +83,6 @@ export const AuthProvider: FC<Props> = ({ children })  => {
       })
             
       setUsername(response.data.username)      
-      updateToken()      
       
       navigate("/dashboard")
     } catch (error) {
@@ -102,8 +102,9 @@ export const AuthProvider: FC<Props> = ({ children })  => {
     navigate("/login")
   }
   
-  const contextData = {
+  const contextData: AuthContextObject = {
     username: username,
+    setUsername: setUsername,
     id: id,
     email: email,
     authToken: authToken,
