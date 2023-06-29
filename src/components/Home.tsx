@@ -9,7 +9,7 @@ import axios from "axios";
 export const Home = () => {
   const [songs, setSongs] = useState<Array<string>>([])
   const [image, setImage] = useState<string>('')
-  const [errors, setErrors] = useState<string>('')  
+  const [errors] = useState<string>('')  
   const initialValues = {
     artist: '',
   }
