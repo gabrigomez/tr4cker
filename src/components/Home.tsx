@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { Field, Form } from "react-final-form"
-import { validateFormValues } from "../utils";
+import { API_URL, validateFormValues } from "../utils";
 import { Binoculars } from "@phosphor-icons/react";
 
 import * as yup from "yup";
+import axios from "axios";
 
 export const Home = () => {
   const [errors, setErrors] = useState<string>('')  
@@ -15,8 +16,9 @@ export const Home = () => {
     artist: yup.string().required('obrigatório'),
   });
 
-  const onSubmit = (values = { ...initialValues }) => {
-    console.log(values)
+  const onSubmit = async(values = { ...initialValues }) => {
+    const response = await axios.post(`${API_URL}/spotify`, {...values})
+    console.log(response)
   }
 
   const validate = validateFormValues(validationSchema);
