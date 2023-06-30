@@ -11,11 +11,11 @@ export const Artist: FC<ArtistProps> = ({...props}) => {
             <img src={props.image} alt="" />
           </div>
           <div className="flex flex-col items-center py-2">
-            <div>
+            <a className="hover:text-sky-700 duration-300 cursor-pointer" href={props.link} target="blank">
               <p className="text-2xl font-bold">
                 {props.name}
               </p>
-            </div>
+            </a>
             <div>
               <p className="font-bold text-xs">
                 {props.genre}

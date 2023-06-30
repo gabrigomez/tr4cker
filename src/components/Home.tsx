@@ -15,6 +15,7 @@ export const Home = () => {
   const [genre, setGenre] = useState<string>('')
   
   const [image, setImage] = useState<string>('')
+  const [link, setLink] = useState<string>('')
   const [errors] = useState<string>('')  
   
   const { authToken } = useContext(AuthContext)
@@ -35,6 +36,9 @@ export const Home = () => {
     setGenre(response.data[0].genres[0])
     setFollowers(response.data[0].followers.total)
     setSongs(response.data[1])
+    setLink(response.data[0].external_urls.spotify)
+
+    console.log(response)
   }
 
   const validate = validateFormValues(validationSchema);
@@ -79,7 +83,7 @@ export const Home = () => {
                 <Binoculars className='text-2xl mr-1 cursor-pointer' />
               </button>
               {songs.length > 0 && (
-                <Artist name={name} image={image} genre={genre} followers={followers} songs={songs}  />
+                <Artist name={name} image={image} genre={genre} followers={followers} songs={songs} link={link}  />
               )}
               {errors && (
                 <div className="h-10 text-xs text-red-600 mt-2 font-semibold">

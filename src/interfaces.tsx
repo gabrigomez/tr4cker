@@ -28,6 +28,7 @@ export interface ArtistProps {
   genre?: string,
   followers?: number,
   songs: Array<string>,
+  link?: string
 }
 
 export interface Token {
