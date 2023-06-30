@@ -7,7 +7,7 @@ export const Artist: FC<ArtistProps> = ({...props}) => {
     <div className="w-full flex justify-center">
       <div className="w-3/4 md:w-2/4 flex flex-col justify-center items-center mt-4 bg-black p-4 rounded-md">
         <div className="flex flex-col items-center mb-4">
-          <div className="h-44 w-44 mb-2 rounded-sm border border-sky-800">
+          <div className="h-44 w-44 overflow-hidden mb-2 rounded-sm border border-sky-800">
             <img src={props.image} alt="" />
           </div>
           <div className="flex flex-col items-center py-2">
