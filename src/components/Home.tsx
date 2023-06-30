@@ -1,12 +1,14 @@
-import { useContext, useState } from "react";
-import { Field, Form } from "react-final-form"
-import { API_URL, validateFormValues } from "../utils";
-import { Binoculars } from "@phosphor-icons/react";
-
 import * as yup from "yup";
 import axios from "axios";
-import AuthContext from "../context/AuthContext";
+import { useContext, useState } from "react";
+import { Field, Form } from "react-final-form"
+
+import { API_URL, validateFormValues } from "../utils";
+import { Binoculars } from "@phosphor-icons/react";
 import { Artist } from "./Artist";
+import AuthContext from "../context/AuthContext";
+
+import tracker from '../assets/tracker.png'
 
 export const Home = () => {
   const [name, setName] = useState<string>('')
@@ -46,7 +48,7 @@ export const Home = () => {
   return (
     <div className='w-screen'>
       <div className="flex justify-center h-12">
-        <img className="h-10 w-10 my-2 animate-updown" src="./src/assets/tracker.png"></img>
+        <img className="h-10 w-10 my-2 animate-updown" src={tracker}></img>
         <p className='text-5xl'>
           TR4CKER
         </p>
