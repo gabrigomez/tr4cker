@@ -13,8 +13,23 @@ export default {
         'spin': 'spin 2s linear',
         'spin-forever': 'spin 2s linear infinite',
         'ping': 'ping 2s linear',
-      }
+        'updown': 'updown 2.5s linear infinite',
+      },
+      keyframes: {
+        updown: {
+          '0%': {
+            transform: 'translateY(-4px)',
+          },
+          '50%': {
+            transform: 'translateY(3px)',
+          },
+          '100%': {
+            transform: 'translateY(-4px)',
+          }
+        }
+      },
     },
+    
   },
   plugins: [],
 }

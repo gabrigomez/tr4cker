@@ -45,7 +45,8 @@ export const Home = () => {
 
   return (
     <div className='w-screen'>
-      <div>
+      <div className="flex justify-center h-12">
+        <img className="h-10 w-10 my-2 animate-updown" src="./src/assets/tracker.png"></img>
         <p className='text-5xl'>
           TR4CKER
         </p>
