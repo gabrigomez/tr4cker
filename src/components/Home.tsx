@@ -6,11 +6,17 @@ import { Binoculars } from "@phosphor-icons/react";
 import * as yup from "yup";
 import axios from "axios";
 import AuthContext from "../context/AuthContext";
+import { Artist } from "./Artist";
 
 export const Home = () => {
+  const [name, setName] = useState<string>('')
+  const [followers, setFollowers] = useState<number>(0)
   const [songs, setSongs] = useState<Array<string>>([])
+  const [genre, setGenre] = useState<string>('')
+  
   const [image, setImage] = useState<string>('')
   const [errors] = useState<string>('')  
+  
   const { authToken } = useContext(AuthContext)
 
   const initialValues = {
@@ -23,9 +29,12 @@ export const Home = () => {
 
   const onSubmit = async(values = { ...initialValues }) => {
     const response = await axios.post(`${API_URL}/spotify`, {...values})
-    setSongs(response.data[1])
+
+    setName(response.data[0].name)
     setImage(response.data[0].images[0].url)
-    console.log(response)
+    setGenre(response.data[0].genres[0])
+    setFollowers(response.data[0].followers.total)
+    setSongs(response.data[1])
   }
 
   const validate = validateFormValues(validationSchema);
@@ -70,22 +79,7 @@ export const Home = () => {
                 <Binoculars className='text-2xl mr-1 cursor-pointer' />
               </button>
               {songs.length > 0 && (
-                <div className="w-3/4 md:w-2/4 flex flex-col justify-center items-center mt-4 bg-black p-4 rounded-md">
-                  {image !== '' && (
-                    <div className="mb-4 rounded-sm border border-sky-800">
-                      <img src={image} alt="" className="h-44 w-44" />
-                    </div>
-                  )}
-                  <div>
-                    {songs.map((song) => {
-                      return (
-                        <p className="mb-1" key={song}>
-                          {song}
-                        </p>
-                      )
-                    })}
-                  </div>
-                </div>
+                <Artist name={name} image={image} genre={genre} followers={followers} songs={songs}  />
               )}
               {errors && (
                 <div className="h-10 text-xs text-red-600 mt-2 font-semibold">

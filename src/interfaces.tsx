@@ -22,6 +22,14 @@ export interface Props {
   children?: ReactNode
 }
 
+export interface ArtistProps {
+  name?: string,
+  image: string,
+  genre?: string,
+  followers?: number,
+  songs: Array<string>,
+}
+
 export interface Token {
   token_type: string,
   user_id: number,
