@@ -7,7 +7,8 @@
 
 :root {
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #0c0b0b;
+  overflow-x: hidden;
 }
 
 body {

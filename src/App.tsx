@@ -14,11 +14,11 @@ function App() {
       <AuthProvider>
         <NavBar />
           <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/sign-in" element={<SignIn />} />
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/edit-user" element={<EditUser />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/sign-in" element={<SignIn />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/edit-user" element={<EditUser />} />
           </Routes>       
       </AuthProvider>
     </div>
