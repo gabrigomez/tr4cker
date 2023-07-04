@@ -1,8 +1,24 @@
-import { FC } from "react"
+import { FC, useContext } from "react"
 import { ArtistProps } from "../interfaces"
-import { UsersThree } from "@phosphor-icons/react"
+import { FloppyDiskBack, UsersThree } from "@phosphor-icons/react"
+import axios from "axios"
+import { API_URL } from "../utils"
+import AuthContext from "../context/AuthContext"
 
 export const Artist: FC<ArtistProps> = ({...props}) => {
+  const { id } = useContext(AuthContext)
+
+  const saveArtist = async() => {
+    const payload = {
+      name: props.name,
+      image: props.image,
+      genre: props.genre,
+      user: id
+    }
+    const response = await axios.post(`${API_URL}/artist`, {...payload})
+    console.log(response)
+  }
+
   return (
     <div className="w-full flex justify-center">
       <div className="w-3/4 md:w-2/4 flex flex-col justify-center items-center mt-4 bg-black p-4 rounded-md">
@@ -27,7 +43,10 @@ export const Artist: FC<ArtistProps> = ({...props}) => {
                 {props.followers}
               </p>
             </div>
-          </div>               
+          </div>          
+          <button onClick={saveArtist}>
+            <FloppyDiskBack className='text-2xl mr-1 cursor-pointer hover:text-sky-700 duration-300' />
+          </button>                         
         </div>             
         <div>
           {props.songs.map((song) => {
