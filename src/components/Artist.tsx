@@ -49,7 +49,7 @@ export const Artist: FC<ArtistProps> = ({...props}) => {
           </button>                         
         </div>             
         <div>
-          {props.songs.map((song) => {
+          {props.songs?.map((song) => {
             return (
               <p className="bg-slate-900 rounded-md mb-3 p-2" key={song}>
                 {song}

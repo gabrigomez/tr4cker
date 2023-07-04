@@ -1,8 +1,10 @@
 import { setIn } from "final-form";
+import { ArtistProps } from "./interfaces";
 
 export type User = string | null
 export type Email = string | null
 export type AuthToken = string | null
+export type Artists = Array<ArtistProps> | null
 
 export const API_URL = "https://python-app.up.railway.app/api"
 

@@ -27,7 +27,7 @@ export interface ArtistProps {
   image: string,
   genre?: string,
   followers?: number,
-  songs: Array<string>,
+  songs?: Array<string>,
   link?: string
 }
 
