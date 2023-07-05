@@ -24,6 +24,7 @@ export interface Props {
 
 export interface ArtistProps {
   name?: string,
+  id?: number,
   image: string,
   genre?: string,
   followers?: number,

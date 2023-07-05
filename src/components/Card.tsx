@@ -3,9 +3,6 @@ import { ArtistProps } from "../interfaces"
 import { Trash } from "@phosphor-icons/react"
 
 export const Card: FC<ArtistProps> = ({...props}) => {
-  const deleteArtist = () => {
-    console.log('delete')
-  }
   return (
     <div className="flex justify-center items-center mt-4 group">     
       <div 
@@ -24,14 +21,9 @@ export const Card: FC<ArtistProps> = ({...props}) => {
               <p className="text-xs">
                 {props.genre}
               </p>
-            </div>
+            </div>            
           </div>                 
-      </div>
-      <button
-        onClick={deleteArtist} 
-        className="flex cursor-pointer mt-3 self-start opacity-0 group-hover:opacity-100 hover:text-red-700 duration-500">
-        <Trash className="text-lg" />        
-      </button>
+      </div>      
     </div>
   )
 }

@@ -56,7 +56,7 @@ export const Dashboard = () => {
             {artists !== null && (
               artists.map((artist) => {
                 return (
-                  <Card name={artist.name} image={artist.image} genre={artist.genre} />
+                  <Card name={artist.name} image={artist.image} genre={artist.genre} id={artist.id} />
                 )
               })
             )}

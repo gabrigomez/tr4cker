@@ -7,6 +7,7 @@ import { SignIn } from './components/SignIn'
 import { Dashboard } from './components/Dashboard'
 import { AuthProvider } from './context/AuthContext'
 import { EditUser } from './components/EditUser'
+import { ArtistDetails } from './components/ArtistDetails'
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/sign-in" element={<SignIn />} />
+            <Route path="/artist-details" element={<ArtistDetails />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/edit-user" element={<EditUser />} />
           </Routes>       
