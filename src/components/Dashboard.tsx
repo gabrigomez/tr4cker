@@ -31,8 +31,7 @@ export const Dashboard = () => {
         setArtists(artistsList)
       } catch {
         setArtists(null)
-      }     
-      
+      }    
       setUsername(data)
       setLoading(true)
     }

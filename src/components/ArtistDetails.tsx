@@ -17,6 +17,7 @@ export const ArtistDetails = () => {
   const { authToken } = useContext(AuthContext)
 
   const id = window.location.href.split('/').reverse()[0];
+  console.log(id)
 
   useEffect(() => {
     if (!authToken) {
@@ -44,9 +45,9 @@ export const ArtistDetails = () => {
   }, [])  
 
   return (
-    <div>
+    <div className="w-screen">
       {loading ? (
-        <Artist name={name} image={image} genre={genre} deleteMode={true} />
+        <Artist name={name} image={image} genre={genre} deleteMode={true} id={id} />
       ) : (
         <div className="flex justify-center items-center text-3xl font-semibold">
           <Spinner className="animate-spin-forever" size={36} />
