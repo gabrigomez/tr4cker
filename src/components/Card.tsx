@@ -1,6 +1,5 @@
 import { FC } from "react"
 import { ArtistProps } from "../interfaces"
-import { Trash } from "@phosphor-icons/react"
 
 export const Card: FC<ArtistProps> = ({...props}) => {
   return (

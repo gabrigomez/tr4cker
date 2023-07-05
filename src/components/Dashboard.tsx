@@ -26,7 +26,7 @@ export const Dashboard = () => {
       const data: User = response.data.username
       
       try {
-        const artistsData = await axios.get(`${API_URL}/artist/${id}`)
+        const artistsData = await axios.get(`${API_URL}/artist-list/${id}`)
         const artistsList: Artists = artistsData.data
         setArtists(artistsList)
       } catch {
@@ -56,7 +56,9 @@ export const Dashboard = () => {
             {artists !== null && (
               artists.map((artist) => {
                 return (
-                  <Card name={artist.name} image={artist.image} genre={artist.genre} id={artist.id} />
+                  <Link to={`/artist-details/${artist.id}`}>
+                    <Card name={artist.name} image={artist.image} genre={artist.genre} id={artist.id} />
+                  </Link>
                 )
               })
             )}
