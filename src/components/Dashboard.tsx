@@ -13,10 +13,11 @@ export const Dashboard = () => {
   const [artists, setArtists] = useState<Artists>(null)
   
   const { username, setUsername, authToken, id } = useContext(AuthContext)
-  const headers = { Authorization: `Bearer ${authToken}` }
   const navigate = useNavigate()
-
+  
   useEffect(() => {
+    const headers = { Authorization: `Bearer ${authToken}` }
+    
     if (!authToken) {
       navigate("/login")
     }
@@ -37,7 +38,7 @@ export const Dashboard = () => {
     }
 
     fetchData()    
-  }, [])  
+  }, [authToken, id, navigate, setUsername])  
 
   return (
     <div className="w-screen">
@@ -55,7 +56,7 @@ export const Dashboard = () => {
             {artists !== null && (
               artists.map((artist) => {
                 return (
-                  <Link to={`/artist-details/${artist.id}`}>
+                  <Link to={`/artist-details/${artist.id}`} key={artist.id}>
                     <Card name={artist.name} image={artist.image} genre={artist.genre} id={artist.id} />
                   </Link>
                 )
