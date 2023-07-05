@@ -7,7 +7,6 @@ import { useNavigate } from "react-router"
 import { API_URL } from "../utils"
 import { Spinner } from "@phosphor-icons/react"
 
-
 export const ArtistDetails = () => {
   const [name, setName] = useState<string>('')
   const [genre, setGenre] = useState<string>('')  

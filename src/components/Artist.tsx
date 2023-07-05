@@ -19,6 +19,15 @@ export const Artist: FC<ArtistProps> = ({...props}) => {
     console.log(response)
   }
 
+  const deleteArtist = async() => {
+    try {
+      await axios.delete(`${API_URL}/artist/${props.id}`)
+      console.log('Artista excluído')            
+    } catch (error) {
+      console.log('Não foi possivel excluir o artista')    
+    }    
+  }
+
   return (
     <div className="w-full flex justify-center">
       <div className="w-3/4 md:w-2/4 flex flex-col justify-center items-center mt-4 bg-black p-4 rounded-md">
