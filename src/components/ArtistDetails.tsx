@@ -37,7 +37,7 @@ export const ArtistDetails = () => {
     }
 
     fetchData()    
-  }, [])  
+  }, [authToken, id, navigate])  
 
   return (
     <div className="w-screen">
