@@ -46,7 +46,7 @@ export const ArtistDetails = () => {
   return (
     <div>
       {loading ? (
-        <Artist name={name} image={image} genre={genre} />
+        <Artist name={name} image={image} genre={genre} deleteMode={true} />
       ) : (
         <div className="flex justify-center items-center text-3xl font-semibold">
           <Spinner className="animate-spin-forever" size={36} />

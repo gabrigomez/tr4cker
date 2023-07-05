@@ -1,6 +1,6 @@
 import { FC, useContext } from "react"
 import { ArtistProps } from "../interfaces"
-import { FloppyDiskBack, UsersThree } from "@phosphor-icons/react"
+import { FloppyDiskBack, Trash, UsersThree } from "@phosphor-icons/react"
 import axios from "axios"
 import { API_URL } from "../utils"
 import AuthContext from "../context/AuthContext"
@@ -52,10 +52,16 @@ export const Artist: FC<ArtistProps> = ({...props}) => {
                 {props.followers}
               </p>
             </div>
-          </div>          
-          <button onClick={saveArtist}>
-            <FloppyDiskBack className='text-2xl mr-1 cursor-pointer hover:text-sky-700 duration-300' />
-          </button>                         
+          </div>
+          {props.deleteMode ? (
+            <button onClick={deleteArtist}>
+              <Trash className='text-2xl mr-1 cursor-pointer hover:text-sky-700 duration-300' />
+            </button>
+          ) : (                                     
+            <button onClick={saveArtist}>
+              <FloppyDiskBack className='text-2xl mr-1 cursor-pointer hover:text-sky-700 duration-300' />
+            </button>
+          )}          
         </div>             
         <div>
           {props.songs?.map((song) => {

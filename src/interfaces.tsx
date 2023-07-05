@@ -30,6 +30,7 @@ export interface ArtistProps {
   followers?: number,
   songs?: Array<string>,
   link?: string
+  deleteMode?: boolean 
 }
 
 export interface Token {
