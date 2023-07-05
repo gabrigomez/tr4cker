@@ -6,6 +6,7 @@ import { Link } from "react-router-dom"
 import AuthContext from "../context/AuthContext"
 import { API_URL, Artists, User } from "../utils"
 import { Spinner } from "@phosphor-icons/react"
+import { Card } from "./Card"
 
 export const Dashboard = () => {
   const [loading, setLoading] = useState<boolean>(false)
@@ -48,13 +49,14 @@ export const Dashboard = () => {
               Hello, {username}!
             </p>
           </div>
+          <Link to="/edit-user" className="mt-1 text-xs hover:text-sky-700 duration-300 cursor-pointer">
+            edit my info
+          </Link> 
           <div>
             {artists !== null && (
               artists.map((artist) => {
                 return (
-                  <div key={artist.name}>
-                    {artist.name}
-                  </div>
+                  <Card name={artist.name} image={artist.image} genre={artist.genre} />
                 )
               })
             )}
@@ -64,10 +66,7 @@ export const Dashboard = () => {
         <div className="flex justify-center items-center text-3xl font-semibold">
           <Spinner className="animate-spin-forever" size={36} />
         </div>
-      )}      
-      <Link to="/edit-user" className="mt-2 text-xs hover:text-sky-700 duration-300 cursor-pointer">
-        edit my info
-      </Link>      
+      )}           
     </div>
   )
 }
