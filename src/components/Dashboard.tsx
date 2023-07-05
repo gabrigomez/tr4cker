@@ -38,7 +38,7 @@ export const Dashboard = () => {
     }
 
     fetchData()    
-  })  
+  }, [])  
 
   return (
     <div className="w-screen">
