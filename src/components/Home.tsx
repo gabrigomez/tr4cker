@@ -39,8 +39,6 @@ export const Home = () => {
     setFollowers(response.data[0].followers.total)
     setSongs(response.data[1])
     setLink(response.data[0].external_urls.spotify)
-
-    console.log(response)
   }
 
   const validate = validateFormValues(validationSchema);

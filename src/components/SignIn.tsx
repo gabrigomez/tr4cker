@@ -31,7 +31,6 @@ export const SignIn = () => {
       await axios.post(`${API_URL}/register`, {...values})      
       navigate("/login")
     } catch (error) {
-      console.log(error)      
       setErrors('não foi possível realizar o registro')
       setTimeout(() => {
         setErrors('')

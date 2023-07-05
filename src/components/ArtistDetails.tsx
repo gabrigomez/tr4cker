@@ -15,9 +15,7 @@ export const ArtistDetails = () => {
 
   const navigate = useNavigate()
   const { authToken } = useContext(AuthContext)
-
   const id = window.location.href.split('/').reverse()[0];
-  console.log(id)
 
   useEffect(() => {
     if (!authToken) {
@@ -27,15 +25,12 @@ export const ArtistDetails = () => {
     async function fetchData() {      
       try {
         const response = await axios.get(`${API_URL}/artist/${id}`)
-        console.log(response)
 
         setName(response.data.name)
         setImage(response.data.image)
         setGenre(response.data.genre)
         setLoading(true)
-
       } catch {
-        console.log('Não foi possível concluir a requisição')
         setLoading(true)
       }
 

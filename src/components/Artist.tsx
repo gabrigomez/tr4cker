@@ -21,8 +21,7 @@ export const Artist: FC<ArtistProps> = ({...props}) => {
       genre: props.genre,
       user: id
     }
-    const response = await axios.post(`${API_URL}/artist`, {...payload})
-    console.log(response)
+    await axios.post(`${API_URL}/artist`, {...payload})
   }
 
   const deleteArtist = async() => {
