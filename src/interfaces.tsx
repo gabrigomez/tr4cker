@@ -22,6 +22,14 @@ export interface AuthContextObject {
   logoutUser?: () => void,
   editUser?: (values: UserObject) => Promise<void>
 }
+
+export interface InitialValues {
+  username?: string,
+  email?: string,
+  password?: string,
+  confirmPassword?: string,
+  artist?: string
+}
 export interface Props {
   children?: ReactNode
 }

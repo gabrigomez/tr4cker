@@ -4,17 +4,12 @@ import { Form, Field } from 'react-final-form'
 import { useNavigate } from "react-router";
 
 import { useContext, useEffect } from "react";
-import { validateFormValues } from '../utils';
+import { initialValues, validateFormValues } from '../utils';
 import { Keyhole } from "@phosphor-icons/react";
 
 export const Login = () => {
   const { loginUser, loginErrors, authToken } = useContext(AuthContext)
   const navigate = useNavigate()
-  
-  const initialValues = {
-    email: '',
-    password: ''
-  }
   
   const validationSchema = yup.object({
     email: yup.string().email('e-mail inválido').required('obrigatório'),

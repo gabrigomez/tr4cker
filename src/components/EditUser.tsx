@@ -2,14 +2,11 @@ import { useContext } from "react"
 import AuthContext from "../context/AuthContext"
 import { Field, Form } from "react-final-form"
 import { CheckCircle } from "@phosphor-icons/react"
+import { initialValues } from "../utils"
 
 export const EditUser = () => {
   const { username, email, editUser } = useContext(AuthContext)
   
-  const initialValues = {
-    username: '',
-  }
-    
   const onSubmit = (values = { ...initialValues }) => {
     editUser?.({...values})
   }

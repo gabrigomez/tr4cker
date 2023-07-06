@@ -5,7 +5,7 @@ import { Artist } from "./Artist";
 
 import { useContext, useState } from "react";
 import { Field, Form } from "react-final-form"
-import { API_URL, validateFormValues } from "../utils";
+import { API_URL, initialValues, validateFormValues } from "../utils";
 import { Binoculars } from "@phosphor-icons/react";
 
 import tracker from '../assets/tracker.png'
@@ -21,10 +21,6 @@ export const Home = () => {
   const [errors] = useState<string>('')  
   
   const { authToken } = useContext(AuthContext)
-
-  const initialValues = {
-    artist: '',
-  }
 
   const validationSchema = yup.object({
     artist: yup.string().required('obrigatório'),
