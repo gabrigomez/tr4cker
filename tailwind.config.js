@@ -6,14 +6,14 @@ export default {
   ],
   theme: {
     extend: {
-      fontFamily: {
-        'orbit': ['Orbit', 'sans-serif']
-      },
       animation: {
         'spin': 'spin 2s linear',
         'spin-forever': 'spin 2s linear infinite',
         'ping': 'ping 2s linear',
         'updown': 'updown 2.5s linear infinite',
+      },
+      fontFamily: {
+        'orbit': ['Orbit', 'sans-serif']
       },
       keyframes: {
         updown: {
