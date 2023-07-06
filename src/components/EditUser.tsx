@@ -15,7 +15,9 @@ export const EditUser = () => {
   }
 
   const validate = (values = { ...initialValues }) => {
-    const errors = {username: ''}
+    const errors = {
+      username: ''
+    }
     
     if (!values.username) {
       errors.username = 'obrigatório'

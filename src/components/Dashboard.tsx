@@ -1,9 +1,9 @@
 import axios from "axios"
+import AuthContext from "../context/AuthContext"
 import { useEffect, useContext, useState } from "react"
 import { useNavigate } from "react-router"
-import { Link } from "react-router-dom"
 
-import AuthContext from "../context/AuthContext"
+import { Link } from "react-router-dom"
 import { API_URL, Artists, User } from "../utils"
 import { Spinner } from "@phosphor-icons/react"
 import { Card } from "./Card"

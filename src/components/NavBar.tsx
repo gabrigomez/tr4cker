@@ -1,8 +1,8 @@
+import AuthContext from '../context/AuthContext';
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Keyhole, SignOut, UserCircle, UserCirclePlus } from '@phosphor-icons/react';
 
-import AuthContext from '../context/AuthContext';
 
 export const NavBar = () => {
   const { logoutUser } = useContext(AuthContext)
@@ -12,7 +12,7 @@ export const NavBar = () => {
     <div className='bg-black w-screen mb-4 p-4 border border-sky-900'>
       <div className='flex justify-between md:justify-around'>
         <div>
-          <Link to="/" className='hover:text-sky-700 duration-300 cursor-pointer font-bold'>
+          <Link to="/" className='text-pink-500 hover:text-sky-700 duration-300 cursor-pointer font-bold'>
             TR4CKER
           </Link>
         </div>

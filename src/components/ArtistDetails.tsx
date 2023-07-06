@@ -1,5 +1,5 @@
-import AuthContext from "../context/AuthContext"
 import axios from "axios"
+import AuthContext from "../context/AuthContext"
 
 import { useContext, useEffect, useState } from "react"
 import { Artist } from "./Artist"
@@ -13,9 +13,9 @@ export const ArtistDetails = () => {
   const [image, setImage] = useState<string>('')
   const [loading, setLoading] = useState<boolean>(false)
 
-  const navigate = useNavigate()
   const { authToken } = useContext(AuthContext)
   const id = window.location.href.split('/').reverse()[0];
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (!authToken) {

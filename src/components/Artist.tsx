@@ -1,10 +1,11 @@
+import axios from "axios"
+import AuthContext from "../context/AuthContext"
+
 import { FC, useContext, useState } from "react"
 import { ArtistProps } from "../interfaces"
-import { FloppyDiskBack, Spinner, Trash, UsersThree } from "@phosphor-icons/react"
-import axios from "axios"
 import { API_URL } from "../utils"
-import AuthContext from "../context/AuthContext"
 import { useNavigate } from "react-router"
+import { Eye, FloppyDiskBack, Spinner, Trash, UsersThree } from "@phosphor-icons/react"
 
 export const Artist: FC<ArtistProps> = ({...props}) => {
   const [tracks, setTracks] = useState<Array<string>>([])
@@ -62,7 +63,7 @@ export const Artist: FC<ArtistProps> = ({...props}) => {
               </p>
             </a>
             <div>
-              <p className="font-bold text-xs">
+              <p className="font-bold text-xs text-slate-400">
                 {props.genre}
               </p>
             </div>
@@ -80,8 +81,9 @@ export const Artist: FC<ArtistProps> = ({...props}) => {
               <button onClick={deleteArtist}>
                 <Trash className='text-xl mr-1 cursor-pointer hover:text-sky-700 duration-300' />
               </button>
-              <button onClick={getTracks}>
-                <p className="text-xs mt-2 hover:text-sky-700 duration-300">
+              <button className="flex justify-center items-center group" onClick={getTracks}>
+                <Eye className='text-md mr-1 cursor-pointer mt-2 group-hover:text-sky-700 duration-300' />
+                <p className="text-xs mt-2 group-hover:text-sky-700 duration-300">
                   view list
                 </p>
               </button>

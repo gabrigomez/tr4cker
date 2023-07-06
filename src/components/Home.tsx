@@ -1,12 +1,12 @@
-import * as yup from "yup";
 import axios from "axios";
+import AuthContext from "../context/AuthContext";
+import * as yup from "yup";
+import { Artist } from "./Artist";
+
 import { useContext, useState } from "react";
 import { Field, Form } from "react-final-form"
-
 import { API_URL, validateFormValues } from "../utils";
 import { Binoculars } from "@phosphor-icons/react";
-import { Artist } from "./Artist";
-import AuthContext from "../context/AuthContext";
 
 import tracker from '../assets/tracker.png'
 
@@ -36,6 +36,7 @@ export const Home = () => {
     setName(response.data[0].name)
     setImage(response.data[0].images[0].url)
     setGenre(response.data[0].genres[0])
+    
     setFollowers(response.data[0].followers.total)
     setSongs(response.data[1])
     setLink(response.data[0].external_urls.spotify)

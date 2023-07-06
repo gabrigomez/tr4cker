@@ -1,12 +1,12 @@
-import { createContext, FC, useEffect, useState } from "react";
-import { useNavigate } from "react-router";
-import axios from "axios";
-import jwt_decode from "jwt-decode";
+import axios from "axios"
+import jwt_decode from "jwt-decode"
+import { createContext, FC, useEffect, useState } from "react"
+import { useNavigate } from "react-router"
 
-import { API_URL, AuthToken, Email, User } from "../utils";
-import { AuthContextObject, Props, Token, UserObject } from "../interfaces";
+import { API_URL, AuthToken, Email, User } from "../utils"
+import { AuthContextObject, Props, Token, UserObject } from "../interfaces"
 
-const AuthContext = createContext({} as AuthContextObject);
+const AuthContext = createContext({} as AuthContextObject)
 export default AuthContext
 
 export const AuthProvider: FC<Props> = ({ children })  => {
@@ -19,8 +19,8 @@ export const AuthProvider: FC<Props> = ({ children })  => {
   const [loading, setLoading] = useState<boolean>(true)
   const [loginErrors, setLoginErrors] = useState<string>('')  
   
-  const navigate = useNavigate();
   const headers = { Authorization: `Bearer ${authToken}` }
+  const navigate = useNavigate();
 
   const loginUser = async (values: UserObject) => {    
     try {
@@ -82,7 +82,6 @@ export const AuthProvider: FC<Props> = ({ children })  => {
       })
             
       setUsername(response.data.username)      
-      
       navigate("/dashboard")
     } catch (error) {
       setLoginErrors('Não foi possível realizar a solicitação')
