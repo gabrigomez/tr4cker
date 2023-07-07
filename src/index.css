@@ -7,7 +7,7 @@
 @layer components {
   .card {
     @apply flex flex-col  items-center border border-sky-900
-    bg-gray-950 rounded-md p-2 m-2 w-3/4 sm:w-2/4 md:w-2/5 xl:w-1/4
+    bg-pink-600 rounded-md p-2 m-2 w-3/4 sm:w-2/4 md:w-2/5 xl:w-1/4
   }
 }
 

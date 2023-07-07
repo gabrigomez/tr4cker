@@ -11,12 +11,12 @@ export const Card: FC<ArtistProps> = ({...props}) => {
           </div>
           <div>
             <div>
-              <p className="text-md text-sky-700 font-bold">
+              <p className="text-md font-bold">
                 {props.name}
               </p>
             </div>
             <div>
-              <p className="text-xs">
+              <p className="text-xs text-black">
                 {props.genre}
               </p>
             </div>            

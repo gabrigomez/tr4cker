@@ -55,7 +55,7 @@ export const EditUser = () => {
                     </div>
                   )}
                 </Field>
-                <button className="bg-black hover:bg-gray-900 duration-300 p-2 rounded-md group">
+                <button className="bg-black hover:bg-pink-500 duration-300 p-2 rounded-md group">
                   <CheckCircle className='text-2xl mr-1 group-hover:animate-spin cursor-pointer' />
                 </button>
               </form>

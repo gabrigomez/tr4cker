@@ -97,7 +97,7 @@ export const Artist: FC<ArtistProps> = ({...props}) => {
         <div>
           {props.songs?.map((song) => {
             return (
-              <p className="bg-slate-900 rounded-md mb-3 p-2" key={song}>
+              <p className="bg-pink-500 text-black rounded-md mb-3 p-2" key={song}>
                 {song}
               </p>
             )
@@ -118,7 +118,7 @@ export const Artist: FC<ArtistProps> = ({...props}) => {
           <div>
             {tracks.map((track) => {
               return (                            
-                <p className="bg-slate-900 rounded-md mb-3 p-2" key={track}>
+                <p className="bg-pink-500 rounded-md mb-3 p-2" key={track}>
                   {track}
                 </p>                
               )
