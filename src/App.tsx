@@ -11,7 +11,7 @@ import { ArtistDetails } from './components/ArtistDetails'
 
 function App() {
   return (
-    <div className=' font-orbit'>
+    <div className='font-orbit'>
       <AuthProvider>
         <NavBar />
           <Routes>
