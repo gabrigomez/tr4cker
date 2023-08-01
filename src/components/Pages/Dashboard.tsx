@@ -1,12 +1,13 @@
 import axios from "axios"
-import AuthContext from "../context/AuthContext"
+import AuthContext from "../../context/AuthContext"
 import { useEffect, useContext, useState } from "react"
 import { useNavigate } from "react-router"
 
 import { Link } from "react-router-dom"
-import { API_URL, Artists, User } from "../utils"
+import { API_URL, Artists, User } from "../../utils"
 import { Spinner } from "@phosphor-icons/react"
-import { Card } from "./Card"
+import { Card } from "../Card"
+import { DashboardTitle } from "./Atoms/DashboardTitle"
 
 export const Dashboard = () => {
   const [loading, setLoading] = useState<boolean>(false)
@@ -44,11 +45,7 @@ export const Dashboard = () => {
     <div className="w-screen">
       {loading ? (
         <div>
-          <div>
-            <p className="text-3xl font-semibold">
-              Hello, {username}!
-            </p>
-          </div>
+          <DashboardTitle username={username} />
           <Link to="/edit-user" className="mt-1 text-xs hover:text-sky-700 duration-300 cursor-pointer">
             edit my info
           </Link> 

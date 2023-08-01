@@ -1,10 +1,10 @@
-import AuthContext from "../context/AuthContext";
+import AuthContext from "../../context/AuthContext";
 import * as yup from "yup";
 import { Form, Field } from 'react-final-form'
 import { useNavigate } from "react-router";
 
 import { useContext, useEffect } from "react";
-import { initialValues, validateFormValues } from '../utils';
+import { initialValues, validateFormValues } from '../../utils';
 import { Keyhole } from "@phosphor-icons/react";
 
 export const Login = () => {

@@ -5,7 +5,7 @@ import * as yup from "yup";
 
 import { SignIn as SignInIcon } from  "@phosphor-icons/react";
 import { Form, Field } from "react-final-form";
-import { API_URL, initialValues, validateFormValues } from "../utils";
+import { API_URL, initialValues, validateFormValues } from "../../utils";
 
 export const SignIn = () => {
   const [errors, setErrors] = useState<string>('')

@@ -1,10 +1,10 @@
 import axios from "axios"
-import AuthContext from "../context/AuthContext"
+import AuthContext from "../../context/AuthContext"
 
 import { useContext, useEffect, useState } from "react"
-import { Artist } from "./Artist"
+import { Artist } from "../Artist"
 import { useNavigate } from "react-router"
-import { API_URL } from "../utils"
+import { API_URL } from "../../utils"
 import { Spinner } from "@phosphor-icons/react"
 
 export const ArtistDetails = () => {

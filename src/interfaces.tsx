@@ -12,7 +12,7 @@ export interface ArtistProps {
   deleteMode?: boolean 
 }
 export interface AuthContextObject {
-  username?: string | null,
+  username: string | null,
   email?: string | null,
   id?: number,
   authToken?: string | null,
