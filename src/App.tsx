@@ -6,7 +6,7 @@ import { Login } from './components/Pages/Login'
 import { SignIn } from './components/Pages/SignIn'
 import { Dashboard } from './components/Pages/Dashboard'
 import { AuthProvider } from './context/AuthContext'
-import { EditUser } from './components/Pages/EditUser'
+import { EditUserPage } from './components/Pages/EditUserPage'
 import { ArtistDetails } from './components/Pages/ArtistDetails'
 import { Toaster } from 'react-hot-toast'
 
@@ -24,7 +24,7 @@ function App() {
             <Route path="/sign-in" element={<SignIn />} />
             <Route path="/artist-details/:id" element={<ArtistDetails />} />
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/edit-user" element={<EditUser />} />
+            <Route path="/edit-user" element={<EditUserPage />} />
           </Routes>       
       </AuthProvider>
     </div>
