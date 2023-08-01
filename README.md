@@ -7,13 +7,13 @@ Está disponível em https://tr4cker.netlify.app/
 
 - Login e registro de usuário, com autenticação nas funcionalidades.
 - Validação de formulários via React Final Form e Yup.
-- É possível salvar os artistas preferidos para facilitar novas consultas.
+- É possível salvar os artistas preferidos para facilitar futuras novas consultas.
 
 ## Ferramentas utilizadas :hammer_and_wrench:
 
 - React
+- Axios
 - Tailwind
-- Phosphor icons
 - React Final Form
 - Yup
 
