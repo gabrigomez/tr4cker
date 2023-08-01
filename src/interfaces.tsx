@@ -13,7 +13,7 @@ export interface ArtistProps {
 }
 export interface AuthContextObject {
   username: string | null,
-  email?: string | null,
+  email: string | null,
   id?: number,
   authToken?: string | null,
   setUsername: (value: React.SetStateAction<User>) => void

@@ -3,6 +3,7 @@ import AuthContext from "../../context/AuthContext"
 import { Field, Form } from "react-final-form"
 import { CheckCircle } from "@phosphor-icons/react"
 import { initialValues } from "../../utils"
+import { UserInfo } from "../Molecules/UserInfo"
 
 export const EditUser = () => {
   const { username, email, editUser } = useContext(AuthContext)
@@ -26,12 +27,7 @@ export const EditUser = () => {
   return (
     <div>
       <div className="w-screen">
-        <p>
-          {username}
-        </p>
-        <p>
-          {email}
-        </p>
+        <UserInfo email={email} username={username} />
         <div className="mt-4">
           <Form
             onSubmit={onSubmit}
