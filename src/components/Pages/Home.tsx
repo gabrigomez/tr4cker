@@ -1,7 +1,7 @@
 import axios from "axios";
 import AuthContext from "../../context/AuthContext";
 import * as yup from "yup";
-import { Artist } from "../Artist";
+import { Artist } from "../Organisms/Artist";
 
 import { useContext, useState } from "react";
 import { Field, Form } from "react-final-form"

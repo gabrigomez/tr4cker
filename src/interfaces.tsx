@@ -2,10 +2,10 @@ import { ReactNode } from "react"
 import { User } from "./utils"
 
 export interface ArtistProps {
-  name?: string,
-  id?: string,
+  name: string,
+  id: number,
   image: string,
-  genre?: string,
+  genre: string,
   followers?: number,
   songs?: Array<string>,
   link?: string
