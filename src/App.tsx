@@ -8,12 +8,16 @@ import { Dashboard } from './components/Dashboard'
 import { AuthProvider } from './context/AuthContext'
 import { EditUser } from './components/EditUser'
 import { ArtistDetails } from './components/ArtistDetails'
+import { Toaster } from 'react-hot-toast'
 
 function App() {
   return (
-    <div className=' font-orbit'>
+    <div className='font-orbit'>
       <AuthProvider>
         <NavBar />
+        <Toaster
+          position="bottom-center"
+        />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />

@@ -16,7 +16,6 @@ export interface AuthContextObject {
   email?: string | null,
   id?: number,
   authToken?: string | null,
-  loginErrors?: string,
   setUsername: (value: React.SetStateAction<User>) => void
   loginUser?: (values: UserObject) => Promise<void>
   logoutUser?: () => void,

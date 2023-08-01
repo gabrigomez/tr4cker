@@ -6,11 +6,11 @@ import { ArtistProps } from "../interfaces"
 import { API_URL } from "../utils"
 import { useNavigate } from "react-router"
 import { Eye, FloppyDiskBack, Spinner, Trash, UsersThree } from "@phosphor-icons/react"
+import { toast } from "react-hot-toast"
 
 export const Artist: FC<ArtistProps> = ({...props}) => {
   const [tracks, setTracks] = useState<Array<string>>([])
   const [loading, setLoading] = useState<boolean>(false)
-  const [message, setMessage] = useState<string | null>(null)
   
   const { id } = useContext(AuthContext)
   const navigate = useNavigate()
@@ -22,22 +22,24 @@ export const Artist: FC<ArtistProps> = ({...props}) => {
       genre: props.genre,
       user: id
     }
-    await axios.post(`${API_URL}/artist`, {...payload})
+    const response = await axios.post(`${API_URL}/artist`, {...payload});
+
+    if(response.status === 201) {
+      toast.success("Artista salvo com sucesso!");
+    } else {
+      toast.error("Ocorreu um erro, tente novamente.");
+    }
   }
 
   const deleteArtist = async() => {
     try {
       await axios.delete(`${API_URL}/artist/${props.id}`)
-      setMessage('Artista excluído com sucesso')    
+      toast.success('Artista excluído com sucesso')    
       setTimeout(() => {
-        setMessage(null)
         navigate("/dashboard")
-      }, 3000)                  
+      }, 2000)                  
     } catch (error) {
-      setMessage('Não foi possivel excluir o artista')    
-      setTimeout(() => {
-        setMessage(null)
-      }, 3000)
+      toast.error('Não foi possivel excluir o artista')    
     }    
   }
 
@@ -103,13 +105,6 @@ export const Artist: FC<ArtistProps> = ({...props}) => {
             )
           })}
         </div>
-        {message && (
-          <div className="mb-2">
-            <p className="text-sm mb-2">
-              {message}
-            </p>
-          </div>
-        )}
         {loading ? (
           <div className="flex justify-center items-center text-3xl font-semibold">
             <Spinner className="animate-spin-forever" size={36} />

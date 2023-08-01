@@ -8,7 +8,7 @@ import { initialValues, validateFormValues } from '../utils';
 import { Keyhole } from "@phosphor-icons/react";
 
 export const Login = () => {
-  const { loginUser, loginErrors, authToken } = useContext(AuthContext)
+  const { loginUser, authToken } = useContext(AuthContext)
   const navigate = useNavigate()
   
   const validationSchema = yup.object({
@@ -75,14 +75,7 @@ export const Login = () => {
             </Field>
             <button className="bg-black hover:bg-pink-500 duration-300 p-2 rounded-md group">
               <Keyhole className='text-2xl mr-1 group-hover:animate-spin cursor-pointer' />
-            </button>
-            {loginErrors && (
-              <div className="h-10 text-xs text-red-600 mt-2 font-semibold">
-                <p>
-                  {loginErrors}
-                </p>
-              </div>
-            )}
+            </button>            
           </form>
           )}
         />

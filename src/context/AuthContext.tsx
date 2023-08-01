@@ -5,6 +5,7 @@ import { useNavigate } from "react-router"
 
 import { API_URL, AuthToken, Email, User } from "../utils"
 import { AuthContextObject, Props, Token, UserObject } from "../interfaces"
+import { toast } from "react-hot-toast"
 
 const AuthContext = createContext({} as AuthContextObject)
 export default AuthContext
@@ -17,7 +18,6 @@ export const AuthProvider: FC<Props> = ({ children })  => {
   
   const [id, setId] = useState<number>(0)
   const [loading, setLoading] = useState<boolean>(true)
-  const [loginErrors, setLoginErrors] = useState<string>('')  
   
   const headers = { Authorization: `Bearer ${authToken}` }
   const navigate = useNavigate();
@@ -35,12 +35,8 @@ export const AuthProvider: FC<Props> = ({ children })  => {
       setId(data.user_id)
       setEmail(data.email)
 
-      navigate("/dashboard")      
     } catch (error) {
-      setLoginErrors('Não foi possível realizar o login')
-      setTimeout(() => {
-        setLoginErrors('')
-      }, 4000);      
+      toast.error('Não foi possível realizar o login')   
     }    
   }  
 
@@ -82,12 +78,10 @@ export const AuthProvider: FC<Props> = ({ children })  => {
       })
             
       setUsername(response.data.username)      
+      toast.success("Informações atualizadas!")
       navigate("/dashboard")
     } catch (error) {
-      setLoginErrors('Não foi possível realizar a solicitação')
-      setTimeout(() => {
-        setLoginErrors('')
-      }, 4000);      
+      toast.error('Não foi possível realizar a solicitação')   
     }    
   }
 
@@ -105,7 +99,6 @@ export const AuthProvider: FC<Props> = ({ children })  => {
     email: email,
     id: id,
     authToken: authToken,
-    loginErrors: loginErrors,
     setUsername: setUsername,
     loginUser: loginUser,
     logoutUser: logoutUser,
