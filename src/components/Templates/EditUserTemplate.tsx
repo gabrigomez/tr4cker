@@ -1,5 +1,7 @@
+import { CheckCircle } from "@phosphor-icons/react"
+import { FieldMolecule } from "../Molecules/FieldMolecule"
 import { UserInfo } from "../Molecules/UserInfo"
-import { EditUser } from "../Organisms/EditUser"
+import { FormOrganism } from "../Organisms/FormOrganism"
 
 interface EditUserTemplateProps {
   username: string | null,
@@ -12,7 +14,15 @@ export const EditUserTemplate = ({...props} : EditUserTemplateProps) => {
   return (
     <div>
       <UserInfo email={props.email} username={props.username} />
-      <EditUser onSubmit={props.onSubmit} validate={props.validate} />
+      <FormOrganism onSubmit={props.onSubmit} validate={props.validate}>
+        <FieldMolecule
+          name="username" 
+          placeholder="new username" 
+        />
+        <button className="bg-black hover:bg-pink-500 duration-300 p-2 rounded-md group">
+          <CheckCircle className='text-2xl mr-1 group-hover:animate-spin cursor-pointer' />
+        </button> 
+      </FormOrganism>
     </div>
   )
 }

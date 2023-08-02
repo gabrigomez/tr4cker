@@ -1,11 +1,10 @@
 import AuthContext from "../../context/AuthContext";
 import * as yup from "yup";
-import { Form, Field } from 'react-final-form'
 import { useNavigate } from "react-router";
 
 import { useContext, useEffect } from "react";
 import { initialValues, validateFormValues } from '../../utils';
-import { Keyhole } from "@phosphor-icons/react";
+import { LoginTemplate } from "../Templates/LoginTemplate";
 
 export const Login = () => {
   const { loginUser, authToken } = useContext(AuthContext)
@@ -30,56 +29,7 @@ export const Login = () => {
 
   return (
     <div className="flex flex-col w-screen">
-      <div className="mt-20">
-        <p className="mb-4 font-bold">
-          LOGIN
-        </p>
-        <Form
-          onSubmit={onSubmit}
-          validate={validate}
-          render={({ handleSubmit }) => (
-          <form action="submit" className="flex flex-col items-center" onSubmit={handleSubmit}>
-            <Field name="email">
-              {({ input, meta }) => (
-                <div className="mb-3 flex flex-col w-3/4 md:w-2/4 lg:w-1/4 h-14">
-                  <input 
-                    type="text"
-                    {...input} 
-                    placeholder="E-mail" 
-                    className="bg-black p-2 rounded-md"
-                    />
-                  {meta.error && meta.touched && 
-                    <span className="text-xs text-red-600 mt-1">
-                      {meta.error}
-                    </span>
-                  }
-                </div>
-              )}
-            </Field>            
-            <Field name="password">
-              {({ input, meta }) => (
-                <div className="mb-3 flex flex-col w-3/4 md:w-2/4 lg:w-1/4 h-14">
-                  <input 
-                    type="password"
-                    {...input} 
-                    placeholder="Senha" 
-                    className="bg-black p-2 rounded-md"
-                    />
-                  {meta.error && meta.touched && 
-                    <span className="text-xs text-red-600 mt-1">
-                      {meta.error}
-                    </span>
-                  }
-                </div>
-              )}
-            </Field>
-            <button className="bg-black hover:bg-pink-500 duration-300 p-2 rounded-md group">
-              <Keyhole className='text-2xl mr-1 group-hover:animate-spin cursor-pointer' />
-            </button>            
-          </form>
-          )}
-        />
-      </div>
+      <LoginTemplate onSubmit={onSubmit} validate={validate} />
     </div>
   )
 }
