@@ -1,4 +1,6 @@
-import { UsersThree } from "@phosphor-icons/react"
+import { ArtistName } from "../Atoms/ArtistName"
+import { ArtistGenre } from "../Atoms/ArtistGenre"
+import { FollowersMolecule } from "../Molecules/FollowersMolecule"
 
 interface ArtistInfoProps {
   name: string,
@@ -12,22 +14,11 @@ export const ArtistInfo = ({...props}: ArtistInfoProps) => {
   return (
     <div className="flex flex-col items-center py-2">
       <a className="hover:text-sky-700 duration-300 cursor-pointer" href={props.link} target="blank">
-        <p className="text-2xl font-bold">
-          {props.name}
-        </p>
+        <ArtistName name={props.name} />
       </a>
-      <div>
-        <p className="font-bold text-xs text-slate-400">
-          {props.genre}
-        </p>
-      </div>
+      <ArtistGenre genre={props.genre} />      
       {!props.deleteMode && (
-        <div className="flex">
-          <UsersThree className='text-2xl mr-1 cursor-pointer' />
-          <p className="font-semibold text-sky-500">
-            {props.followers}
-          </p>
-        </div>
+        <FollowersMolecule followers={props.followers} />
       )}
     </div>
   )
