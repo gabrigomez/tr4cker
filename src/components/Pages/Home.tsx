@@ -81,7 +81,7 @@ export const Home = () => {
                 <Binoculars className='text-2xl mr-1 cursor-pointer' />
               </button>
               {songs.length > 0 && (
-                <Artist name={name} image={image} genre={genre} followers={followers} songs={songs} link={link}  />
+                <Artist name={name} image={image} genre={genre} followers={followers} songs={songs} link={link} />
               )}
               {errors && (
                 <div className="h-10 text-xs text-red-600 mt-2 font-semibold">

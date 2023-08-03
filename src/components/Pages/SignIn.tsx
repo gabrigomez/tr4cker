@@ -5,9 +5,9 @@ import * as yup from "yup";
 
 import { API_URL, initialValues, validateFormValues } from "../../utils";
 import { SignInTemplate } from "../Templates/SignInTemplate";
+import { toast } from "react-hot-toast";
 
 export const SignIn = () => {
-  const [errors, setErrors] = useState<string>('')
   const navigate = useNavigate();    
 
   const validationSchema = yup.object({
@@ -23,17 +23,13 @@ export const SignIn = () => {
       await axios.post(`${API_URL}/register`, {...values})      
       navigate("/login")
     } catch (error) {
-      setErrors('não foi possível realizar o registro')
-      setTimeout(() => {
-        setErrors('')
-      }, 4000)
+      toast.error('E-mail já registrado');
     }     
   }
 
   const validate = validateFormValues(validationSchema);
   
   return (
-    // add an error case when submit fails
     <SignInTemplate onSubmit={onSubmit} validate={validate} />
   )
 }
