@@ -27,7 +27,7 @@ export const HomeTemplate = ({...props} : HomeTemplateProps) => {
           <SearchText />
           <FormOrganism onSubmit={props.onSubmit} validate={props.validate}>
             <FieldMolecule
-              name="name"
+              name="artist"
               placeholder='ex: Black Sabbath'
             />
             <button className="bg-black hover:bg-pink-500 duration-300 p-2 rounded-md group">
