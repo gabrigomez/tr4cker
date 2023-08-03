@@ -3,7 +3,7 @@ import { User } from "./utils"
 
 export interface ArtistProps {
   name: string,
-  id: number,
+  id?: number,
   image: string,
   genre: string,
   followers?: number,

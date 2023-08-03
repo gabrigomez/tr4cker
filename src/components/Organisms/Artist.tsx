@@ -24,7 +24,7 @@ export const Artist: FC<ArtistProps> = ({...props}) => {
     const payload = {
       name: props.name,
       image: props.image,
-      genre: props.genre,
+      genre: props.genre ? props.genre : 'no genre' ,
       user: id
     }
     const response = await axios.post(`${API_URL}/artist`, {...payload});
