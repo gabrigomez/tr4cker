@@ -24,7 +24,7 @@ export const HomeTemplate = ({...props} : HomeTemplateProps) => {
     <div className='flex flex-col items-center w-screen'>
       <HomeMolecule />
       {props.authToken ? (
-        <div className="mt-8">          
+        <div className="w-11/12 mt-8">          
           <SearchText />
           <FormOrganism onSubmit={props.onSubmit} validate={props.validate}>
             <FieldMolecule

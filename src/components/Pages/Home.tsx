@@ -24,6 +24,7 @@ export const Home = () => {
 
   const onSubmit = async(values = { ...initialValues }) => {
     const response = await axios.post(`${API_URL}/spotify`, {...values})
+    console.log(response)
 
     setName(response.data[0].name)
     setImage(response.data[0].images[0].url)

@@ -10,7 +10,7 @@ export const FieldMolecule = ({...props }: FieldMoleculeProps) => {
   return (
     <Field name={props.name}>
       {({ input, meta }) => (
-        <div className="mb-3 flex flex-col w-3/4 h-14">
+        <div className="mb-3 flex flex-col w-2/4 sm:w-2/6 lg:w-1/5 h-14">
           <input 
             type={props.type ? props.type : 'text'}
             {...input} 
