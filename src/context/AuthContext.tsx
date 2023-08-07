@@ -90,8 +90,6 @@ export const AuthProvider: FC<Props> = ({ children })  => {
     localStorage.removeItem("refresh")
     setAuthToken(null)
     setUsername(null)
-
-    navigate("/login")
   }
   
   const contextData: AuthContextObject = {
