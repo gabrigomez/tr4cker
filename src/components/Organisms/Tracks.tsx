@@ -7,9 +7,14 @@ export const Tracks = ({tracks} : TracksProps) => {
     <div>
       {tracks.map((track) => {
         return (                            
-          <p className="bg-pink-500 rounded-md mb-3 p-2" key={track}>
-            {track}
-          </p>                
+          <div className="flex flex-col items-center bg-pink-500 rounded-md mb-3 p-2" key={track}>
+            <p className="text-2xl text-pink-900 w-2/5">
+              #{(tracks.indexOf(track) +1)}
+            </p>
+            <p className="text-md">
+              {track.toUpperCase()}
+            </p>
+          </div>                
         )
       })}               
     </div>

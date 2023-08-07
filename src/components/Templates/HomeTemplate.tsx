@@ -29,7 +29,7 @@ export const HomeTemplate = ({...props} : HomeTemplateProps) => {
           <FormOrganism onSubmit={props.onSubmit} validate={props.validate}>
             <FieldMolecule
               name="artist"
-              placeholder='ex: Black Sabbath'
+              placeholder='ex: Nirvana'
             />
             <button className="bg-black hover:bg-pink-500 duration-300 p-2 rounded-md group">
               <Binoculars className='text-2xl mr-1 cursor-pointer' />
