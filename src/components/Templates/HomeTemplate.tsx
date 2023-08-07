@@ -4,6 +4,7 @@ import { FormOrganism } from '../Organisms/FormOrganism';
 import { Artist } from '../Organisms/Artist';
 import { HomeMolecule } from '../Molecules/HomeMolecule';
 import { SearchText } from '../Atoms/SearchText';
+import { PublicBanner } from '../Organisms/PublicBanner';
 
 interface HomeTemplateProps {
   authToken: string | null | undefined,
@@ -20,9 +21,9 @@ interface HomeTemplateProps {
 
 export const HomeTemplate = ({...props} : HomeTemplateProps) => {
   return (
-    <div className='w-screen'>
+    <div className='flex flex-col items-center w-screen'>
       <HomeMolecule />
-      {props.authToken && (
+      {props.authToken ? (
         <div className="mt-8">          
           <SearchText />
           <FormOrganism onSubmit={props.onSubmit} validate={props.validate}>
@@ -52,6 +53,8 @@ export const HomeTemplate = ({...props} : HomeTemplateProps) => {
             )}
           </FormOrganism>         
         </div>
+      ) : (
+        <PublicBanner />
       )}      
     </div>
   )
