@@ -6,7 +6,7 @@ export type Artists = Array<ArtistProps> | null
 export type Email = string | null
 export type User = string | null
 
-export const API_URL = "https://python-app.up.railway.app/api"
+export const API_URL = "https://tr4cker-api.up.railway.app/api"
 
 export const initialValues: InitialValues = {
   username: '',
