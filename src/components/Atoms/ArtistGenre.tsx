@@ -4,7 +4,7 @@ interface ArtistGenreProps {
 
 export const ArtistGenre = ({ genre } : ArtistGenreProps) => {
   return (
-    <p className="font-bold text-xs text-slate-400">
+    <p className="font-bold text-xs text-slate-200">
       {genre}
     </p>
   )
