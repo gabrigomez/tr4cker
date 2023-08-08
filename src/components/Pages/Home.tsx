@@ -5,21 +5,10 @@ import * as yup from "yup";
 import { useContext, useState } from "react";
 import { API_URL, imgs, initialValues, validateFormValues } from "../../utils";
 import { HomeTemplate } from "../Templates/HomeTemplate";
-
-// import image1 from '../../assets/1.png';
-// import image2 from '../../assets/2.png';
-// import image3 from '../../assets/3.png';
+import { ArtistPreviewProps } from "../../interfaces";
 
 export const Home = () => {
-  const [name, setName] = useState<string>('')
-  const [followers, setFollowers] = useState<number>(0)
-  const [songs, setSongs] = useState<Array<string>>([])
-  const [genre, setGenre] = useState<string>('')
-  
-  const [image, setImage] = useState<string>('')
-  const [link, setLink] = useState<string>('')
-  const [errors] = useState<string>('')  
-  
+  const [artistsPreview, setArtistPreview] = useState<Array<ArtistPreviewProps> | null>(null)
   const { authToken } = useContext(AuthContext)
 
   const imgArray = imgs 
@@ -29,15 +18,14 @@ export const Home = () => {
   });
 
   const onSubmit = async(values = { ...initialValues }) => {
-    const response = await axios.post(`${API_URL}/spotify`, {...values})
-
-    setName(response.data[0].name)
-    setImage(response.data[0].images[0].url)
-    setGenre(response.data[0].genres[0])
+    const response = await axios.post(`${API_URL}/spotify`, {...values});
+    let artists: Array<ArtistPreviewProps> = [];
     
-    setFollowers(response.data[0].followers.total)
-    setSongs(response.data[1])
-    setLink(response.data[0].external_urls.spotify)
+    response.data.map((result: ArtistPreviewProps) => {
+      artists.push(result);
+    })
+
+    setArtistPreview(artists)
   }
 
   const validate = validateFormValues(validationSchema);
@@ -46,14 +34,8 @@ export const Home = () => {
     <HomeTemplate 
       {...{
         authToken,
-        name,
-        followers,
-        songs,
-        image,
-        genre,
-        link,
-        errors,
-        imgArray,
+        artistsPreview,
+        imgArray,              
         onSubmit: onSubmit,
         validate: validate      
       }}

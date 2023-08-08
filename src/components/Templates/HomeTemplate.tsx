@@ -1,4 +1,7 @@
-import { Binoculars } from '@phosphor-icons/react';
+import { useState } from 'react';
+import { ArtistPreview } from '../Organisms/ArtistPreview';
+import { ArtistPreviewProps } from '../../interfaces';
+import { ArrowCircleLeft, Binoculars } from '@phosphor-icons/react';
 import { FieldMolecule } from '../Molecules/FieldMolecule';
 import { FormOrganism } from '../Organisms/FormOrganism';
 import { Artist } from '../Organisms/Artist';
@@ -9,19 +12,39 @@ import { PublicBanner } from '../Organisms/PublicBanner';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 interface HomeTemplateProps {
   authToken: string | null | undefined,
-  name: string,
-  followers: number,
-  songs: Array<string>
-  genre: string,  
-  image: string,
-  link: string,
-  errors: string,
+  artistsPreview: Array<ArtistPreviewProps> | null,
   imgArray: Array<string>,
   onSubmit: () => void,
   validate: (values: any) => object | undefined,  
 }
 
 export const HomeTemplate = ({...props} : HomeTemplateProps) => {
+  const [name, setName] = useState<string>('')
+  const [followers, setFollowers] = useState<number>(0)
+  const [songs, setSongs] = useState<Array<string>>([])
+  const [genre, setGenre] = useState<string>('')
+  
+  const [image, setImage] = useState<string>('')
+  const [link, setLink] = useState<string>('')
+  const [hasArtist, setHasArtist] = useState(false);
+  
+
+  const fetchArtist = (artist: ArtistPreviewProps) => {
+    setHasArtist(true)
+
+    setName(artist.name)
+    setImage(artist.img)
+    setGenre(artist.genre!)
+    
+    setFollowers(artist.followers!)
+    setSongs(artist.songs!)
+    setLink(artist.link!)
+  }
+
+  const clearArtist = () => {
+    setHasArtist(false)
+  }
+
   return (
     <div className='flex flex-col items-center w-screen'>
       <HomeMolecule />
@@ -36,21 +59,30 @@ export const HomeTemplate = ({...props} : HomeTemplateProps) => {
             <button className="bg-black hover:bg-pink-500 duration-300 p-2 rounded-md group">
               <Binoculars className='text-2xl mr-1 cursor-pointer' />
             </button>
-            {props.songs.length > 0 && (
-              <Artist 
-                name={props.name} 
-                image={props.image} 
-                genre={props.genre} 
-                followers={props.followers} 
-                songs={props.songs} 
-                link={props.link} 
-              />
-            )}
-            {props.errors && (
-              <div className="h-10 text-xs text-red-600 mt-2 font-semibold">
-                <p>
-                  {props.errors}
-                </p>
+            {!hasArtist && props.artistsPreview?.map((artist) => {
+              return (
+                <ArtistPreview
+                  name={artist.name}
+                  img={artist.img}
+                  songs={artist.songs}
+                  onClick={() => fetchArtist(artist)}                                                 
+                />
+              )
+            })}
+            {hasArtist && (
+              <div className='flex flex-col items-center w-full'>
+                <Artist 
+                  name={name} 
+                  image={image} 
+                  genre={genre} 
+                  followers={followers} 
+                  songs={songs} 
+                  link={link} 
+                />
+                <ArrowCircleLeft 
+                  className='text-5xl mb-2 cursor-pointer hover:text-pink-500 duration-300'
+                  onClick={() => clearArtist()} 
+                />
               </div>
             )}
           </FormOrganism>         
