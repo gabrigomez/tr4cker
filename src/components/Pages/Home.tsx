@@ -3,12 +3,12 @@ import AuthContext from "../../context/AuthContext";
 import * as yup from "yup";
 
 import { useContext, useState } from "react";
-import { API_URL, initialValues, validateFormValues } from "../../utils";
+import { API_URL, imgs, initialValues, validateFormValues } from "../../utils";
 import { HomeTemplate } from "../Templates/HomeTemplate";
 
-import image1 from '../../assets/1.png';
-import image2 from '../../assets/2.png';
-import image3 from '../../assets/3.png';
+// import image1 from '../../assets/1.png';
+// import image2 from '../../assets/2.png';
+// import image3 from '../../assets/3.png';
 
 export const Home = () => {
   const [name, setName] = useState<string>('')
@@ -22,7 +22,7 @@ export const Home = () => {
   
   const { authToken } = useContext(AuthContext)
 
-  const imgArray = [image1, image2, image3];
+  const imgArray = imgs 
 
   const validationSchema = yup.object({
     artist: yup.string().required('obrigatório'),
