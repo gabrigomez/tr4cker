@@ -6,6 +6,10 @@ import { useContext, useState } from "react";
 import { API_URL, initialValues, validateFormValues } from "../../utils";
 import { HomeTemplate } from "../Templates/HomeTemplate";
 
+import image1 from '../../assets/1.png';
+import image2 from '../../assets/2.png';
+import image3 from '../../assets/3.png';
+
 export const Home = () => {
   const [name, setName] = useState<string>('')
   const [followers, setFollowers] = useState<number>(0)
@@ -17,6 +21,8 @@ export const Home = () => {
   const [errors] = useState<string>('')  
   
   const { authToken } = useContext(AuthContext)
+
+  const imgArray = [image1, image2, image3];
 
   const validationSchema = yup.object({
     artist: yup.string().required('obrigatório'),
@@ -47,6 +53,7 @@ export const Home = () => {
         genre,
         link,
         errors,
+        imgArray,
         onSubmit: onSubmit,
         validate: validate      
       }}

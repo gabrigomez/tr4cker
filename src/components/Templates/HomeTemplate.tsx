@@ -6,6 +6,7 @@ import { HomeMolecule } from '../Molecules/HomeMolecule';
 import { SearchText } from '../Atoms/SearchText';
 import { PublicBanner } from '../Organisms/PublicBanner';
 
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 interface HomeTemplateProps {
   authToken: string | null | undefined,
   name: string,
@@ -15,6 +16,7 @@ interface HomeTemplateProps {
   image: string,
   link: string,
   errors: string,
+  imgArray: Array<string>,
   onSubmit: () => void,
   validate: (values: any) => object | undefined,  
 }
@@ -54,7 +56,7 @@ export const HomeTemplate = ({...props} : HomeTemplateProps) => {
           </FormOrganism>         
         </div>
       ) : (
-        <PublicBanner />
+        <PublicBanner imgArray={props.imgArray} />
       )}      
     </div>
   )
