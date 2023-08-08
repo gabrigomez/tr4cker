@@ -40,7 +40,7 @@ export interface InitialValues {
   email?: string,
   password?: string,
   confirmPassword?: string,
-  artist?: string
+  artist?: string,
 }
 export interface Props {
   children?: ReactNode

@@ -19,15 +19,14 @@ interface HomeTemplateProps {
 }
 
 export const HomeTemplate = ({...props} : HomeTemplateProps) => {
-  const [name, setName] = useState<string>('')
-  const [followers, setFollowers] = useState<number>(0)
-  const [songs, setSongs] = useState<Array<string>>([])
-  const [genre, setGenre] = useState<string>('')
+  const [name, setName] = useState<string>('');
+  const [followers, setFollowers] = useState<number>(0);
+  const [songs, setSongs] = useState<Array<string>>([]);
+  const [genre, setGenre] = useState<string>('');
   
-  const [image, setImage] = useState<string>('')
-  const [link, setLink] = useState<string>('')
-  const [hasArtist, setHasArtist] = useState(false);
-  
+  const [image, setImage] = useState<string>('');
+  const [link, setLink] = useState<string>('');
+  const [hasArtist, setHasArtist] = useState(false);  
 
   const fetchArtist = (artist: ArtistPreviewProps) => {
     setHasArtist(true)

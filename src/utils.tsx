@@ -23,7 +23,7 @@ export const initialValues: InitialValues = {
   email: '',
   password: '',
   confirmPassword: '',
-  artist: ''
+  artist: '',
 }
 
 export const imgs = [

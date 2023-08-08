@@ -50,9 +50,9 @@ export const Artist: FC<ArtistProps> = ({...props}) => {
 
   const getTracks = async() => {
     setLoading(true)
-    const response = await axios.post(`${API_URL}/spotify`, {artist: props.name})
-    
-    setTracks(response.data[1])
+    const response = await axios.post(`${API_URL}/spotify`, {artist: props.name, limit: 1})
+   
+    setTracks(response.data[0].songs)
     setLoading(false)
   }
 
