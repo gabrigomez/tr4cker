@@ -21,18 +21,27 @@ export const Artist: FC<ArtistProps> = ({...props}) => {
   const navigate = useNavigate()
 
   const saveArtist = async() => {
-    const payload = {
-      name: props.name,
-      image: props.image,
-      genre: props.genre ? props.genre : 'no genre' ,
-      user: id
-    }
-    const response = await axios.post(`${API_URL}/artist`, {...payload});
-
-    if(response.status === 201) {
-      toast.success("Artista salvo com sucesso!");
+    const artistsData = await axios.get(`${API_URL}/artist-list/${id}`);   // get a copy of saved artists
+    const exists = artistsData.data.find((artist: ArtistProps) => artist.name === props.name);  // check if artist was saved before
+    
+    // if is not, then try to save the artist. This is not the better way to do 
+    // this, but i want to make it simple, without a management library, like redux.
+    if(!exists) {
+      const payload = {
+        name: props.name,
+        image: props.image,
+        genre: props.genre ? props.genre : 'no genre' ,
+        user: id
+      }
+      const response = await axios.post(`${API_URL}/artist`, {...payload});
+  
+      if(response.status === 201) {
+        toast.success("Artista salvo com sucesso!");
+      } else {
+        toast.error("Ocorreu um erro, tente novamente.");
+      }
     } else {
-      toast.error("Ocorreu um erro, tente novamente.");
+      toast.error("Artista já salvo!");
     }
   }
 
