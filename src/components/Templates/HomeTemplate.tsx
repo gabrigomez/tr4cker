@@ -63,7 +63,7 @@ export const HomeTemplate = ({...props} : HomeTemplateProps) => {
             {props.loading && (
               <Loading className="flex justify-center items-center mt-20 text-6xl font-semibold" />
             )}
-            <div className='bg-red-500 w-full p-4'>
+            <div className='flex flex-col items-center justify-center w-full p-2'>
               {!hasArtist && props.artistsPreview?.map((artist) => {
                 return (
                   <ArtistPreview
