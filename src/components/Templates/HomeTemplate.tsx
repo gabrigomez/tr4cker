@@ -57,19 +57,24 @@ export const HomeTemplate = ({...props} : HomeTemplateProps) => {
       <HomeMolecule />
       {props.authToken ? (
         <div className="w-11/12 mt-8">          
-          <SearchText />
           <FormOrganism onSubmit={props.onSubmit} validate={props.validate}>
-            <FieldMolecule
-              name="artist"
-              placeholder='ex: Nirvana'
-            />
-            <button className="bg-black hover:bg-pink-500 duration-300 p-2 rounded-md group">
-              <Binoculars className='text-2xl mr-1 cursor-pointer' />
-            </button>
+            {!hasArtist && (
+              <div className='flex flex-col items-center justify-center w-full'>
+                <SearchText />
+                <FieldMolecule
+                  name="artist"
+                  placeholder='ex: Nirvana'
+                />
+                <button className="bg-black hover:bg-pink-500 duration-300 p-2 rounded-md group">
+                  <Binoculars className='text-2xl mr-1 cursor-pointer' />
+                </button>
+              </div>
+            )}            
             {props.loading && (
               <Loading className="flex justify-center items-center mt-20 text-6xl font-semibold" />
-            )}
-            <div className='flex flex-col items-center justify-center w-full p-2'>
+            )}            
+          </FormOrganism> 
+          <div className='flex flex-col items-center justify-center w-full p-2'>
               {!hasArtist && props.artistsPreview?.map((artist) => {
                 return (
                   <ArtistPreview
@@ -82,6 +87,10 @@ export const HomeTemplate = ({...props} : HomeTemplateProps) => {
               })}            
               {hasArtist && (
                 <div className='flex flex-col items-center w-full'>
+                  <ArrowCircleLeft 
+                    className='text-5xl mb-2 cursor-pointer hover:text-pink-500 duration-300'
+                    onClick={() => clearArtist()} 
+                  />
                   <Artist 
                     name={name} 
                     image={image} 
@@ -90,14 +99,9 @@ export const HomeTemplate = ({...props} : HomeTemplateProps) => {
                     songs={songs} 
                     link={link} 
                   />
-                  <ArrowCircleLeft 
-                    className='text-5xl mb-2 cursor-pointer hover:text-pink-500 duration-300'
-                    onClick={() => clearArtist()} 
-                  />
                 </div>
               )}
-            </div>
-          </FormOrganism>         
+            </div>        
         </div>
       ) : (
         <PublicBanner imgArray={props.imgArray} />
