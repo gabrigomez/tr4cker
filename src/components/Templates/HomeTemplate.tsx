@@ -63,32 +63,34 @@ export const HomeTemplate = ({...props} : HomeTemplateProps) => {
             {props.loading && (
               <Loading className="flex justify-center items-center mt-20 text-6xl font-semibold" />
             )}
-            {!hasArtist && props.artistsPreview?.map((artist) => {
-              return (
-                <ArtistPreview
-                  name={artist.name}
-                  img={artist.img}
-                  songs={artist.songs}
-                  onClick={() => fetchArtist(artist)}                                                 
-                />
-              )
-            })}            
-            {hasArtist && (
-              <div className='flex flex-col items-center w-full'>
-                <Artist 
-                  name={name} 
-                  image={image} 
-                  genre={genre} 
-                  followers={followers} 
-                  songs={songs} 
-                  link={link} 
-                />
-                <ArrowCircleLeft 
-                  className='text-5xl mb-2 cursor-pointer hover:text-pink-500 duration-300'
-                  onClick={() => clearArtist()} 
-                />
-              </div>
-            )}
+            <div className='bg-red-500 w-full p-4'>
+              {!hasArtist && props.artistsPreview?.map((artist) => {
+                return (
+                  <ArtistPreview
+                    name={artist.name}
+                    img={artist.img}
+                    songs={artist.songs}
+                    onClick={() => fetchArtist(artist)}                                                 
+                  />
+                )
+              })}            
+              {hasArtist && (
+                <div className='flex flex-col items-center w-full'>
+                  <Artist 
+                    name={name} 
+                    image={image} 
+                    genre={genre} 
+                    followers={followers} 
+                    songs={songs} 
+                    link={link} 
+                    />
+                  <ArrowCircleLeft 
+                    className='text-5xl mb-2 cursor-pointer hover:text-pink-500 duration-300'
+                    onClick={() => clearArtist()} 
+                    />
+                </div>
+              )}
+            </div>
           </FormOrganism>         
         </div>
       ) : (

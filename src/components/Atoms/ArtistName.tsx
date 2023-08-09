@@ -1,11 +1,11 @@
 interface ArtistNameProps {
   name: string,
-  textColor?: string
+  className?: string
 }
 
-export const ArtistName = ({ name, textColor = 'text-slate-900' } : ArtistNameProps) => {
+export const ArtistName = ({ name, className} : ArtistNameProps) => {
   return (
-    <p className={`text-2xl font-bold ${textColor}`}>
+    <p className={`${className}`}>
       {name}
     </p>
   )
