@@ -8,16 +8,18 @@ import { HomeTemplate } from "../Templates/HomeTemplate";
 import { ArtistPreviewProps } from "../../interfaces";
 
 export const Home = () => {
-  const [artistsPreview, setArtistPreview] = useState<Array<ArtistPreviewProps> | null>(null)
-  const { authToken } = useContext(AuthContext)
+  const [artistsPreview, setArtistPreview] = useState<Array<ArtistPreviewProps> | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
+  const { authToken } = useContext(AuthContext);
 
-  const imgArray = imgs 
+  const imgArray = imgs; 
 
   const validationSchema = yup.object({
     artist: yup.string().required('obrigatório'),
   });
 
   const onSubmit = async(values = { ...initialValues }) => {
+    setLoading(true);
     const response = await axios.post(`${API_URL}/spotify`, {...values, limit: 10});
     let artists: Array<ArtistPreviewProps> = [];
     
@@ -25,7 +27,8 @@ export const Home = () => {
       artists.push(result);
     })
 
-    setArtistPreview(artists)
+    setArtistPreview(artists);
+    setLoading(false);
   }
 
   const validate = validateFormValues(validationSchema);
@@ -35,7 +38,8 @@ export const Home = () => {
       {...{
         authToken,
         artistsPreview,
-        imgArray,              
+        imgArray,
+        loading,              
         onSubmit: onSubmit,
         validate: validate      
       }}

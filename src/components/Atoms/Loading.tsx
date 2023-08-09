@@ -7,7 +7,7 @@ interface LoadingProps {
 export const Loading = ({className} : LoadingProps) => {
   return (
     <div className={className}>
-      <Spinner className="animate-spin-forever" size={36} />
+      <Spinner className="animate-spin-forever"/>
     </div>
   )
 }

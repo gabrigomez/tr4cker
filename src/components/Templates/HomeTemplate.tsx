@@ -10,10 +10,12 @@ import { SearchText } from '../Atoms/SearchText';
 import { PublicBanner } from '../Organisms/PublicBanner';
 
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Loading } from '../Atoms/Loading';
 interface HomeTemplateProps {
   authToken: string | null | undefined,
   artistsPreview: Array<ArtistPreviewProps> | null,
   imgArray: Array<string>,
+  loading: boolean,
   onSubmit: () => void,
   validate: (values: any) => object | undefined,  
 }
@@ -58,6 +60,9 @@ export const HomeTemplate = ({...props} : HomeTemplateProps) => {
             <button className="bg-black hover:bg-pink-500 duration-300 p-2 rounded-md group">
               <Binoculars className='text-2xl mr-1 cursor-pointer' />
             </button>
+            {props.loading && (
+              <Loading className="flex justify-center items-center mt-20 text-6xl font-semibold" />
+            )}
             {!hasArtist && props.artistsPreview?.map((artist) => {
               return (
                 <ArtistPreview
@@ -67,7 +72,7 @@ export const HomeTemplate = ({...props} : HomeTemplateProps) => {
                   onClick={() => fetchArtist(artist)}                                                 
                 />
               )
-            })}
+            })}            
             {hasArtist && (
               <div className='flex flex-col items-center w-full'>
                 <Artist 
