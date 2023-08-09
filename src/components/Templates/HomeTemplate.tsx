@@ -9,8 +9,9 @@ import { HomeMolecule } from '../Molecules/HomeMolecule';
 import { SearchText } from '../Atoms/SearchText';
 import { PublicBanner } from '../Organisms/PublicBanner';
 
-import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Loading } from '../Atoms/Loading';
+import Spotify from '../../assets/spotify.png';
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 interface HomeTemplateProps {
   authToken: string | null | undefined,
   artistsPreview: Array<ArtistPreviewProps> | null,
@@ -34,12 +35,17 @@ export const HomeTemplate = ({...props} : HomeTemplateProps) => {
     setHasArtist(true)
 
     setName(artist.name)
-    setImage(artist.img)
     setGenre(artist.genre!)
-    
     setFollowers(artist.followers!)
+    
     setSongs(artist.songs!)
     setLink(artist.link!)
+    
+    if(artist.img === '') {
+      setImage(Spotify);
+    } else {
+      setImage(artist.img);
+    }
   }
 
   const clearArtist = () => {
@@ -68,7 +74,7 @@ export const HomeTemplate = ({...props} : HomeTemplateProps) => {
                 return (
                   <ArtistPreview
                     name={artist.name}
-                    img={artist.img}
+                    img={artist.img === '' ? Spotify : artist.img}
                     songs={artist.songs}
                     onClick={() => fetchArtist(artist)}                                                 
                   />

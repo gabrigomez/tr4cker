@@ -28,6 +28,8 @@ export const Home = () => {
     response.data.map((result: ArtistPreviewProps) => {
       artists.push(result);
     })
+    
+    console.log(response)
 
     setArtistPreview(artists);
     setLoading(false);
