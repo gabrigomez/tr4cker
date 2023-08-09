@@ -5,7 +5,7 @@ import { ArtistName } from "../Atoms/ArtistName"
 export const ArtistPreview = ({...props} : ArtistProps) => {
   return (
     <div 
-      className="flex flex-col w-2/4 lg:w-2/5 xl:w-1/5 
+      className="flex flex-col w-3/4 sm:w-2/4 lg:w-2/5 xl:w-1/5 
       justify-center items-center my-4 p-2 cursor-pointer 
       bg-black border border-pink-900 rounded-md" 
       onClick={props.onClick}
