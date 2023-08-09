@@ -28,9 +28,7 @@ export const Home = () => {
     response.data.map((result: ArtistProps) => {
       artists.push(result);
     })
-    
-    console.log(response)
-
+       
     setArtistPreview(artists);
     setLoading(false);
   }

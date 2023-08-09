@@ -1,11 +1,9 @@
 import { ReactNode } from "react"
 import { User } from "./utils"
-
-//refactor artists interfaces!!!
 export interface ArtistProps {
   name: string,
-  id?: number,
-  img: string,
+  id?: number,  
+  image: string,
   genre?: string,
   followers?: number,
   songs?: Array<string>,

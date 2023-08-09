@@ -41,10 +41,10 @@ export const HomeTemplate = ({...props} : HomeTemplateProps) => {
     setSongs(artist.songs!)
     setLink(artist.link!)
     
-    if(artist.img === '') {
+    if(artist.image === '') {
       setImage(Spotify);
     } else {
-      setImage(artist.img);
+      setImage(artist.image);
     }
   }
 
@@ -74,7 +74,7 @@ export const HomeTemplate = ({...props} : HomeTemplateProps) => {
                 return (
                   <ArtistPreview
                     name={artist.name}
-                    img={artist.img === '' ? Spotify : artist.img}
+                    image={artist.image === '' ? Spotify : artist.image}
                     songs={artist.songs}
                     onClick={() => fetchArtist(artist)}                                                 
                   />
@@ -84,16 +84,16 @@ export const HomeTemplate = ({...props} : HomeTemplateProps) => {
                 <div className='flex flex-col items-center w-full'>
                   <Artist 
                     name={name} 
-                    img={image} 
+                    image={image} 
                     genre={genre} 
                     followers={followers} 
                     songs={songs} 
                     link={link} 
-                    />
+                  />
                   <ArrowCircleLeft 
                     className='text-5xl mb-2 cursor-pointer hover:text-pink-500 duration-300'
                     onClick={() => clearArtist()} 
-                    />
+                  />
                 </div>
               )}
             </div>

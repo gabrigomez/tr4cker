@@ -12,7 +12,7 @@ export const ArtistPreview = ({...props} : ArtistProps) => {
     >
       <ArtistImage 
         className="h-20 w-20 rounded-full overflow-hidden border mb-1 border-pink-800"
-        image={props.img}
+        image={props.image}
       />
       <ArtistName
         name={props.name}

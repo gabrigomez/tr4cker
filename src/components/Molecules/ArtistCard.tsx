@@ -11,7 +11,7 @@ export const ArtistCard: FC<ArtistProps> = ({...props}) => {
         className="card">     
           <ArtistImage 
             className="h-20 w-20 border-2 border-sky-950 rounded-full"
-            image={props.img}
+            image={props.image}
           />
           <div>
             <ArtistName className="text-2xl font-bold text-black" name={props.name} />
