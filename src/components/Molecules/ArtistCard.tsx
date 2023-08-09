@@ -11,11 +11,11 @@ export const ArtistCard: FC<ArtistProps> = ({...props}) => {
         className="card">     
           <ArtistImage 
             className="h-20 w-20 border-2 border-sky-950 rounded-full"
-            image={props.image}
+            image={props.img}
           />
           <div>
             <ArtistName className="text-2xl font-bold text-black" name={props.name} />
-            <ArtistGenre genre={props.genre} />            
+            <ArtistGenre genre={props.genre!} />            
           </div>                 
       </div>      
     </div>

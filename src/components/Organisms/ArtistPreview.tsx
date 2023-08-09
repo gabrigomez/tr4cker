@@ -1,8 +1,8 @@
-import { ArtistPreviewProps } from "../../interfaces"
+import { ArtistProps } from "../../interfaces"
 import { ArtistImage } from "../Atoms/ArtistImage"
 import { ArtistName } from "../Atoms/ArtistName"
 
-export const ArtistPreview = ({...props} : ArtistPreviewProps) => {
+export const ArtistPreview = ({...props} : ArtistProps) => {
   return (
     <div 
       className="flex flex-col w-2/4 lg:w-2/5 xl:w-1/5 

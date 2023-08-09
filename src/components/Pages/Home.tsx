@@ -5,10 +5,10 @@ import * as yup from "yup";
 import { useContext, useState } from "react";
 import { API_URL, imgs, initialValues, validateFormValues } from "../../utils";
 import { HomeTemplate } from "../Templates/HomeTemplate";
-import { ArtistPreviewProps } from "../../interfaces";
+import { ArtistProps } from "../../interfaces";
 
 export const Home = () => {
-  const [artistsPreview, setArtistPreview] = useState<Array<ArtistPreviewProps> | null>(null);
+  const [artistsPreview, setArtistPreview] = useState<Array<ArtistProps> | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const { authToken } = useContext(AuthContext);
 
@@ -23,9 +23,9 @@ export const Home = () => {
     setLoading(true);
 
     const response = await axios.post(`${API_URL}/spotify`, {...values, limit: 10});
-    let artists: Array<ArtistPreviewProps> = [];
+    let artists: Array<ArtistProps> = [];
     
-    response.data.map((result: ArtistPreviewProps) => {
+    response.data.map((result: ArtistProps) => {
       artists.push(result);
     })
     

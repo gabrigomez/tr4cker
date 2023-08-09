@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { ArtistPreview } from '../Organisms/ArtistPreview';
-import { ArtistPreviewProps } from '../../interfaces';
+import { ArtistProps } from '../../interfaces';
 import { ArrowCircleLeft, Binoculars } from '@phosphor-icons/react';
 import { FieldMolecule } from '../Molecules/FieldMolecule';
 import { FormOrganism } from '../Organisms/FormOrganism';
@@ -14,7 +14,7 @@ import Spotify from '../../assets/spotify.png';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 interface HomeTemplateProps {
   authToken: string | null | undefined,
-  artistsPreview: Array<ArtistPreviewProps> | null,
+  artistsPreview: Array<ArtistProps> | null,
   imgArray: Array<string>,
   loading: boolean,
   onSubmit: () => void,
@@ -31,7 +31,7 @@ export const HomeTemplate = ({...props} : HomeTemplateProps) => {
   const [link, setLink] = useState<string>('');
   const [hasArtist, setHasArtist] = useState(false);  
 
-  const fetchArtist = (artist: ArtistPreviewProps) => {
+  const fetchArtist = (artist: ArtistProps) => {
     setHasArtist(true)
 
     setName(artist.name)
@@ -84,7 +84,7 @@ export const HomeTemplate = ({...props} : HomeTemplateProps) => {
                 <div className='flex flex-col items-center w-full'>
                   <Artist 
                     name={name} 
-                    image={image} 
+                    img={image} 
                     genre={genre} 
                     followers={followers} 
                     songs={songs} 

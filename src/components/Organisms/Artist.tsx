@@ -23,7 +23,7 @@ export const Artist: FC<ArtistProps> = ({...props}) => {
   const saveArtist = async() => {
     const payload = {
       name: props.name,
-      image: props.image,
+      image: props.img,
       genre: props.genre ? props.genre : 'no genre' ,
       user: id
     }
@@ -62,11 +62,11 @@ export const Artist: FC<ArtistProps> = ({...props}) => {
         <div className="flex flex-col items-center mb-2">
           <ArtistImage 
             className="h-44 w-44 md:w-2/4 md:h-2/4 rounded-full overflow-hidden mb-2 border-2 border-pink-800"
-            image={props.image}
+            image={props.img}
           />
           <ArtistInfo
             name={props.name}
-            genre={props.genre}
+            genre={props.genre!}
             deleteMode={props.deleteMode}
             followers={props.followers}
             link={props.link}
