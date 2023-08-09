@@ -19,7 +19,9 @@ export const Home = () => {
   });
 
   const onSubmit = async(values = { ...initialValues }) => {
+    setArtistPreview(null);
     setLoading(true);
+
     const response = await axios.post(`${API_URL}/spotify`, {...values, limit: 10});
     let artists: Array<ArtistPreviewProps> = [];
     
