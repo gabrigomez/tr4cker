@@ -1,17 +1,16 @@
-import axios from "axios"
-import AuthContext from "../../context/AuthContext"
+import AuthContext from "../../context/AuthContext";
 
-import { FC, useContext, useState } from "react"
-import { ArtistProps } from "../../interfaces"
-import { API_URL } from "../../utils"
-import { useNavigate } from "react-router"
-import { FloppyDiskBack } from "@phosphor-icons/react"
-import { toast } from "react-hot-toast"
-import { Loading } from "../Atoms/Loading"
-import { Tracks } from "./Tracks"
-import { ArtistOptions } from "./ArtistOptions"
-import { ArtistInfo } from "./ArtistInfo"
-import { ArtistImage } from "../Atoms/ArtistImage"
+import { FC, useContext, useState } from "react";
+import { ArtistProps } from "../../interfaces";
+import { useNavigate } from "react-router";
+import { FloppyDiskBack } from "@phosphor-icons/react";
+import { toast } from "react-hot-toast";
+import { Loading } from "../Atoms/Loading";
+import { Tracks } from "./Tracks";
+import { ArtistOptions } from "./ArtistOptions";
+import { ArtistInfo } from "./ArtistInfo";
+import { ArtistImage } from "../Atoms/ArtistImage";
+import { deleteArtistCall, getArtistList, getTracksCall, saveArtistCall } from "../../services/apiService";
 
 export const Artist: FC<ArtistProps> = ({...props}) => {
   const [tracks, setTracks] = useState<Array<string>>([])
@@ -29,13 +28,13 @@ export const Artist: FC<ArtistProps> = ({...props}) => {
     }
 
     try {
-      const artistsData = await axios.get(`${API_URL}/artist-list/${id}`);                         // get a copy of saved artists
+      const artistsData = await getArtistList(id!)                                                 // get a copy of saved artists
       const exists = artistsData.data.find((artist: ArtistProps) => artist.name === props.name);  // check if artist was saved before
       
       // if is not, then try to save the artist. This is not the better way to do 
       // this, but i want to make it simple, without a management library, like redux.
       if(!exists) {
-        const response = await axios.post(`${API_URL}/artist`, {...payload});
+        const response = await saveArtistCall({...payload})
     
         if(response.status === 201) {
           toast.success("Artista salvo com sucesso!");
@@ -48,7 +47,7 @@ export const Artist: FC<ArtistProps> = ({...props}) => {
       }
     } catch (error: any) {
       if(error.response.status === 404) {                                                     // in this case, the user has no artists saved
-        const response = await axios.post(`${API_URL}/artist`, {...payload});    
+        const response = await saveArtistCall({...payload})    
         
         if(response.status === 201) {
           toast.success("Artista salvo com sucesso!");
@@ -64,7 +63,7 @@ export const Artist: FC<ArtistProps> = ({...props}) => {
 
   const deleteArtist = async() => {
     try {
-      await axios.delete(`${API_URL}/artist/${props.id}`)
+      await deleteArtistCall(props.id!)
       toast.success('Artista excluído com sucesso')    
       setTimeout(() => {
         navigate("/dashboard")
@@ -76,7 +75,7 @@ export const Artist: FC<ArtistProps> = ({...props}) => {
 
   const getTracks = async() => {
     setLoading(true)
-    const response = await axios.post(`${API_URL}/spotify`, {artist: props.name, limit: 1})
+    const response = await getTracksCall({artist: props.name, limit: 1})
    
     setTracks(response.data[0].songs)
     setLoading(false)

@@ -1,10 +1,10 @@
-import axios from "axios";
-import AuthContext from "../../context/AuthContext";
 import { useEffect, useContext, useState } from "react";
 import { useNavigate } from "react-router";
 
-import { API_URL, Artists, User } from "../../utils";
+import { Artists, User } from "../../utils";
 import { DashboardTemplate } from "../Templates/DashboardTemplate";
+import { getArtistList, getUserArtists } from "../../services/apiService";
+import AuthContext from "../../context/AuthContext";
 
 export const Dashboard = () => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -21,11 +21,11 @@ export const Dashboard = () => {
     }
 
     async function fetchData() {
-      const response = await axios.get(`${API_URL}/user/${id}`, { headers });
+      const response = await getUserArtists(id!, headers);
       const data: User = response.data.username;
 
       try {
-        const artistsData = await axios.get(`${API_URL}/artist-list/${id}`);
+        const artistsData = await getArtistList(id!)
         const artistsList: Artists = artistsData.data;
         setArtists(artistsList);
       } catch {

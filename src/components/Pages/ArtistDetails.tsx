@@ -1,11 +1,10 @@
-import axios from "axios"
 import AuthContext from "../../context/AuthContext"
 
 import { useContext, useEffect, useState } from "react"
 import { useNavigate } from "react-router"
-import { API_URL } from "../../utils"
 import { ArtistDetailsTemplate } from "../Templates/ArtistDetailsTemplate"
 import { Loading } from "../Atoms/Loading"
+import { getArtist } from "../../services/apiService"
 
 export const ArtistDetails = () => {
   const [name, setName] = useState<string>('')
@@ -25,7 +24,7 @@ export const ArtistDetails = () => {
     async function fetchData() {      
       setLoading(true)
       try {
-        const response = await axios.get(`${API_URL}/artist/${id}`)
+        const response = await getArtist(id)
 
         setName(response.data.name)
         setImage(response.data.image)

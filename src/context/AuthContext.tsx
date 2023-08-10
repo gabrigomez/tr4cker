@@ -1,13 +1,14 @@
-import axios from "axios"
-import jwt_decode from "jwt-decode"
-import { createContext, FC, useEffect, useState } from "react"
-import { useNavigate } from "react-router"
+import jwt_decode from "jwt-decode";
+import { createContext, FC, useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 
-import { API_URL, AuthToken, Email, User } from "../utils"
-import { AuthContextObject, Props, Token, UserObject } from "../interfaces"
-import { toast } from "react-hot-toast"
+import { AuthToken, Email, User } from "../utils";
+import { AuthContextObject, Props, Token, UserObject } from "../interfaces";
+import { toast } from "react-hot-toast";
 
-const AuthContext = createContext({} as AuthContextObject)
+import { editUserCall, loginUser as loginUserCall, refreshTokenCall } from "../services/apiService";
+
+const AuthContext = createContext({} as AuthContextObject);
 export default AuthContext
 
 export const AuthProvider: FC<Props> = ({ children })  => {
@@ -24,7 +25,7 @@ export const AuthProvider: FC<Props> = ({ children })  => {
 
   const loginUser = async (values: UserObject) => {    
     try {
-      const response = await axios.post(`${API_URL}/login`, {...values})
+      const response = await loginUserCall({...values})
       const data: Token = jwt_decode(response.data.access)
       
       localStorage.setItem("token", response.data.access)
@@ -42,7 +43,7 @@ export const AuthProvider: FC<Props> = ({ children })  => {
 
   const updateToken = async () => {
     try {
-      const response = await axios.post(`${API_URL}/token/refresh`, {
+      const response = await refreshTokenCall({
         headers: {...headers},
         'refresh': refreshToken        
       })
@@ -69,7 +70,7 @@ export const AuthProvider: FC<Props> = ({ children })  => {
 
   const editUser = async (values: UserObject) => { 
     try {      
-      const response = await axios.patch(`${API_URL}/user/${id}`, {
+      const response = await editUserCall(id, {
         email: email,
         id: id,
         username: values.username,        

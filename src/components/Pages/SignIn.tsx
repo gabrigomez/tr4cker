@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router";
-import axios from "axios";
 import * as yup from "yup";
 
-import { API_URL, initialValues, validateFormValues } from "../../utils";
+import { initialValues, validateFormValues } from "../../utils";
 import { SignInTemplate } from "../Templates/SignInTemplate";
 import { toast } from "react-hot-toast";
+import { registerUser } from "../../services/apiService";
 
 export const SignIn = () => {
   const navigate = useNavigate();    
@@ -19,7 +19,7 @@ export const SignIn = () => {
 
   const onSubmit = async (values = { ...initialValues }) => {   
     try {
-      await axios.post(`${API_URL}/register`, {...values})      
+      await registerUser({...values})      
       navigate("/login")
     } catch (error) {
       toast.error('E-mail já registrado');
