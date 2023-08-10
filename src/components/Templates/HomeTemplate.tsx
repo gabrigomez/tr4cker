@@ -82,6 +82,7 @@ export const HomeTemplate = ({...props} : HomeTemplateProps) => {
                 <ArtistPreview
                   name={artist.name}
                   image={artist.image === '' ? Spotify : artist.image}
+                  key={artist.id}
                   songs={artist.songs}
                   onClick={() => fetchArtist(artist)}                                                 
                 />
