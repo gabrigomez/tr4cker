@@ -1,42 +1,42 @@
-import AuthContext from "../../context/AuthContext"
+import { useContext, useEffect, useState } from "react";
+import { ArtistDetailsTemplate } from "../Templates/ArtistDetailsTemplate";
+import { Loading } from "../Atoms/Loading";
+import { useNavigate } from "react-router";
 
-import { useContext, useEffect, useState } from "react"
-import { useNavigate } from "react-router"
-import { ArtistDetailsTemplate } from "../Templates/ArtistDetailsTemplate"
-import { Loading } from "../Atoms/Loading"
-import { getArtist } from "../../services/apiService"
+import { getArtist } from "../../services/apiService";
+import AuthContext from "../../context/AuthContext";
 
 export const ArtistDetails = () => {
-  const [name, setName] = useState<string>('')
-  const [genre, setGenre] = useState<string>('')  
-  const [image, setImage] = useState<string>('')
-  const [loading, setLoading] = useState<boolean>(false)
+  const [name, setName] = useState<string>('');
+  const [genre, setGenre] = useState<string>('');  
+  const [image, setImage] = useState<string>('');
+  const [loading, setLoading] = useState<boolean>(false);
 
-  const { authToken } = useContext(AuthContext)
+  const { authToken } = useContext(AuthContext);
   const id = parseInt(window.location.href.split('/').reverse()[0]);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!authToken) {
-      navigate("/login")
+      navigate("/login");
     }
 
     async function fetchData() {      
-      setLoading(true)
+      setLoading(true);
       try {
-        const response = await getArtist(id)
+        const response = await getArtist(id);
 
-        setName(response.data.name)
-        setImage(response.data.image)
-        setGenre(response.data.genre)
-        setLoading(false)
+        setName(response.data.name);
+        setImage(response.data.image);
+        setGenre(response.data.genre);
+        setLoading(false);
       } catch {
-        setLoading(true)
+        setLoading(true);
       }
     }
 
-    fetchData()    
-  }, [authToken, id, navigate])  
+    fetchData();    
+  }, [authToken, id, navigate]);  
 
   return (
     <div className="w-screen">
@@ -55,4 +55,4 @@ export const ArtistDetails = () => {
       )}
     </div>
   )
-}
+};

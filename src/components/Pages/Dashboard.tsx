@@ -41,7 +41,11 @@ export const Dashboard = () => {
 
   return (
     <div className="w-screen">
-      <DashboardTemplate loading={loading} artists={artists} username={username} />
+      <DashboardTemplate 
+        artists={artists} 
+        loading={loading} 
+        username={username} 
+      />
     </div>
   );
 };

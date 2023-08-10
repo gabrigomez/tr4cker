@@ -13,14 +13,13 @@ export const SignIn = () => {
     username: yup.string().min(4, '4 caracteres ou mais').required('obrigatório'),
     email: yup.string().email('e-mail inválido').required('obrigatório'),
     password: yup.string().min(5, 'senha muito curta').required('obrigatório'),
-    confirmPassword: yup.string().oneOf([yup.ref('password')], 'senhas não conferem').required('obrigatório')
+    confirmPassword: yup.string().oneOf([yup.ref('password')], 'senhas não conferem').required('obrigatório'),
   });
-
 
   const onSubmit = async (values = { ...initialValues }) => {   
     try {
-      await registerUser({...values})      
-      navigate("/login")
+      await registerUser({...values});      
+      navigate("/login");
     } catch (error) {
       toast.error('E-mail já registrado');
     }     
@@ -29,6 +28,9 @@ export const SignIn = () => {
   const validate = validateFormValues(validationSchema);
   
   return (
-    <SignInTemplate onSubmit={onSubmit} validate={validate} />
+    <SignInTemplate 
+      onSubmit={onSubmit} 
+      validate={validate} 
+    />
   )
 }

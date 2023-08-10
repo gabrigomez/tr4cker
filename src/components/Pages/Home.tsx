@@ -1,11 +1,11 @@
+import { useContext, useState } from "react";
 import AuthContext from "../../context/AuthContext";
 import * as yup from "yup";
-
-import { useContext, useState } from "react";
-import { imgs, initialValues, validateFormValues } from "../../utils";
-import { HomeTemplate } from "../Templates/HomeTemplate";
 import { ArtistProps } from "../../interfaces";
+
 import { getArtistsFromSpotify } from "../../services/apiService";
+import { HomeTemplate } from "../Templates/HomeTemplate";
+import { imgs, initialValues, validateFormValues } from "../../utils";
 
 export const Home = () => {
   const [artistsPreview, setArtistPreview] = useState<Array<ArtistProps> | null>(null);
@@ -22,7 +22,7 @@ export const Home = () => {
     setArtistPreview(null);
     setLoading(true);
 
-    const response = await getArtistsFromSpotify({...values, limit: 10})
+    const response = await getArtistsFromSpotify({...values, limit: 10});
     let artists: Array<ArtistProps> = [];
     
     response.data.map((result: ArtistProps) => {
@@ -43,7 +43,7 @@ export const Home = () => {
         imgArray,
         loading,              
         onSubmit: onSubmit,
-        validate: validate      
+        validate: validate,     
       }}
     />
   )

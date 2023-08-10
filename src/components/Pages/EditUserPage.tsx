@@ -1,25 +1,25 @@
-import { useContext } from "react"
-import { initialValues } from "../../utils"
-import { EditUserTemplate } from "../Templates/EditUserTemplate"
-import AuthContext from "../../context/AuthContext"
+import { useContext } from "react";
+import { initialValues } from "../../utils";
+import { EditUserTemplate } from "../Templates/EditUserTemplate";
+import AuthContext from "../../context/AuthContext";
 
 export const EditUserPage = () => {
-  const { username, email, editUser } = useContext(AuthContext)
+  const { username, email, editUser } = useContext(AuthContext);
   
   const onSubmit = (values = { ...initialValues }) => {
-    editUser?.({...values})
+    editUser?.({...values});
   }
 
   const validate = (values = { ...initialValues }) => {
     const errors = {
-      username: ''
+      username: '',
     }
     
     if (!values.username) {
-      errors.username = 'obrigatório'
-      return errors              
+      errors.username = 'obrigatório';
+      return errors;              
     }          
-    return
+    return;
   }
 
   return (
@@ -36,4 +36,4 @@ export const EditUserPage = () => {
       </div>
     </div>
   )
-}
+};
