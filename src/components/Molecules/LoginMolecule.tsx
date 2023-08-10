@@ -1,5 +1,5 @@
-import { Keyhole } from "@phosphor-icons/react"
-import { LoginAtom } from "../Atoms/LoginAtom"
+import { LoginAtom } from "../Atoms/LoginAtom";
+import { Keyhole } from "@phosphor-icons/react";
 
 export const LoginMolecule = () => {
   return (
@@ -8,4 +8,4 @@ export const LoginMolecule = () => {
       <LoginAtom />
     </div>
   )
-}
+};

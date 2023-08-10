@@ -1,5 +1,5 @@
-import { UserCirclePlus } from "@phosphor-icons/react"
-import { SignInAtom } from "../Atoms/SignInAtom"
+import { SignInAtom } from "../Atoms/SignInAtom";
+import { UserCirclePlus } from "@phosphor-icons/react";
 
 export const SignInMolecule = () => {
   return (
@@ -8,4 +8,4 @@ export const SignInMolecule = () => {
       <SignInAtom />
     </div>
   )
-}
+};

@@ -13,4 +13,4 @@ export const UserInfo = ({username, email} : UserInfoProps) => {
       <Email email={email} />
     </div>
   )
-}
+};

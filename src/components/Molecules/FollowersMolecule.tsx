@@ -1,8 +1,8 @@
-import { UsersThree } from "@phosphor-icons/react"
-import { ArtistFollowers } from "../Atoms/ArtistFollowers"
+import { ArtistFollowers } from "../Atoms/ArtistFollowers";
+import { UsersThree } from "@phosphor-icons/react";
 
 interface FollowersMoleculeProps {
-  followers: number | undefined
+  followers: number | undefined,
 }
 
 export const FollowersMolecule = ({followers} : FollowersMoleculeProps) => {
@@ -12,4 +12,4 @@ export const FollowersMolecule = ({followers} : FollowersMoleculeProps) => {
       <ArtistFollowers followers={followers} />
     </div>
   )
-}
+};

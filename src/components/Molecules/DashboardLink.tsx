@@ -1,5 +1,5 @@
-import { UserCircle } from "@phosphor-icons/react"
-import { DashboardAtom } from "../Atoms/DashboardAtom"
+import { DashboardAtom } from "../Atoms/DashboardAtom";
+import { UserCircle } from "@phosphor-icons/react";
 
 export const DashboardLink = () => {
   return (
@@ -8,4 +8,4 @@ export const DashboardLink = () => {
       <DashboardAtom />
     </div>
   )
-}
+};

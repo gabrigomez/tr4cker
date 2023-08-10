@@ -1,8 +1,7 @@
-import { SignOut } from "@phosphor-icons/react"
-import { LogoutAtom } from "../Atoms/LogoutAtom"
-
+import { LogoutAtom } from "../Atoms/LogoutAtom";
+import { SignOut } from "@phosphor-icons/react";
 interface logoutUserMoleculeProps {
-  logoutUser: (() => void) | undefined 
+  logoutUser: (() => void) | undefined,
 }
 
 export const LogoutMolecule = ({logoutUser} : logoutUserMoleculeProps) => {
@@ -12,4 +11,4 @@ export const LogoutMolecule = ({logoutUser} : logoutUserMoleculeProps) => {
       <LogoutAtom logoutUser={logoutUser} />
     </div>
   )
-}
+};

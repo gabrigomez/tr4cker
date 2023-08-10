@@ -1,5 +1,4 @@
-import { Field } from "react-final-form"
-
+import { Field } from "react-final-form";
 interface FieldMoleculeProps {
   placeholder: string,
   name: string,
@@ -26,4 +25,4 @@ export const FieldMolecule = ({...props }: FieldMoleculeProps) => {
       )}
     </Field>
   )
-}
+};
