@@ -1,6 +1,5 @@
-import { Carousel } from "react-responsive-carousel"
-import { ArtistImage } from "../Atoms/ArtistImage"
-
+import { ArtistImage } from "../Atoms/ArtistImage";
+import { Carousel } from "react-responsive-carousel";
 interface ArtistsCarouselProps {
   imgArray: Array<string>,
 }
@@ -22,4 +21,4 @@ export const ArtistsCarousel = ({imgArray} : ArtistsCarouselProps) => {
       })}
     </Carousel>
   )
-}
+};

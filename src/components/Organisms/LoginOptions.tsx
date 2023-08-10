@@ -1,5 +1,5 @@
-import { LoginMolecule } from "../Molecules/LoginMolecule"
-import { SignInMolecule } from "../Molecules/SignInMolecule"
+import { LoginMolecule } from "../Molecules/LoginMolecule";
+import { SignInMolecule } from "../Molecules/SignInMolecule";
 
 export const LoginOptions = () => {
   return (
@@ -8,4 +8,4 @@ export const LoginOptions = () => {
       <SignInMolecule />
     </div>
   )
-}
+};

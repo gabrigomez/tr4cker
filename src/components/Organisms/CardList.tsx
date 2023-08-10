@@ -1,9 +1,9 @@
-import { Link } from "react-router-dom"
-import { Artists } from "../../utils"
-import { ArtistCard } from "../Molecules/ArtistCard"
+import { Artists } from "../../utils";
+import { ArtistCard } from "../Molecules/ArtistCard";
+import { Link } from "react-router-dom";
 
 interface CardListProps {
-  artists: Artists
+  artists: Artists,
 }
 
 export const CardList = ({artists} : CardListProps) => {
@@ -12,12 +12,20 @@ export const CardList = ({artists} : CardListProps) => {
       {artists !== null && (
         artists.map((artist) => {
           return (
-            <Link to={`/artist-details/${artist.id}`} key={artist.id}>
-              <ArtistCard name={artist.name} image={artist.image!} genre={artist.genre} id={artist.id} />
+            <Link 
+              to={`/artist-details/${artist.id}`} 
+              key={artist.id}
+            >
+              <ArtistCard 
+                name={artist.name} 
+                image={artist.image!} 
+                genre={artist.genre} 
+                id={artist.id} 
+              />
             </Link>
           )
         })
       )}
     </div>
   )
-}
+};

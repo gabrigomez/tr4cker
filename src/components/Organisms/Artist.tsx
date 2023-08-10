@@ -1,40 +1,41 @@
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router";
+import { ArtistProps } from "../../interfaces";
 import AuthContext from "../../context/AuthContext";
 
-import { FC, useContext, useState } from "react";
-import { ArtistProps } from "../../interfaces";
-import { useNavigate } from "react-router";
+import { ArtistImage } from "../Atoms/ArtistImage";
+import { ArtistInfo } from "./ArtistInfo";
+import { ArtistOptions } from "./ArtistOptions";
+import { Loading } from "../Atoms/Loading";
+
+import { deleteArtistCall, getArtistList, getTracksCall, saveArtistCall } from "../../services/apiService";
 import { FloppyDiskBack } from "@phosphor-icons/react";
 import { toast } from "react-hot-toast";
-import { Loading } from "../Atoms/Loading";
 import { Tracks } from "./Tracks";
-import { ArtistOptions } from "./ArtistOptions";
-import { ArtistInfo } from "./ArtistInfo";
-import { ArtistImage } from "../Atoms/ArtistImage";
-import { deleteArtistCall, getArtistList, getTracksCall, saveArtistCall } from "../../services/apiService";
 
-export const Artist: FC<ArtistProps> = ({...props}) => {
-  const [tracks, setTracks] = useState<Array<string>>([])
-  const [loading, setLoading] = useState<boolean>(false)
+export const Artist = ({...props}: ArtistProps) => {
+  const [tracks, setTracks] = useState<Array<string>>([]);
+  const [loading, setLoading] = useState<boolean>(false);
   
-  const { id } = useContext(AuthContext)
-  const navigate = useNavigate()
+  const { id } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const saveArtist = async() => {
     const payload = {
       name: props.name,
       image: props.image,
-      genre: props.genre ? props.genre : 'no genre' ,
+      genre: props.genre ? props.genre : 'no genre',
       user: id
-    }
+    };
 
     try {
-      const artistsData = await getArtistList(id!)                                                 // get a copy of saved artists
+      const artistsData = await getArtistList(id!);                                                 // get a copy of saved artists
       const exists = artistsData.data.find((artist: ArtistProps) => artist.name === props.name);  // check if artist was saved before
       
       // if is not, then try to save the artist. This is not the better way to do 
       // this, but i want to make it simple, without a management library, like redux.
       if(!exists) {
-        const response = await saveArtistCall({...payload})
+        const response = await saveArtistCall({...payload});
     
         if(response.status === 201) {
           toast.success("Artista salvo com sucesso!");
@@ -47,7 +48,7 @@ export const Artist: FC<ArtistProps> = ({...props}) => {
       }
     } catch (error: any) {
       if(error.response.status === 404) {                                                     // in this case, the user has no artists saved
-        const response = await saveArtistCall({...payload})    
+        const response = await saveArtistCall({...payload});    
         
         if(response.status === 201) {
           toast.success("Artista salvo com sucesso!");
@@ -59,27 +60,27 @@ export const Artist: FC<ArtistProps> = ({...props}) => {
         toast.error("Ocorreu um erro. Tente novamente");
       }
     }
-  }
+  };
 
   const deleteArtist = async() => {
     try {
-      await deleteArtistCall(props.id!)
-      toast.success('Artista excluído com sucesso')    
+      await deleteArtistCall(props.id!);
+      toast.success('Artista excluído com sucesso');    
       setTimeout(() => {
-        navigate("/dashboard")
+        navigate("/dashboard");
       }, 2000)                  
     } catch (error) {
-      toast.error('Não foi possivel excluir o artista')    
+      toast.error('Não foi possivel excluir o artista');   
     }    
-  }
+  };
 
   const getTracks = async() => {
-    setLoading(true)
-    const response = await getTracksCall({artist: props.name, limit: 1})
+    setLoading(true);
+    const response = await getTracksCall({artist: props.name, limit: 1});
    
-    setTracks(response.data[0].songs)
-    setLoading(false)
-  }
+    setTracks(response.data[0].songs);
+    setLoading(false);
+  };
 
   return (
     <div className="w-full flex flex-col justify-center items-center mb-8">
@@ -97,7 +98,10 @@ export const Artist: FC<ArtistProps> = ({...props}) => {
             link={props.link}
           />
           {props.deleteMode ? (
-            <ArtistOptions getTracks={getTracks} deleteArtist={deleteArtist} />                                     
+            <ArtistOptions 
+              getTracks={getTracks} 
+              deleteArtist={deleteArtist} 
+            />                                     
           ) : (
             <button onClick={saveArtist}>
               <FloppyDiskBack className='text-2xl mr-1 cursor-pointer hover:text-sky-700 duration-300' />
@@ -115,4 +119,4 @@ export const Artist: FC<ArtistProps> = ({...props}) => {
       </div>
     </div>
   )
-}
+};

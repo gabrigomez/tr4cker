@@ -1,5 +1,5 @@
 interface TracksProps {
-  tracks: Array<string>
+  tracks: Array<string>,
 }
 
 export const Tracks = ({tracks} : TracksProps) => {
@@ -19,4 +19,4 @@ export const Tracks = ({tracks} : TracksProps) => {
       })}               
     </div>
   )
-}
+};

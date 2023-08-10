@@ -1,9 +1,9 @@
 import AuthContext from '../../context/AuthContext';
+
 import { useContext } from 'react';
-import { NavBarLogo } from '../Atoms/NavBarLogo';
 import { DashboardOptions } from './DashboardOptions';
 import { LoginOptions } from './LoginOptions';
-
+import { NavBarLogo } from '../Atoms/NavBarLogo';
 
 export const NavBar = () => {
   const { logoutUser } = useContext(AuthContext)
@@ -23,4 +23,4 @@ export const NavBar = () => {
       </div>
     </div>
   )
-}
+};

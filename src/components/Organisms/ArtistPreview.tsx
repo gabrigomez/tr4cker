@@ -1,6 +1,6 @@
-import { ArtistProps } from "../../interfaces"
-import { ArtistImage } from "../Atoms/ArtistImage"
-import { ArtistName } from "../Atoms/ArtistName"
+import { ArtistImage } from "../Atoms/ArtistImage";
+import { ArtistName } from "../Atoms/ArtistName";
+import { ArtistProps } from "../../interfaces";
 
 export const ArtistPreview = ({...props} : ArtistProps) => {
   return (
@@ -20,4 +20,4 @@ export const ArtistPreview = ({...props} : ArtistProps) => {
       />        
     </div>
   )
-}
+};

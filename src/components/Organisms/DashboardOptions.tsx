@@ -1,8 +1,8 @@
-import { DashboardLink } from "../Molecules/DashboardLink"
-import { LogoutMolecule } from "../Molecules/LogoutMolecule"
+import { DashboardLink } from "../Molecules/DashboardLink";
+import { LogoutMolecule } from "../Molecules/LogoutMolecule";
 
 interface DashboardOptionsProps {
-  logoutUser: (() => void) | undefined
+  logoutUser: (() => void) | undefined,
 }
 
 export const DashboardOptions = ({logoutUser} : DashboardOptionsProps) => {
@@ -12,4 +12,4 @@ export const DashboardOptions = ({logoutUser} : DashboardOptionsProps) => {
       <LogoutMolecule logoutUser={logoutUser} />
     </div> 
   )
-}
+};

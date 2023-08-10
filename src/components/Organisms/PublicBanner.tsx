@@ -1,7 +1,6 @@
-import { PublicDescription } from "../Atoms/PublicDescription"
-import { PublicInfo } from "../Atoms/PublicInfo"
-import { ArtistsCarousel } from "./ArtistsCarousel"
-
+import { ArtistsCarousel } from "./ArtistsCarousel";
+import { PublicDescription } from "../Atoms/PublicDescription";
+import { PublicInfo } from "../Atoms/PublicInfo";
 interface PublicBanner {
   imgArray: Array<string>,
 }
@@ -14,4 +13,4 @@ export const PublicBanner = ({imgArray} : PublicBanner) => {
       <ArtistsCarousel imgArray={imgArray} />
     </div>
   )
-}
+};

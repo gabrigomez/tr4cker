@@ -1,8 +1,8 @@
-import { Eye, Trash } from "@phosphor-icons/react"
+import { Eye, Trash } from "@phosphor-icons/react";
 
 interface ArtistOptionsProps {
   deleteArtist: () => void,
-  getTracks : () => void
+  getTracks : () => void,
 }
 
 export const ArtistOptions = ({...props} : ArtistOptionsProps) => {
@@ -11,7 +11,10 @@ export const ArtistOptions = ({...props} : ArtistOptionsProps) => {
       <button onClick={props.deleteArtist}>
         <Trash className='text-xl mr-1 cursor-pointer hover:text-sky-700 duration-300' />
       </button>
-      <button className="flex justify-center items-center group" onClick={props.getTracks}>
+      <button 
+        className="flex justify-center items-center group" 
+        onClick={props.getTracks}
+      >
         <Eye className='text-md mr-1 cursor-pointer mt-2 group-hover:text-sky-700 duration-300' />
         <p className="text-xs mt-2 group-hover:text-sky-700 duration-300">
           view list
@@ -19,4 +22,4 @@ export const ArtistOptions = ({...props} : ArtistOptionsProps) => {
       </button>
     </div>
   )
-}
+};
