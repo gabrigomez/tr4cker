@@ -1,7 +1,6 @@
-import { FormOrganism } from "../Organisms/FormOrganism"
-import { Keyhole } from "@phosphor-icons/react"
-import { FieldMolecule } from "../Molecules/FieldMolecule"
-
+import { FormOrganism } from "../Organisms/FormOrganism";
+import { FieldMolecule } from "../Molecules/FieldMolecule";
+import { Keyhole } from "@phosphor-icons/react";
 interface LoginTemplateProps {
   onSubmit: () => void,
   validate: (values: any) => object | undefined,
@@ -32,4 +31,4 @@ export const LoginTemplate = ({...props} : LoginTemplateProps) => {
       </FormOrganism>     
     </div>
   )
-}
+};

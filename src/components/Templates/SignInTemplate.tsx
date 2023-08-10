@@ -43,4 +43,4 @@ export const SignInTemplate = ({...props} : SignInTemplateProps) => {
       </FormOrganism>  
     </div>
   )
-}
+};

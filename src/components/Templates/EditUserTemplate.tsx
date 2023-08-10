@@ -1,13 +1,13 @@
-import { CheckCircle } from "@phosphor-icons/react"
-import { FieldMolecule } from "../Molecules/FieldMolecule"
-import { UserInfo } from "../Molecules/UserInfo"
-import { FormOrganism } from "../Organisms/FormOrganism"
+import { CheckCircle } from "@phosphor-icons/react";
+import { FormOrganism } from "../Organisms/FormOrganism";
+import { FieldMolecule } from "../Molecules/FieldMolecule";
+import { UserInfo } from "../Molecules/UserInfo";
 
 interface EditUserTemplateProps {
   username: string | null,
   email: string | null,
   onSubmit: () => void,
-  validate: () => object | undefined
+  validate: () => object | undefined,
 }
 
 export const EditUserTemplate = ({...props} : EditUserTemplateProps) => {
@@ -25,4 +25,4 @@ export const EditUserTemplate = ({...props} : EditUserTemplateProps) => {
       </FormOrganism>
     </div>
   )
-}
+};

@@ -1,11 +1,10 @@
-import { Artist } from "../Organisms/Artist"
-
+import { Artist } from "../Organisms/Artist";
 interface ArtistDetailsTemplateProps {
-  loading: boolean,
-  name: string,
-  image: string,
-  genre: string,
   id: number,
+  name: string,
+  genre: string,
+  loading: boolean,
+  image: string,
 }
 
 export const ArtistDetailsTemplate = ({...props}: ArtistDetailsTemplateProps) => {
@@ -20,4 +19,4 @@ export const ArtistDetailsTemplate = ({...props}: ArtistDetailsTemplateProps) =>
       />
     </div>
   )
-}
+};

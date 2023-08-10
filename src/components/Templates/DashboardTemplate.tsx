@@ -1,12 +1,12 @@
-import { Spinner } from "@phosphor-icons/react"
-import { Artists } from "../../utils"
-import { CardList } from "../Organisms/CardList"
-import { DashboardHeader } from "../Molecules/DashboardHeader"
+import { Artists } from "../../utils";
+import { CardList } from "../Organisms/CardList";
+import { DashboardHeader } from "../Molecules/DashboardHeader";
+import { Spinner } from "@phosphor-icons/react";
 
 interface DashboardTemplateProps {
   loading: boolean,
   username: string | null,
-  artists: Artists
+  artists: Artists,
 }
 
 export const DashboardTemplate = ({...props} : DashboardTemplateProps) => {
@@ -26,4 +26,4 @@ export const DashboardTemplate = ({...props} : DashboardTemplateProps) => {
       )} 
     </div>
   )
-}
+};

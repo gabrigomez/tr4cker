@@ -1,15 +1,17 @@
 import { useState } from 'react';
+import { Artist } from '../Organisms/Artist';
 import { ArtistPreview } from '../Organisms/ArtistPreview';
 import { ArtistProps } from '../../interfaces';
-import { ArrowCircleLeft, Binoculars } from '@phosphor-icons/react';
-import { FieldMolecule } from '../Molecules/FieldMolecule';
-import { FormOrganism } from '../Organisms/FormOrganism';
-import { Artist } from '../Organisms/Artist';
-import { HomeMolecule } from '../Molecules/HomeMolecule';
-import { SearchText } from '../Atoms/SearchText';
-import { PublicBanner } from '../Organisms/PublicBanner';
 
+import { FormOrganism } from '../Organisms/FormOrganism';
+import { FieldMolecule } from '../Molecules/FieldMolecule';
+import { HomeMolecule } from '../Molecules/HomeMolecule';
 import { Loading } from '../Atoms/Loading';
+
+import { PublicBanner } from '../Organisms/PublicBanner';
+import { SearchText } from '../Atoms/SearchText';
+import { ArrowCircleLeft, Binoculars } from '@phosphor-icons/react';
+
 import Spotify from '../../assets/spotify.png';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 interface HomeTemplateProps {
@@ -32,14 +34,14 @@ export const HomeTemplate = ({...props} : HomeTemplateProps) => {
   const [hasArtist, setHasArtist] = useState(false);  
 
   const fetchArtist = (artist: ArtistProps) => {
-    setHasArtist(true)
+    setHasArtist(true);
 
-    setName(artist.name)
-    setGenre(artist.genre!)
-    setFollowers(artist.followers!)
+    setName(artist.name);
+    setGenre(artist.genre!);
+    setFollowers(artist.followers!);
     
-    setSongs(artist.songs!)
-    setLink(artist.link!)
+    setSongs(artist.songs!);
+    setLink(artist.link!);
     
     if(artist.image === '') {
       setImage(Spotify);
@@ -49,7 +51,7 @@ export const HomeTemplate = ({...props} : HomeTemplateProps) => {
   }
 
   const clearArtist = () => {
-    setHasArtist(false)
+    setHasArtist(false);
   }
 
   return (
@@ -75,37 +77,37 @@ export const HomeTemplate = ({...props} : HomeTemplateProps) => {
             )}            
           </FormOrganism> 
           <div className='flex flex-col items-center justify-center w-full p-2'>
-              {!hasArtist && props.artistsPreview?.map((artist) => {
-                return (
-                  <ArtistPreview
-                    name={artist.name}
-                    image={artist.image === '' ? Spotify : artist.image}
-                    songs={artist.songs}
-                    onClick={() => fetchArtist(artist)}                                                 
-                  />
-                )
-              })}            
-              {hasArtist && (
-                <div className='flex flex-col items-center w-full'>
-                  <ArrowCircleLeft 
-                    className='text-5xl mb-2 cursor-pointer hover:text-pink-500 duration-300'
-                    onClick={() => clearArtist()} 
-                  />
-                  <Artist 
-                    name={name} 
-                    image={image} 
-                    genre={genre} 
-                    followers={followers} 
-                    songs={songs} 
-                    link={link} 
-                  />
-                </div>
-              )}
-            </div>        
+            {!hasArtist && props.artistsPreview?.map((artist) => {
+              return (
+                <ArtistPreview
+                  name={artist.name}
+                  image={artist.image === '' ? Spotify : artist.image}
+                  songs={artist.songs}
+                  onClick={() => fetchArtist(artist)}                                                 
+                />
+              )
+            })}            
+            {hasArtist && (
+              <div className='flex flex-col items-center w-full'>
+                <ArrowCircleLeft 
+                  className='text-5xl mb-2 cursor-pointer hover:text-pink-500 duration-300'
+                  onClick={() => clearArtist()} 
+                />
+                <Artist 
+                  name={name} 
+                  image={image} 
+                  genre={genre} 
+                  followers={followers} 
+                  songs={songs} 
+                  link={link} 
+                />
+              </div>
+            )}
+          </div>        
         </div>
       ) : (
         <PublicBanner imgArray={props.imgArray} />
       )}      
     </div>
   )
-}
+};
