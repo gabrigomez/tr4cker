@@ -1,14 +1,16 @@
+import { ArtistDetails } from './components/Pages/ArtistDetails';
+import { AuthProvider } from './context/AuthContext';
+import { Dashboard } from './components/Pages/Dashboard';
+import { EditUserPage } from './components/Pages/EditUserPage';
+
+import { Home } from './components/Pages/Home';
+import { Login } from './components/Pages/Login';
+import { NavBar } from './components/Organisms/NavBar';
+import { SignIn } from './components/Pages/SignIn';
+
+import { Routes, Route } from 'react-router';
+import { Toaster } from 'react-hot-toast';
 import './App.css'
-import { Routes, Route } from 'react-router'
-import { Home } from './components/Pages/Home'
-import { NavBar } from './components/Organisms/NavBar'
-import { Login } from './components/Pages/Login'
-import { SignIn } from './components/Pages/SignIn'
-import { Dashboard } from './components/Pages/Dashboard'
-import { AuthProvider } from './context/AuthContext'
-import { EditUserPage } from './components/Pages/EditUserPage'
-import { ArtistDetails } from './components/Pages/ArtistDetails'
-import { Toaster } from 'react-hot-toast'
 
 function App() {
   return (
@@ -29,6 +31,6 @@ function App() {
       </AuthProvider>
     </div>
   )
-}
+};
 
-export default App
+export default App;

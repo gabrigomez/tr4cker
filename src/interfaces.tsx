@@ -7,8 +7,8 @@ export interface ArtistProps {
   genre?: string,
   followers?: number,
   songs?: Array<string>,
-  link?: string
-  deleteMode?: boolean   
+  link?: string,
+  deleteMode?: boolean, 
   onClick?: () => void,
 }
 export interface AuthContextObject {
@@ -16,10 +16,10 @@ export interface AuthContextObject {
   email: string | null,
   id?: number,
   authToken?: string | null,
-  setUsername: (value: React.SetStateAction<User>) => void
-  loginUser?: (values: UserObject) => Promise<void>
+  setUsername: (value: React.SetStateAction<User>) => void,
+  loginUser?: (values: UserObject) => Promise<void>,
   logoutUser?: () => void,
-  editUser?: (values: UserObject) => Promise<void>
+  editUser?: (values: UserObject) => Promise<void>,
 }
 
 export interface InitialValues {
@@ -30,17 +30,17 @@ export interface InitialValues {
   artist?: string,
 }
 export interface Props {
-  children?: ReactNode
+  children?: ReactNode,
 }
 export interface Token {
   token_type: string,
   user_id: number,
   email: string,
-  username: string
+  username: string,
 }
 export interface UserObject {
   username?: string,
   email?: string,
-  password?: string
+  password?: string,
 }
 

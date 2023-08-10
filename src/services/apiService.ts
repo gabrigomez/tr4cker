@@ -2,7 +2,7 @@ import axios from "axios";
 import { API_URL } from "../utils";
 
 export const deleteArtistCall = (id: number) => {
-  return axios.delete(`${API_URL}/artist/${id}`)
+  return axios.delete(`${API_URL}/artist/${id}`);
 }
 
 export const editUserCall = (id: number, userParams: object, headers: object) => {
@@ -10,7 +10,7 @@ export const editUserCall = (id: number, userParams: object, headers: object) =>
 }
 
 export const getArtist = (id: number) => {
-  return axios.get(`${API_URL}/artist/${id}`)
+  return axios.get(`${API_URL}/artist/${id}`);
 }
 
 export const getArtistList = (id: number) => {
@@ -26,7 +26,7 @@ export const getArtistsFromSpotify = (params: object) => {
 }
 
 export const getTracksCall = (params: object) => {
-  return axios.post(`${API_URL}/spotify`, params)
+  return axios.post(`${API_URL}/spotify`, params);
 }
 
 export const loginUser = (params: object) => {

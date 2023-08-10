@@ -11,12 +11,12 @@ import image7 from './assets/7.jpeg';
 import image8 from './assets/8.jpeg';
 import image9 from './assets/9.jpeg';
 
-export type AuthToken = string | null
-export type Artists = Array<ArtistProps> | null
-export type Email = string | null
-export type User = string | null
+export type AuthToken = string | null;
+export type Artists = Array<ArtistProps> | null;
+export type Email = string | null;
+export type User = string | null;
 
-export const API_URL = "https://tr4cker-api.up.railway.app/api"
+export const API_URL = "https://tr4cker-api.up.railway.app/api";
 
 export const initialValues: InitialValues = {
   username: '',
