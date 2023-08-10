@@ -1,5 +1,5 @@
-import { ReactNode } from "react"
-import { User } from "./utils"
+import { ReactNode } from "react";
+import { User } from "./utils";
 export interface ArtistProps {
   name: string,
   id?: number,  
@@ -21,7 +21,6 @@ export interface AuthContextObject {
   logoutUser?: () => void,
   editUser?: (values: UserObject) => Promise<void>,
 }
-
 export interface InitialValues {
   username?: string,
   email?: string,
@@ -29,6 +28,14 @@ export interface InitialValues {
   confirmPassword?: string,
   artist?: string,
 }
+
+export interface LoginResponse {
+  authToken: string;
+  username: string;
+  id: number;
+  email: string;
+}
+
 export interface Props {
   children?: ReactNode,
 }

@@ -5,7 +5,8 @@ import jwt_decode from "jwt-decode";
 import { AuthToken, Email, User } from "../utils";
 import { AuthContextObject, Props, Token, UserObject } from "../interfaces";
 import { toast } from "react-hot-toast";
-import { editUserCall, loginUser as loginUserCall, refreshTokenCall } from "../services/apiService";
+import { editUserCall, refreshTokenCall } from "../services/apiService";
+import { loginUserService } from "../services/authService";
 
 const AuthContext = createContext({} as AuthContextObject);
 
@@ -21,22 +22,17 @@ export const AuthProvider = ({ children } : Props)  => {
   const headers = { Authorization: `Bearer ${authToken}` };
   const navigate = useNavigate();
 
-  const loginUser = async (values: UserObject) => {    
+  const handleLogin = async (values: UserObject) => {
     try {
-      const response = await loginUserCall({...values});
-      const data: Token = jwt_decode(response.data.access);
-      
-      localStorage.setItem("token", response.data.access);
-      localStorage.setItem("refresh", response.data.refresh);
+      const response = await loginUserService({...values});
 
-      setAuthToken(response.data.access);
-      setUsername(data.username);
-      setId(data.user_id);
-      setEmail(data.email);
-
+      setAuthToken(response.authToken);
+      setUsername(response.username);
+      setId(response.id);
+      setEmail(response.email);
     } catch (error) {
-      toast.error('Não foi possível realizar o login'); 
-    }    
+      toast.error('Não foi possível realizar o login');
+    }
   };
   
   const updateToken = async () => {
@@ -65,6 +61,7 @@ export const AuthProvider = ({ children } : Props)  => {
       setLoading(false);
     }
   };
+
 
   const editUser = async (values: UserObject) => { 
     try {      
@@ -99,7 +96,7 @@ export const AuthProvider = ({ children } : Props)  => {
     id: id,
     authToken: authToken,
     setUsername: setUsername,
-    loginUser: loginUser,
+    loginUser: handleLogin,
     logoutUser: logoutUser,
     editUser: editUser,  
   }
