@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 
 export const NavBarLogo = () => {
   return (   
@@ -6,4 +6,4 @@ export const NavBarLogo = () => {
       TR4CKER
     </Link>        
   )
-}
+};

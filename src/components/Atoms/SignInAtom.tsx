@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 
 export const SignInAtom = () => {
   return (
@@ -6,4 +6,4 @@ export const SignInAtom = () => {
       Sign in
     </Link>
   )
-}
+};

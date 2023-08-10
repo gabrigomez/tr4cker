@@ -39,8 +39,8 @@ export const AuthProvider: FC<Props> = ({ children })  => {
     } catch (error) {
       toast.error('Não foi possível realizar o login')   
     }    
-  }  
-
+  }
+  
   const updateToken = async () => {
     try {
       const response = await refreshTokenCall({

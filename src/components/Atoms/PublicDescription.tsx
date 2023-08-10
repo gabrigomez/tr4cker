@@ -6,4 +6,4 @@ export const PublicDescription = () => {
       favourite artists to keep them tracked everyday!
     </p>
   )
-}
+};

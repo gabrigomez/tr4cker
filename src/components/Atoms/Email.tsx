@@ -8,4 +8,4 @@ export const Email = ({email} : EmailProps) => {
       {email}
     </p>
   )
-}
+};

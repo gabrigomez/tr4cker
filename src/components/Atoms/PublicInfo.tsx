@@ -4,4 +4,4 @@ export const PublicInfo = () => {
       To use this, register your user them log in to the application.
     </p>
   )
-}
+};

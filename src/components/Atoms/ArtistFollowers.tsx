@@ -1,6 +1,6 @@
 interface ArtistFollowersProps {
   followers: number | undefined
-}
+};
 
 export const ArtistFollowers = ({ followers } : ArtistFollowersProps ) => {
   return (
@@ -8,4 +8,4 @@ export const ArtistFollowers = ({ followers } : ArtistFollowersProps ) => {
       {followers}
     </p>
   )
-}
+};

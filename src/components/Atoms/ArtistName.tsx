@@ -9,4 +9,4 @@ export const ArtistName = ({ name, className} : ArtistNameProps) => {
       {name}
     </p>
   )
-}
+};

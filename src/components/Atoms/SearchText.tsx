@@ -4,4 +4,4 @@ export const SearchText = () => {
       Search for artist
     </p>
   )
-}
+};

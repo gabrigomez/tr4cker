@@ -1,5 +1,5 @@
 interface logoutUserAtomProps {
-  logoutUser: (() => void) | undefined 
+  logoutUser: (() => void) | undefined,
 }
 
 export const LogoutAtom = ({logoutUser} : logoutUserAtomProps) => {
@@ -8,4 +8,4 @@ export const LogoutAtom = ({logoutUser} : logoutUserAtomProps) => {
       Log out
     </button>
   )
-}
+};

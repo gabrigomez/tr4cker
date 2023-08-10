@@ -1,5 +1,4 @@
-import { Spinner } from "@phosphor-icons/react"
-
+import { Spinner } from "@phosphor-icons/react";
 interface LoadingProps {
   className: string,
 }
@@ -10,4 +9,4 @@ export const Loading = ({className} : LoadingProps) => {
       <Spinner className="animate-spin-forever"/>
     </div>
   )
-}
+};

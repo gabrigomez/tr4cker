@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 
 export const DashboardAtom = () => {
   return (
@@ -6,4 +6,4 @@ export const DashboardAtom = () => {
       Dashboard
     </Link>
   )
-}
+};

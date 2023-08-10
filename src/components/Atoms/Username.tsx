@@ -8,4 +8,4 @@ export const Username = ({username} : UsernameProps) => {
       Hello, {username}!
     </p>
   )
-}
+};
