@@ -11,9 +11,9 @@ import { loginUserService, updateTokenService } from "../services/authService";
 const AuthContext = createContext({} as AuthContextObject);
 
 export const AuthProvider = ({ children } : Props)  => {
-  const [authToken, setAuthToken] = useState<AuthToken>(localStorage.getItem("token") ? localStorage.getItem("token") : null);
+  const [authToken, setAuthToken] = useState<AuthToken>(() => localStorage.getItem("token"));
+  const [refreshToken, setRefreshToken] = useState<AuthToken>(() => localStorage.getItem("refresh"));
   const [email, setEmail] = useState<Email>(null);
-  const [refreshToken, setRefreshToken] = useState<AuthToken>(localStorage.getItem("refresh") ? localStorage.getItem("refresh") : null);
   const [username, setUsername] = useState<User>(null);
   
   const [id, setId] = useState<number>(0);
@@ -72,7 +72,7 @@ export const AuthProvider = ({ children } : Props)  => {
     } catch (error) {
       toast.error('Não foi possível realizar a solicitação');   
     }    
-  }
+  };
 
   const logoutUser = () => {
     localStorage.removeItem("token");
@@ -80,7 +80,7 @@ export const AuthProvider = ({ children } : Props)  => {
     
     setAuthToken(null);
     setUsername(null);
-  }
+  };
   
   const contextData: AuthContextObject = {
     username: username,
@@ -91,10 +91,11 @@ export const AuthProvider = ({ children } : Props)  => {
     loginUser: handleLogin,
     logoutUser: logoutUser,
     editUser: editUser,  
-  }
+  };
 
   useEffect(() => {
-    const expireTime = 1000 * 60 * 4;
+    setRefreshToken(localStorage.getItem("refresh"));
+    const expireTime = 1000 * 60 * 1;
     
     if(loading){
       updateToken();
@@ -107,7 +108,7 @@ export const AuthProvider = ({ children } : Props)  => {
     }, expireTime);
 
     return () => clearInterval(interval);
-  })
+  });
 
   useEffect(() => {
     if(authToken) {
