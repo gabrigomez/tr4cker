@@ -22,17 +22,13 @@ export const AuthProvider = ({ children } : Props)  => {
   const headers = { Authorization: `Bearer ${authToken}` };
   const navigate = useNavigate();
 
-  const handleLogin = async (values: UserObject) => {
-    try {
-      const response = await loginUserService({...values});
+  const handleLogin = async (values: UserObject) => {    
+    const response = await loginUserService({...values});
 
-      setAuthToken(response.authToken);
-      setUsername(response.username);
-      setId(response.id);
-      setEmail(response.email);
-    } catch (error) {
-      toast.error('Não foi possível realizar o login');
-    }
+    setAuthToken(response!.authToken);
+    setUsername(response!.username);
+    setId(response!.id);
+    setEmail(response!.email);
   };
 
   const updateToken = async () => {

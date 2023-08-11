@@ -2,6 +2,7 @@ import jwt_decode from "jwt-decode";
 import { AuthToken } from "../utils";
 import { loginUser, refreshTokenCall } from "./apiService";
 import { Token, UserObject } from "../interfaces";
+import { toast } from "react-hot-toast";
 
 export const loginUserService = async (values: UserObject) => {
   try {
@@ -11,14 +12,16 @@ export const loginUserService = async (values: UserObject) => {
     localStorage.setItem("token", response.data.access);
     localStorage.setItem("refresh", response.data.refresh);
 
+    toast.success("Login realizado!");
     return {
       authToken: response.data.access,
       username: data.username,
       id: data.user_id,
       email: data.email,
     };
-  } catch (error) {
-    throw new Error("Não foi possível realizar o login");
+    
+  } catch (error: any) {
+    toast.error(`${error.response.data.non_field_errors[0]}`);    
   }
 };
 
