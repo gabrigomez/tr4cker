@@ -31,25 +31,19 @@ export const AuthProvider = ({ children } : Props)  => {
     setEmail(response!.email);
   };
 
-  const updateToken = async () => {
-    try {
-      const response = await updateTokenService({...headers}, refreshToken);
-    
-      setUsername(response.username);
-      setId(response.id);
-      setEmail(response.email);
-      setAuthToken(response.authToken);
-      setRefreshToken(response.refreshToken);
-    
-    } catch (error) {
-      console.log('Não foi possível realizar a atualização');         
-    }
+  const updateToken = async () => {    
+    const response = await updateTokenService({...headers}, refreshToken);
+  
+    setUsername(response.username);
+    setId(response.id);
+    setEmail(response.email);
+    setAuthToken(response.authToken);
+    setRefreshToken(response.refreshToken);    
     
     if(loading){
       setLoading(false);
     }
   };
-
 
   const editUser = async (values: UserObject) => { 
     try {      
@@ -91,7 +85,7 @@ export const AuthProvider = ({ children } : Props)  => {
 
   useEffect(() => {
     setRefreshToken(localStorage.getItem("refresh"));
-    const expireTime = 1000 * 60 * 1;
+    const expireTime = 1000 * 60 * 4;
     
     if(loading){
       updateToken();
