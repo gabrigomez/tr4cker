@@ -5,8 +5,8 @@ import jwt_decode from "jwt-decode";
 import { AuthToken, Email, User } from "../utils";
 import { AuthContextObject, Props, Token, UserObject } from "../interfaces";
 import { toast } from "react-hot-toast";
-import { editUserCall, refreshTokenCall } from "../services/apiService";
-import { loginUserService } from "../services/authService";
+import { editUserCall } from "../services/apiService";
+import { loginUserService, updateTokenService } from "../services/authService";
 
 const AuthContext = createContext({} as AuthContextObject);
 
@@ -34,24 +34,16 @@ export const AuthProvider = ({ children } : Props)  => {
       toast.error('Não foi possível realizar o login');
     }
   };
-  
+
   const updateToken = async () => {
     try {
-      const response = await refreshTokenCall({
-        headers: {...headers},
-        'refresh': refreshToken  ,      
-      });
-           
-      localStorage.setItem("token", response.data.access)
-      localStorage.setItem("refresh", response.data.refresh)
-
-      const data: Token = jwt_decode(response.data.access)
-      
-      setUsername(data.username);
-      setId(data.user_id);
-      setEmail(data.email);
-      setAuthToken(response.data.access);
-      setRefreshToken(response.data.refresh);
+      const response = await updateTokenService({...headers}, refreshToken);
+    
+      setUsername(response.username);
+      setId(response.id);
+      setEmail(response.email);
+      setAuthToken(response.authToken);
+      setRefreshToken(response.refreshToken);
     
     } catch (error) {
       console.log('Não foi possível realizar a atualização');         
