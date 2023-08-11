@@ -12,6 +12,7 @@ export const ArtistDetails = () => {
   const [image, setImage] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
 
+  const [spotifyId, setSpotifyId] = useState<string>(''); 
   const { authToken } = useContext(AuthContext);
   const id = parseInt(window.location.href.split('/').reverse()[0]);
   const navigate = useNavigate();
@@ -29,6 +30,7 @@ export const ArtistDetails = () => {
         setName(response.data.name);
         setImage(response.data.image);
         setGenre(response.data.genre);
+        setSpotifyId(response.data.spotify_id)
         setLoading(false);
       } catch {
         setLoading(true);
@@ -44,6 +46,7 @@ export const ArtistDetails = () => {
         <ArtistDetailsTemplate 
           {...{
             name,
+            spotifyId,
             genre,
             image,
             loading,

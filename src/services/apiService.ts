@@ -26,7 +26,7 @@ export const getArtistsFromSpotify = (params: object) => {
 }
 
 export const getTracksCall = (params: object) => {
-  return axios.post(`${API_URL}/spotify`, params);
+  return axios.post(`${API_URL}/spotify/searchById`, params);
 }
 
 export const loginUser = (params: object) => {

@@ -31,7 +31,8 @@ export const HomeTemplate = ({...props} : HomeTemplateProps) => {
   
   const [image, setImage] = useState<string>('');
   const [link, setLink] = useState<string>('');
-  const [hasArtist, setHasArtist] = useState(false);  
+  const [hasArtist, setHasArtist] = useState(false); 
+  const [spotifyId, setSpotifyId] = useState<string>(''); 
 
   const fetchArtist = (artist: ArtistProps) => {
     setHasArtist(true);
@@ -42,6 +43,7 @@ export const HomeTemplate = ({...props} : HomeTemplateProps) => {
     
     setSongs(artist.songs!);
     setLink(artist.link!);
+    setSpotifyId(artist.spotify_id!)
     
     if(artist.image === '') {
       setImage(Spotify);
@@ -53,6 +55,7 @@ export const HomeTemplate = ({...props} : HomeTemplateProps) => {
   const clearArtist = () => {
     setHasArtist(false);
   }
+
 
   return (
     <div className='flex flex-col items-center w-screen'>
@@ -82,8 +85,8 @@ export const HomeTemplate = ({...props} : HomeTemplateProps) => {
                 <ArtistPreview
                   name={artist.name}
                   image={artist.image === '' ? Spotify : artist.image}
-                  key={artist.id}
-                  songs={artist.songs}
+                  key={artist.spotify_id}
+                  songs={artist.songs}                  
                   onClick={() => fetchArtist(artist)}                                                 
                 />
               )
@@ -95,7 +98,8 @@ export const HomeTemplate = ({...props} : HomeTemplateProps) => {
                   onClick={() => clearArtist()} 
                 />
                 <Artist 
-                  name={name} 
+                  name={name}
+                  spotify_id={spotifyId}
                   image={image} 
                   genre={genre} 
                   followers={followers} 

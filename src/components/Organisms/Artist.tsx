@@ -25,7 +25,8 @@ export const Artist = ({...props}: ArtistProps) => {
       name: props.name,
       image: props.image,
       genre: props.genre ? props.genre : 'no genre',
-      user: id
+      user: id,
+      spotify_id: props.spotify_id
     };
 
     try {
@@ -76,9 +77,9 @@ export const Artist = ({...props}: ArtistProps) => {
 
   const getTracks = async() => {
     setLoading(true);
-    const response = await getTracksCall({artist: props.name, limit: 1});
+    const response = await getTracksCall({id: props.spotify_id!});
    
-    setTracks(response.data[0].songs);
+    setTracks(response.data.songs);
     setLoading(false);
   };
 

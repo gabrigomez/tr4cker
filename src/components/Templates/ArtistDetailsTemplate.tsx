@@ -5,12 +5,14 @@ interface ArtistDetailsTemplateProps {
   genre: string,
   loading: boolean,
   image: string,
+  spotifyId: string,
 }
 
 export const ArtistDetailsTemplate = ({...props}: ArtistDetailsTemplateProps) => {
   return (
     <div>      
-      <Artist 
+      <Artist
+        spotify_id={props.spotifyId} 
         name={props.name} 
         image={props.image} 
         genre={props.genre} 
