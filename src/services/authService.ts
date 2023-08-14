@@ -45,7 +45,6 @@ export const updateTokenService = async (headers: object, refreshToken: AuthToke
       refreshToken: response.data.refreshToken
     };
   } catch (error) {
-    logoutUser();
     throw new Error("Não foi possível realizar a atualização");    
   }
 };

@@ -31,6 +31,11 @@ export const AuthProvider = ({ children } : Props)  => {
 
   const updateToken = async () => {    
     const response = await updateTokenService({...headers}, refreshToken);
+    console.log(response)
+    
+    if(!response) {
+      logoutUser();
+    };
   
     setUsername(response.username);
     setId(response.id);
