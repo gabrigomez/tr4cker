@@ -4,9 +4,7 @@ import jwt_decode from "jwt-decode";
 
 import { AuthToken, Email, User } from "../utils";
 import { AuthContextObject, Props, Token, UserObject } from "../interfaces";
-import { toast } from "react-hot-toast";
-import { editUserCall } from "../services/apiService";
-import { loginUserService, updateTokenService } from "../services/authService";
+import { editUserService, loginUserService, updateTokenService } from "../services/authService";
 
 const AuthContext = createContext({} as AuthContextObject);
 
@@ -46,22 +44,10 @@ export const AuthProvider = ({ children } : Props)  => {
   };
 
   const editUser = async (values: UserObject) => { 
-    try {      
-      const response = await editUserCall(id, {
-        email: email,
-        id: id,
-        username: values.username,        
-      }, {
-        headers: {...headers},        
-      })
-            
-      setUsername(response.data.username);     
-      toast.success("Informações atualizadas!");
-      
-      navigate("/dashboard");
-    } catch (error) {
-      toast.error('Não foi possível realizar a solicitação');   
-    }    
+    const response = await editUserService(values.username!, id, email!, {...headers});
+    setUsername(response!.data.username);
+    
+    navigate("/dashboard");        
   };
 
   const logoutUser = () => {
@@ -84,7 +70,7 @@ export const AuthProvider = ({ children } : Props)  => {
   };
 
   useEffect(() => {
-    setRefreshToken(localStorage.getItem("refresh"));
+    //setRefreshToken(localStorage.getItem("refresh"));
     const expireTime = 1000 * 60 * 4;
     
     if(loading){

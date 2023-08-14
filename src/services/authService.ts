@@ -1,6 +1,6 @@
 import jwt_decode from "jwt-decode";
 import { AuthToken } from "../utils";
-import { loginUser, refreshTokenCall } from "./apiService";
+import { editUserCall, loginUser, refreshTokenCall } from "./apiService";
 import { Token, UserObject } from "../interfaces";
 import { toast } from "react-hot-toast";
 
@@ -47,4 +47,22 @@ export const updateTokenService = async (headers: object, refreshToken: AuthToke
   } catch (error) {
     throw new Error("Não foi possível realizar a atualização");
   }
+};
+
+export const editUserService = async (username: string, id: number, email: string, headers: object) => {
+  try {      
+    const response = await editUserCall(id, {
+      email: email,
+      id: id,
+      username: username,        
+    }, {
+      headers: {...headers},        
+    })
+          
+    toast.success("Informações atualizadas!");
+    return response;
+    
+  } catch (error) {
+    toast.error('Não foi possível realizar a solicitação');   
+  }  
 };
