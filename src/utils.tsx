@@ -36,7 +36,12 @@ export const imgs = [
   image7,
   image8,
   image9
-]
+];
+
+export const logoutUser = () => {
+  localStorage.removeItem("token");
+  localStorage.removeItem("refresh");
+}
 
 export const validateFormValues = (schema: any) => async (values: any) => {
   if (typeof schema === "function") {

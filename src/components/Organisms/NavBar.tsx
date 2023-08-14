@@ -6,8 +6,8 @@ import { LoginOptions } from './LoginOptions';
 import { NavBarLogo } from '../Atoms/NavBarLogo';
 
 export const NavBar = () => {
-  const { logoutUser } = useContext(AuthContext)
-  const token = localStorage.getItem("token")
+  const { logoutUser } = useContext(AuthContext);
+  const token = localStorage.getItem("token");
     
   return (
     <div className='bg-black w-screen mb-4 p-4 border border-sky-900'>

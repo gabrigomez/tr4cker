@@ -1,5 +1,5 @@
 import jwt_decode from "jwt-decode";
-import { AuthToken } from "../utils";
+import { AuthToken, logoutUser } from "../utils";
 import { editUserCall, loginUser, refreshTokenCall } from "./apiService";
 import { Token, UserObject } from "../interfaces";
 import { toast } from "react-hot-toast";
@@ -45,7 +45,9 @@ export const updateTokenService = async (headers: object, refreshToken: AuthToke
       refreshToken: response.data.refreshToken
     };
   } catch (error) {
-    throw new Error("Não foi possível realizar a atualização");
+    logoutUser();
+    window.location.reload();
+    throw new Error("Não foi possível realizar a atualização");    
   }
 };
 

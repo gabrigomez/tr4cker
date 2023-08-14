@@ -2,7 +2,7 @@ import { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import jwt_decode from "jwt-decode";
 
-import { AuthToken, Email, User } from "../utils";
+import { AuthToken, Email, User, logoutUser as logoutUserMethod } from "../utils";
 import { AuthContextObject, Props, Token, UserObject } from "../interfaces";
 import { editUserService, loginUserService, updateTokenService } from "../services/authService";
 
@@ -20,8 +20,6 @@ export const AuthProvider = ({ children } : Props)  => {
   const headers = { Authorization: `Bearer ${authToken}` };
   const navigate = useNavigate();
 
-  const refreshLocal = refreshToken
-
   const handleLogin = async (values: UserObject) => {    
     const response = await loginUserService({...values});
 
@@ -33,7 +31,6 @@ export const AuthProvider = ({ children } : Props)  => {
 
   const updateToken = async () => {    
     const response = await updateTokenService({...headers}, refreshToken);
-    //console.log({...headers, refreshToken})
   
     setUsername(response.username);
     setId(response.id);
@@ -55,8 +52,7 @@ export const AuthProvider = ({ children } : Props)  => {
   };
 
   const logoutUser = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("refresh");
+    logoutUserMethod();
     
     setAuthToken(null);
     setUsername(null);
