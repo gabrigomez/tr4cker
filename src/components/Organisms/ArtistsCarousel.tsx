@@ -16,7 +16,7 @@ export const ArtistsCarousel = ({imgArray} : ArtistsCarouselProps) => {
     >
       {imgArray.map((img) => {
         return (
-          <ArtistImage image={img} className="" />
+          <ArtistImage image={img} className="" key={img} />
         )
       })}
     </Carousel>
