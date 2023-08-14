@@ -6,7 +6,7 @@ import { toast } from "react-hot-toast";
 
 export const loginUserService = async (values: UserObject) => {
   try {
-    const response = await loginUser({ ...values });
+    const response = await loginUser({...values});
     const data: Token = jwt_decode(response.data.access);
 
     localStorage.setItem("token", response.data.access);

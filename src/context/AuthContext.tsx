@@ -20,6 +20,8 @@ export const AuthProvider = ({ children } : Props)  => {
   const headers = { Authorization: `Bearer ${authToken}` };
   const navigate = useNavigate();
 
+  const refreshLocal = refreshToken
+
   const handleLogin = async (values: UserObject) => {    
     const response = await loginUserService({...values});
 
@@ -31,6 +33,7 @@ export const AuthProvider = ({ children } : Props)  => {
 
   const updateToken = async () => {    
     const response = await updateTokenService({...headers}, refreshToken);
+    //console.log({...headers, refreshToken})
   
     setUsername(response.username);
     setId(response.id);
@@ -47,6 +50,7 @@ export const AuthProvider = ({ children } : Props)  => {
     const response = await editUserService(values.username!, id, email!, {...headers});
     setUsername(response!.data.username);
     
+    updateToken();
     navigate("/dashboard");        
   };
 
@@ -70,7 +74,7 @@ export const AuthProvider = ({ children } : Props)  => {
   };
 
   useEffect(() => {
-    //setRefreshToken(localStorage.getItem("refresh"));
+    setRefreshToken(localStorage.getItem("refresh"));
     const expireTime = 1000 * 60 * 4;
     
     if(loading){
